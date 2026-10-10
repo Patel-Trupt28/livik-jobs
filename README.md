@@ -130,3 +130,4 @@ livik-jobs/
 
 ## 📄 License
 This project is licensed under the MIT License - feel free to use and modify for personal or commercial projects.
+

@@ -3,5 +3,9 @@ django>=5.0,<7.0
 asgiref>=3.8.0
 sqlparse>=0.5.0
 
+# WSGI Production Server & Static Files
+gunicorn>=21.2.0
+whitenoise>=6.6.0
+
 # Image & Media Handling
 pillow>=10.0.0

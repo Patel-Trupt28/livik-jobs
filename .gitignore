@@ -46,3 +46,8 @@ ehthumbs.db
 
 # Logs
 *.log
+
+# Collected static files
+staticfiles/
+job_site/staticfiles/
+
