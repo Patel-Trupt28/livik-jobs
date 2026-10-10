@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.netlify.app',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]
+
 
 # Application definition
 
@@ -80,10 +86,20 @@ WSGI_APPLICATION = 'job_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+if bool(os.getenv('AWS_LAMBDA_FUNCTION_NAME') or os.getenv('NETLIFY')):
+    import shutil
+    _tmp_db = '/tmp/db.sqlite3'
+    _src_db = BASE_DIR / 'db.sqlite3'
+    if not os.path.exists(_tmp_db) and os.path.exists(_src_db):
+        try:
+            shutil.copy2(_src_db, _tmp_db)
+        except Exception:
+            pass
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': ('/tmp/db.sqlite3' if (os.getenv('AWS_LAMBDA_FUNCTION_NAME') or os.getenv('NETLIFY')) else (BASE_DIR / 'db.sqlite3')),
     }
 }
 

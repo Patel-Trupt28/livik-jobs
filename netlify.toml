@@ -1,0 +1,19 @@
+[build]
+  command = "pip install -r requirements.txt && python job_site/manage.py collectstatic --noinput"
+  publish = "job_site/staticfiles"
+  functions = "netlify/functions"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+# 1. Deliver static assets (CSS, Anime.js, images, fonts) directly via Netlify Global CDN
+[[redirects]]
+  from = "/static/*"
+  to = "/:splat"
+  status = 200
+
+# 2. Route all dynamic pages and API calls to the serverless Django function
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/app"
+  status = 200
