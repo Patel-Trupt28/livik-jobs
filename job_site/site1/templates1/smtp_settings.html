@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .smtp-page {
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.15), transparent 45%),
+                        radial-gradient(circle at 20% 80%, rgba(15, 23, 42, 0.08), transparent 50%),
+                        linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+            min-height: calc(100vh - 140px);
+        }
+        .smtp-card {
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        }
+        body.layout-dark .smtp-page {
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.22), transparent 45%),
+                        radial-gradient(circle at 20% 80%, rgba(15, 23, 42, 0.6), transparent 50%),
+                        linear-gradient(180deg, #0b1026 0%, #0b0f22 100%);
+        }
+        body.layout-dark .smtp-card .form-control {
+            color: #0f172a;
+            background-color: #ffffff;
+        }
+        body.layout-dark .smtp-card .form-control::placeholder {
+            color: #64748b;
+        }
+    </style>
+    <div class="page-content">
+        <div class="section-full content-inner-2 smtp-page">
+            <div class="container">
+                <div class="row justify-content-center align-items-stretch">
+                    <div class="col-lg-7 col-md-9 mb-4">
+                        <div class="smtp-card p-a40 h-100 bg-white radius-sm shadow-sm">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="text" name="fake_user" autocomplete="username" tabindex="-1" style="position:absolute; left:-9999px; opacity:0;">
+                                <input type="password" name="fake_password" autocomplete="current-password" tabindex="-1" style="position:absolute; left:-9999px; opacity:0;">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                            {{ message }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <h4 class="font-weight-700 m-b10">SMTP Settings</h4>
+                                <p class="text-muted">Configure email delivery for OTP and system emails.</p>
+                                <div class="form-group">
+                                    <label class="font-weight-700">SMTP Host *</label>
+                                    <input name="host" required class="form-control" placeholder="smtp.gmail.com" value="{{ config.host }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">SMTP Port *</label>
+                                    <input name="port" required class="form-control" placeholder="587" value="{{ config.port }}" type="number" min="1" max="65535">
+                                </div>
+                                <div class="form-group m-b10">
+                                    <label class="font-weight-700 d-block">Security</label>
+                                    <label class="checkbox m-b0">
+                                        <input type="checkbox" name="use_tls" {% if config.use_tls %}checked{% endif %}>
+                                        <i></i> Use TLS
+                                    </label>
+                                    <label class="checkbox m-t5 m-b0">
+                                        <input type="checkbox" name="use_ssl" {% if config.use_ssl %}checked{% endif %}>
+                                        <i></i> Use SSL (Port 465)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">SMTP Username (Email) *</label>
+                                    <input name="username" required class="form-control" placeholder="your@gmail.com" value="{{ config.username }}" autocomplete="off" autocapitalize="off" spellcheck="false">
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">App Password *</label>
+                                    <input name="smtp_secret_key" class="form-control" placeholder="Paste the 16-character Gmail app password" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true">
+                                    <small class="text-muted d-block m-t5">This is a Gmail app password token, not your normal Gmail password. Spaces are removed automatically. Leave this blank to keep the currently saved password.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">From Email</label>
+                                    <input name="from_email" class="form-control" placeholder="no-reply@yourdomain.com" value="{{ config.from_email }}">
+                                    <small class="text-muted d-block m-t5">When using Gmail SMTP, the sender will use the Gmail username automatically.</small>
+                                </div>
+                                <div class="form-group m-b10">
+                                    <label class="font-weight-700 d-block">Status</label>
+                                    <label class="checkbox m-b0">
+                                        <input type="checkbox" name="is_active" {% if config.is_active %}checked{% endif %}>
+                                        <i></i> Enable SMTP
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">Test Email</label>
+                                    <input name="test_email" class="form-control" placeholder="you@example.com">
+                                </div>
+                                <div class="m-t20">
+                                    <button class="site-button button-lg w-100" name="action" value="save">Save Settings</button>
+                                </div>
+                                <div class="m-t15">
+                                    <button class="site-button button-outline w-100" name="action" value="test">Send Test Email</button>
+                                </div>
+                                <div class="text-muted small m-t15">
+                                    For Gmail, enable 2-step verification and create an App Password.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

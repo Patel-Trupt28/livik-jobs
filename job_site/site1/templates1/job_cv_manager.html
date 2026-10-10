@@ -1,0 +1,386 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-content cv-page">
+  <div class="content-block">
+    <div class="section-full p-t50 p-b50">
+      <div class="container">
+        <div class="cv-shell">
+          <div class="cv-head">
+            <div>
+              <p class="cv-kicker">CV Manager</p>
+              <h1>Create a professional CV</h1>
+              <p class="cv-sub">Edit the form, preview on the right, and download the same styled CV as PDF.</p>
+            </div>
+            <button id="cv-download" class="cv-btn" type="button">Download PDF</button>
+          </div>
+
+          <div class="cv-grid">
+            <section class="cv-editor">
+              <h2>Inputs</h2>
+
+              <div class="cv-block">
+                <h3>Header</h3>
+                <div class="row">
+                  <div class="col-md-6 m-b15"><label for="name">Full Name</label><input id="name" class="form-control cv-field" placeholder="TRUPT PATEL"></div>
+                  <div class="col-md-6 m-b15"><label for="title">Title</label><input id="title" class="form-control cv-field" placeholder="Director of Business Development"></div>
+                  <div class="col-md-6 m-b15"><label for="email">Email</label><input id="email" class="form-control cv-field" placeholder="name@email.com"></div>
+                  <div class="col-md-6 m-b15"><label for="phone">Phone</label><input id="phone" class="form-control cv-field" placeholder="+91 9999999999"></div>
+                  <div class="col-md-6 m-b15"><label for="location">Location</label><input id="location" class="form-control cv-field" placeholder="Ahmedabad"></div>
+                  <div class="col-md-6 m-b15"><label for="linkedin">LinkedIn</label><input id="linkedin" class="form-control cv-field" placeholder="linkedin.com/in/name"></div>
+                  <div class="col-12"><label for="photo">Photo (optional)</label><input id="photo" type="file" class="form-control cv-field" accept="image/*"></div>
+                </div>
+              </div>
+
+              <div class="cv-block">
+                <h3>Summary</h3>
+                <textarea id="summary" class="form-control cv-field cv-area" rows="4" placeholder="Write summary"></textarea>
+              </div>
+
+              <div class="cv-block">
+                <h3>Work Experience</h3>
+                <label for="work1">Experience 1 (Role | Company | Dates | Bullets)</label>
+                <textarea id="work1" class="form-control cv-field cv-area" rows="5" placeholder="Director of Business Development | Eyscron | 2016 - Ongoing | Led 18-month marketing plan; Increased sales by 130%"></textarea>
+                <label class="m-t15" for="work2">Experience 2 (Role | Company | Dates | Bullets)</label>
+                <textarea id="work2" class="form-control cv-field cv-area" rows="5" placeholder="Sales Representative | ReluUnion | 2011 - 2016 | Developed customer-focused growth plans"></textarea>
+              </div>
+
+              <div class="cv-block">
+                <h3>Skills</h3>
+                <textarea id="skills" class="form-control cv-field cv-area" rows="4" placeholder="Communication\nCustomer-Oriented\nLeadership\nTeam Coordination\nNegotiation\nBusiness Intelligence\nCritical Thinking\nSales & Marketing"></textarea>
+              </div>
+
+              <div class="cv-block">
+                <h3>Certificates</h3>
+                <textarea id="certs" class="form-control cv-field cv-area" rows="4" placeholder="Web Development\nPython Programming\nDBMS\nReactJS / Full Stack Development"></textarea>
+              </div>
+
+              <div class="cv-block">
+                <h3>Languages</h3>
+                <textarea id="languages" class="form-control cv-field cv-area" rows="4" placeholder="English | 90\nHindi | 75\nGujarati | 70"></textarea>
+              </div>
+
+              <div class="cv-block">
+                <h3>References</h3>
+                <textarea id="references" class="form-control cv-field cv-area" rows="4" placeholder="Trupt Patel | 07984627565\nAhmedabad | pateltrupt30@gmail.com"></textarea>
+              </div>
+
+              <div class="cv-block">
+                <h3>Achievements</h3>
+                <textarea id="achievements" class="form-control cv-field cv-area" rows="4" placeholder="Achievements in Application Development | Successfully developed and deployed full-stack applications.\nSecure Systems Implementation | Designed secure systems for real workflows.\nPerformance Optimization | Built scalable APIs and improved performance."></textarea>
+              </div>
+
+              <div class="cv-block">
+                <h3>Education</h3>
+                <textarea id="education" class="form-control cv-field cv-area" rows="4" placeholder="B.E. Computer Engineering | Gujarat Technological University | 08/2023 - 06/2026 | Gujarat"></textarea>
+              </div>
+            </section>
+
+            <section class="cv-preview">
+              <h2>Live Preview</h2>
+              <div class="cv-preview-stage">
+                <div id="cv-preview-scale" class="cv-preview-scale">
+                  <div id="cv-preview" class="cv-paper">
+                    <aside class="cv-left">
+                      <div class="cv-photo">
+                        <div id="avatar-placeholder" class="cv-avatar"><i class="far fa-user"></i></div>
+                        <img id="avatar-img" class="cv-avatar-img" alt="photo">
+                      </div>
+                      <div class="cv-contact">
+                        <p><i class="fas fa-envelope"></i><span id="pv-email">name@email.com</span></p>
+                        <p><i class="fas fa-phone-alt"></i><span id="pv-phone">+91 9999999999</span></p>
+                        <p><i class="fas fa-map-marker-alt"></i><span id="pv-location">Ahmedabad</span></p>
+                        <p><i class="fab fa-linkedin-in"></i><span id="pv-linkedin">linkedin.com/in/name</span></p>
+                      </div>
+
+                      <section class="cv-side">
+                        <h3>Skills</h3>
+                        <div id="pv-skills" class="cv-skill-pills"></div>
+                      </section>
+
+                      <section class="cv-side">
+                        <h3>Certificates</h3>
+                        <div id="pv-certs" class="cv-list"></div>
+                      </section>
+
+                      <section class="cv-side">
+                        <h3>Languages</h3>
+                        <div id="pv-langs" class="cv-langs"></div>
+                      </section>
+
+                      <section class="cv-side">
+                        <h3>References</h3>
+                        <div id="pv-refs" class="cv-list"></div>
+                      </section>
+                    </aside>
+
+                    <main class="cv-right">
+                      <div class="cv-hero">
+                        <h1 id="pv-name">TRUPT PATEL</h1>
+                        <p id="pv-title">Director of Business Development</p>
+                        <p id="pv-summary" class="cv-hero-summary">Data-driven business development professional with 10 years of experience working with SaaS companies. Successfully led strategic partnerships and increased sales by 130%.</p>
+                      </div>
+
+                      <section class="cv-section">
+                        <h3>Work Experience</h3>
+                        <div id="pv-work"></div>
+                      </section>
+
+                      <section class="cv-section">
+                        <h3>Achievements</h3>
+                        <div id="pv-ach" class="cv-list"></div>
+                      </section>
+
+                      <section class="cv-section">
+                        <h3>Education</h3>
+                        <div id="pv-edu"></div>
+                      </section>
+
+                      <div id="cv-logo" class="cv-logo"></div>
+                    </main>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div id="cv-status" class="cv-status"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.cv-page{--accent:var(--primary);--ink:#1c1f24;--muted:#6a7380;--line:#d9e0e8;--paper:#ffffff;}
+.cv-shell{border:1px solid #d8e3ef;border-radius:18px;padding:18px;background:linear-gradient(140deg,#eef5fb,#fff);box-shadow:0 20px 52px rgba(15,39,68,.14);font-family:"Montserrat","Lato",sans-serif}
+.cv-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
+.cv-kicker{margin:0;color:#1f5c88;font-size:12px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase}
+.cv-head h1{margin:7px 0;color:#0f2744;font-size:clamp(23px,4vw,34px);font-weight:800;line-height:1.15}
+.cv-sub{margin:0;color:#607386;font-size:14px}
+.cv-btn{border:0;border-radius:10px;padding:10px 14px;background:linear-gradient(125deg,#0f3f63,#1f6c9b);color:#fff;font-weight:800}
+.cv-grid{display:grid;grid-template-columns:minmax(340px,1.1fr) minmax(340px,1fr);gap:14px}
+.cv-editor,.cv-preview{border:1px solid #d6e1ee;border-radius:13px;background:#fff;padding:14px}
+.cv-editor h2,.cv-preview h2{margin:0 0 10px;color:#0f2d4a;font-size:19px;font-weight:800}
+.cv-block{border:1px solid #dde7f2;border-radius:10px;background:#fcfdff;padding:10px;margin-bottom:9px}
+.cv-block h3{margin:0 0 8px;color:#24577f;font-size:14px;font-weight:800}
+.cv-block label{display:block;margin-bottom:6px;color:#3e5266;font-size:12px;font-weight:700}
+.cv-field{border:1px solid #cad8e6;border-radius:8px;padding:9px 10px;font-size:13px;color:#16324e;box-shadow:none}
+.cv-field:focus{border-color:#2f79ad;box-shadow:0 0 0 3px rgba(47,121,173,.14)}
+.cv-area{min-height:80px;resize:vertical}
+.cv-preview-stage{display:flex;justify-content:center;align-items:flex-start;overflow:hidden;max-width:100%;width:100%;padding:6px}
+.cv-preview-scale{transform-origin:top center;display:inline-block;width:794px}
+
+.cv-paper{position:relative;width:794px;min-height:1123px;border:1px solid var(--line);border-radius:6px;background:var(--paper);box-shadow:0 16px 34px rgba(15,39,68,.12);display:grid;grid-template-columns:260px 1fr;overflow:hidden;font-family:"Lato","Montserrat",sans-serif}
+.cv-left{padding:22px 18px;border-right:1px solid #e3e8ef;background:#ffffff}
+.cv-right{padding:0 24px 30px}
+.cv-photo{display:flex;justify-content:center;margin-bottom:16px}
+.cv-avatar,.cv-avatar-img{width:118px;height:118px;border-radius:50%}
+.cv-avatar{border:3px solid #e0e6ee;background:#f0f2f5;color:#9aa5b1;display:flex;align-items:center;justify-content:center;font-size:52px}
+.cv-avatar-img{display:none;object-fit:cover;border:3px solid #e0e6ee}
+.cv-contact p{margin:0 0 7px;color:#4c5b6a;font-size:12.4px;display:flex;gap:8px;align-items:center}
+.cv-contact i{color:var(--accent);width:14px;text-align:center}
+
+.cv-side{margin-top:14px}
+.cv-side h3{margin:0 0 8px;color:var(--accent);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+.cv-skill-pills{display:flex;flex-direction:column;gap:6px}
+.cv-skill-pills span{display:inline-block;background:var(--accent);color:#fff;border-radius:14px;padding:4px 10px;font-size:11px;font-weight:700;width:max-content}
+.cv-list{display:flex;flex-direction:column;gap:6px}
+.cv-list p{margin:0;color:#5a6572;font-size:11.4px;line-height:1.35}
+
+.cv-langs{display:flex;flex-direction:column;gap:8px}
+.cv-lang{display:flex;justify-content:space-between;align-items:center;font-size:11.4px;color:#5a6572}
+.cv-meter{width:70px;height:8px;background:#e7edf5;border-radius:10px;overflow:hidden;margin-left:8px}
+.cv-meter span{display:block;height:8px;background:var(--accent)}
+
+.cv-hero{background:var(--accent);color:#fff;padding:16px 18px 14px;margin:0 0 16px}
+.cv-hero h1{margin:0;font-size:28px;font-weight:900;letter-spacing:.6px}
+.cv-hero p{margin:4px 0 0;font-weight:700}
+.cv-hero-summary{margin-top:8px;font-weight:400;font-size:12.2px;line-height:1.5;color:#eaf2ff}
+
+.cv-section{margin-bottom:14px}
+.cv-section h3{margin:0 0 8px;color:var(--accent);font-size:12.5px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid var(--accent);padding-bottom:4px}
+.cv-work{margin-bottom:10px}
+.cv-work h4{margin:0;color:#1f2a33;font-size:13px;font-weight:900}
+.cv-work .meta{display:flex;justify-content:space-between;color:#6b7580;font-size:11px;margin:2px 0 4px}
+.cv-work ul{margin:0 0 0 16px;padding:0}
+.cv-work li{margin-bottom:3px;color:#3b3b3b;font-size:11.4px;line-height:1.35}
+
+.cv-logo{position:absolute;right:18px;bottom:18px;width:110px;height:40px;opacity:.9;background-image:url("data:image/jpeg;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//2Q==");background-size:contain;background-repeat:no-repeat;background-position:center}
+.cv-status{margin-top:8px;min-height:18px;color:#1f5b88;font-size:13px;font-weight:600}
+.cv-paper,.cv-paper *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+@media (max-width:1199px){.cv-grid{grid-template-columns:1fr}.cv-paper{grid-template-columns:1fr}.cv-left{border-right:0;border-bottom:1px solid #e3e8ef}}
+@media (max-width:767px){.cv-shell{padding:12px;border-radius:13px}.cv-head{flex-direction:column}.cv-btn{width:100%}}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  var fields=["name","title","email","phone","location","linkedin","summary","work1","work2","skills","certs","languages","references","achievements","education"];
+  var state={photo:null};
+  var statusBox=document.getElementById("cv-status");
+  var btn=document.getElementById("cv-download");
+  var preview=document.getElementById("cv-preview");
+  var previewScale=document.getElementById("cv-preview-scale");
+  var previewStage=document.querySelector(".cv-preview-stage");
+  var logo=document.getElementById("cv-logo");
+
+  function v(id){return document.getElementById(id).value.trim();}
+  function lines(t){return t?t.split("\n").map(function(x){return x.trim();}).filter(function(x){return x;}):[];}
+  function setStatus(m,e){statusBox.textContent=m;statusBox.style.color=e?"#b42318":"#1f5b88";}
+  function updateScale(){
+    if(!previewStage||!previewScale){return;}
+    var base=794;
+    var available=previewStage.clientWidth-12;
+    var s=Math.min(1,available/base);
+    previewScale.style.transform="scale("+s+")";
+  }
+  function embedLogo(){
+    if(!logo){return;}
+    var src=logo.getAttribute("src");
+    if(!src||src.startsWith("data:")){return;}
+    fetch(src).then(function(r){return r.blob();}).then(function(b){
+      var fr=new FileReader();
+      fr.onload=function(){logo.setAttribute("src",fr.result);};
+      fr.readAsDataURL(b);
+    }).catch(function(){});
+  }
+
+  function updHeader(){
+    document.getElementById("pv-name").textContent=(v("name")||"TRUPT PATEL").toUpperCase();
+    document.getElementById("pv-title").textContent=v("title")||"Director of Business Development";
+    document.getElementById("pv-email").textContent=v("email")||"name@email.com";
+    document.getElementById("pv-phone").textContent=v("phone")||"+91 9999999999";
+    document.getElementById("pv-location").textContent=v("location")||"Ahmedabad";
+    document.getElementById("pv-linkedin").textContent=v("linkedin")||"linkedin.com/in/name";
+  }
+  function updSummary(){
+    document.getElementById("pv-summary").textContent=v("summary")||"Data-driven business development professional with 10 years of experience working with SaaS companies. Successfully led strategic partnerships and increased sales by 130%.";
+  }
+  function updWork(){
+    var wrap=document.getElementById("pv-work");
+    wrap.innerHTML="";
+    var items=[v("work1"),v("work2")].filter(function(x){return x;});
+    if(!items.length){
+      items=["Director of Business Development | Eyscron | 2016 - Ongoing | Led 18-month marketing plan; Increased sales by 130%; Managed cross-functional teams", "Sales Representative | ReluUnion | 2011 - 2016 | Developed customer-focused growth plans; Increased retention"];}
+    items.forEach(function(line){
+      var parts=line.split("|");
+      var role=(parts[0]||"").trim();
+      var company=(parts[1]||"").trim();
+      var dates=(parts[2]||"").trim();
+      var bullets=(parts.slice(3).join("|")||"").split(";").map(function(x){return x.trim();}).filter(function(x){return x;});
+      var d=document.createElement("div");
+      d.className="cv-work";
+      d.innerHTML="<h4>"+role+"</h4><div class='meta'><span>"+company+"</span><span>"+dates+"</span></div><ul></ul>";
+      var ul=d.querySelector("ul");
+      if(!bullets.length){bullets=["Key responsibility and impact area."]}
+      bullets.forEach(function(b){var li=document.createElement("li");li.textContent=b;ul.appendChild(li);});
+      wrap.appendChild(d);
+    });
+  }
+  function updSkills(){
+    var wrap=document.getElementById("pv-skills");
+    wrap.innerHTML="";
+    var arr=lines(v("skills"));
+    if(!arr.length){arr=["Communication","Customer-Oriented","Leadership","Team Coordination","Negotiation","Business Intelligence","Critical Thinking","Sales & Marketing"]}
+    arr.forEach(function(s){var sp=document.createElement("span");sp.textContent=s;wrap.appendChild(sp);});
+  }
+  function updCerts(){
+    var wrap=document.getElementById("pv-certs");
+    wrap.innerHTML="";
+    var arr=lines(v("certs"));
+    if(!arr.length){arr=["Web Development","Python Programming","DBMS","ReactJS / Full Stack Development"]}
+    arr.forEach(function(s){var p=document.createElement("p");p.textContent=s;wrap.appendChild(p);});
+  }
+  function updLangs(){
+    var wrap=document.getElementById("pv-langs");
+    wrap.innerHTML="";
+    var arr=lines(v("languages")).map(function(l){var p=l.split("|");return {n:(p[0]||"").trim(),v:parseInt((p[1]||"80").trim(),10)};}).filter(function(x){return x.n;});
+    if(!arr.length){arr=[{n:"English",v:90},{n:"Hindi",v:75},{n:"Gujarati",v:70}]}
+    arr.forEach(function(x){
+      var d=document.createElement("div");
+      d.className="cv-lang";
+      d.innerHTML="<span>"+x.n+"</span><div class='cv-meter'><span style='width:"+x.v+"%'></span></div>";
+      wrap.appendChild(d);
+    });
+  }
+  function updRefs(){
+    var wrap=document.getElementById("pv-refs");
+    wrap.innerHTML="";
+    var arr=lines(v("references"));
+    if(!arr.length){arr=["Trupt Patel | 07984627565","Ahmedabad | pateltrupt30@gmail.com"]}
+    arr.forEach(function(s){var p=document.createElement("p");p.textContent=s;wrap.appendChild(p);});
+  }
+  function updAch(){
+    var wrap=document.getElementById("pv-ach");
+    wrap.innerHTML="";
+    var arr=lines(v("achievements"));
+    if(!arr.length){arr=["Achievements in Application Development | Successfully developed and deployed full-stack applications.","Secure Systems Implementation | Designed secure systems for real workflows.","Performance Optimization | Built scalable APIs and improved performance."]}
+    arr.forEach(function(s){var p=document.createElement("p");p.textContent=s;wrap.appendChild(p);});
+  }
+  function updEdu(){
+    var wrap=document.getElementById("pv-edu");
+    wrap.innerHTML="";
+    var arr=lines(v("education"));
+    if(!arr.length){arr=["B.E. Computer Engineering | Gujarat Technological University | 08/2023 - 06/2026 | Gujarat"]}
+    arr.forEach(function(s){
+      var parts=s.split("|");
+      var degree=(parts[0]||"").trim();
+      var school=(parts[1]||"").trim();
+      var years=(parts[2]||"").trim();
+      var extra=(parts[3]||"").trim();
+      var d=document.createElement("div");
+      d.className="cv-work";
+      d.innerHTML="<h4>"+degree+"</h4><div class='meta'><span>"+school+"</span><span>"+years+"</span></div><div class='meta'><span>"+extra+"</span></div>";
+      wrap.appendChild(d);
+    });
+  }
+  function updPhoto(){
+    var im=document.getElementById("avatar-img");
+    var ph=document.getElementById("avatar-placeholder");
+    if(state.photo){im.src=state.photo;im.style.display="block";ph.style.display="none";}else{im.style.display="none";ph.style.display="flex";}
+  }
+  function updateAll(){updHeader();updSummary();updWork();updSkills();updCerts();updLangs();updRefs();updAch();updEdu();updPhoto();}
+
+  document.getElementById("photo").addEventListener("change",function(e){
+    var f=e.target.files&&e.target.files[0];
+    if(!f){state.photo=null;updPhoto();return;}
+    var r=new FileReader();
+    r.onload=function(ev){state.photo=ev.target.result;updPhoto();};
+    r.readAsDataURL(f);
+  });
+  fields.forEach(function(id){document.getElementById(id).addEventListener("input",updateAll);});
+  window.addEventListener("resize",updateScale);
+  updateScale();
+  setTimeout(updateScale,50);
+  embedLogo();
+  updateAll();
+
+  btn.addEventListener("click",function(){
+    if(!window.html2canvas || !window.jspdf){setStatus("PDF tool is loading. Try again.",true);return;}
+    updateAll();
+    updateScale();
+    setStatus("Generating PDF...",false);
+    previewScale.style.transform="scale(1)";
+    html2canvas(preview,{scale:2,backgroundColor:"#ffffff",useCORS:true,allowTaint:true}).then(function(canvas){
+      var data=canvas.toDataURL("image/png");
+      var name=(v("name")||"cv").replace(/\s+/g,"_")+"_cv.pdf";
+      var jsPDF=window.jspdf.jsPDF;
+      var pdf=new jsPDF("p","pt",[595.28,841.89]);
+      pdf.addImage(data,"PNG",0,0,595.28,841.89);
+      pdf.save(name);
+      setStatus("PDF downloaded successfully.",false);
+      updateScale();
+    }).catch(function(){
+      setStatus("Could not generate PDF. Please try again.",true);
+      updateScale();
+    });
+  });
+})();
+</script>
+{% endblock %}
+
+
+

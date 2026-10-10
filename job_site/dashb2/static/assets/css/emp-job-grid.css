@@ -1,0 +1,201 @@
+.my-jobs-page .box-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.my-jobs-page .box-title h3 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.my-jobs-page .box-heading-actions {
+  margin-left: auto;
+}
+
+.my-jobs-page .btn-post-job {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.my-jobs-page .panel-white {
+  border: 1px solid #e6edf7;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.my-jobs-page .box-filters-job {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #edf2f7;
+  margin-bottom: 18px;
+}
+
+.my-jobs-page .card-grid-2.job-card {
+  border-radius: 14px;
+  border: 1px solid #e6edf7;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 18px 18px 14px;
+}
+
+.my-jobs-page .card-grid-2.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+}
+
+.my-jobs-page .card-grid-2.job-card h6 a {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.my-jobs-page .card-grid-2-image-left {
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e8eef7;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.my-jobs-page .card-grid-2-image-left .image-box {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+}
+
+.my-jobs-page .card-grid-2-image-left .right-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.my-jobs-page .card-grid-2-image-left .name-job {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.my-jobs-page .card-grid-2-image-left .location-small {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.my-jobs-page .card-briefcase {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.my-jobs-page .card-time {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.my-jobs-page .btn-grey-small {
+  border-radius: 999px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
+.my-jobs-page .card-text-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.my-jobs-page .job-card-actions .btn-job-action {
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border-width: 1px;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  font-size: 12px;
+}
+
+.my-jobs-page .job-card-actions .btn-job-action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
+}
+
+.my-jobs-page .job-card-actions .btn-job-action:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+
+.my-jobs-page .job-card-actions .btn-warning {
+  background: linear-gradient(135deg, #3c65f5, #4f7cff);
+  border-color: #3c65f5;
+  color: #ffffff;
+}
+
+.my-jobs-page .job-card-actions .btn-danger {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #ef4444;
+  box-shadow: none;
+}
+
+.my-jobs-page .card-block-info h6 {
+  font-size: 16px;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.my-jobs-page .card-block-info p {
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.my-jobs-page .card-block-info .mt-5 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.my-jobs-page .card-block-info .mt-30 {
+  margin-top: 14px;
+}
+
+.my-jobs-page .card-2-bottom {
+  padding-top: 10px;
+  border-top: 1px solid #eef2f7;
+}
+
+.my-jobs-page .job-card-actions {
+  flex-wrap: wrap;
+}
+
+.my-jobs-page .card-2-bottom .text-muted {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.my-jobs-page .job-card-actions .btn-danger:hover {
+  background: #fff5f5;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .my-jobs-page .box-heading {
+    align-items: flex-start;
+  }
+  .my-jobs-page .box-heading-actions {
+    width: 100%;
+  }
+  .my-jobs-page .btn-post-job {
+    width: 100%;
+  }
+}

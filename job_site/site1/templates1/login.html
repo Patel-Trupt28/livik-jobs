@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .login-page {
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.15), transparent 45%),
+                        radial-gradient(circle at 20% 80%, rgba(15, 23, 42, 0.08), transparent 50%),
+                        linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+            min-height: calc(100vh - 140px);
+        }
+        .login-card {
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        }
+        .login-card h4 {
+            letter-spacing: -0.2px;
+        }
+        body.layout-dark .login-page {
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.22), transparent 45%),
+                        radial-gradient(circle at 20% 80%, rgba(15, 23, 42, 0.6), transparent 50%),
+                        linear-gradient(180deg, #0b1026 0%, #0b0f22 100%);
+        }
+        body.layout-dark .login-card {
+            background-color: rgba(15, 23, 42, 0.9) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: #f8fafc !important;
+        }
+        body.layout-dark .login-card .form-control {
+            color: #f8fafc !important;
+            background-color: #0b1122 !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+        body.layout-dark .login-card .form-control::placeholder {
+            color: #64748b;
+        }
+    </style>
+    <!-- Content -->
+    <div class="page-content">
+        <div class="section-full content-inner-2 login-page">
+            <div class="container">
+                <div class="row justify-content-center align-items-stretch">
+                    <div class="col-lg-6 col-md-8 mb-4">
+                        <div class="login-card cinema-3d-card cinema-shimmer" data-cinema-tilt-3d p-a40 h-100 bg-white radius-sm shadow-sm">
+                            <form id="login" method="POST">
+                                {% csrf_token %}
+                                {% if next %}
+                                    <input type="hidden" name="next" value="{{ next }}">
+                                {% endif %}
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                            {{ message }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <h4 class="font-weight-700 m-b10">Employee Login</h4>
+                                <p class="text-muted">If you have an account with us, please log in.</p>
+                                {% if show_otp %}
+                                    <div class="alert alert-info">Enter the OTP sent to your email address.</div>
+                                    <div class="form-group">
+                                        <label class="font-weight-700">OTP *</label>
+                                        <input name="otp_code" required="" class="form-control" placeholder="6-digit OTP" type="text" inputmode="numeric" pattern="[0-9]{6}">
+                                    </div>
+                                {% else %}
+                                    <div class="form-group">
+                                        <label class="font-weight-700">Username or Email *</label>
+                                        <input name="username" required="" class="form-control" placeholder="Username or email" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-700">Password *</label>
+                                        <input name="password" required="" class="form-control" placeholder="Type Password" type="password">
+                                    </div>
+                                {% endif %}
+                                <div class="d-flex justify-content-between align-items-center m-t10">
+                                    <p class="m-b0 text-muted small">No account? <a href="/account/register/">Create one</a></p>
+                                    <div class="text-end">
+                                        <a data-bs-toggle="tab" href="#forgot-password" class="forget-pass d-block"><i class="fa fa-unlock-alt"></i> Forgot Password</a>
+                                        <a href="/account/smtp_settings/" class="small text-muted">SMTP Settings</a>
+                                    </div>
+                                </div>
+                                <div class="m-t20">
+                                    <button class="site-button button-lg w-100">Login</button>
+                                </div>
+                                <div class="text-muted small m-t15">By continuing, you agree to our Terms and Privacy Policy.</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </div>
+    <!-- Content END-->
+{% endblock %}

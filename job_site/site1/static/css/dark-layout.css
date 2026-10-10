@@ -1,0 +1,551 @@
+/* ====================
+	Dak Layout
+==================== */
+body.layout-dark{
+	--secondary: #ffffff;
+	--title: #fff;
+	--white: #0b0b2a;
+}
+body.layout-dark{
+	color: #999999;
+}
+
+
+/* Text Color ==================== */
+body.layout-dark p a,
+body.layout-dark .like-btn .checkmark:before,
+body.layout-dark .header-nav .nav > li > a ,
+body.layout-dark .fullwidth .is-fixed .header-nav .nav > li > a,
+body.layout-dark .candidates-bx .testimonial-text p,
+body.layout-dark .salary-bx span,
+body.layout-dark .head-counter h6,
+body.layout-dark .job-profile label,
+body.layout-dark .submit-resume label, 
+body.layout-dark .browse-job label,
+body.layout-dark .layout-btn,
+body.layout-dark .candidate-info ul li a,
+body.layout-dark .modal-bx-info .modal-header .modal-title,
+body.layout-dark .close,
+body.layout-dark table thead th,
+body.layout-dark .text-black,
+body.layout-dark .testimonial-text p,
+body.layout-dark .table-job-bx .job-name a,
+body.layout-dark .pricingtable-wrapper.style2 .site-button.white:hover span,
+body.layout-dark .select-title,
+body.layout-dark .find-job-bx .form-group label,
+body.layout-dark .section-head p,
+body.layout-dark .site-filters.style1 li a,
+body.layout-dark .search-bx.style-1 .input-group-btn button,
+body.layout-dark .news-box form:after,
+body.layout-dark .pagination > li > a, 
+body.layout-dark .pagination > li > span,
+body.layout-dark .acod-head a.collapsed,
+body.layout-dark .acod-head a.collapsed:after,
+body.layout-dark .comments-area .comment-form p input[type="text"],
+body.layout-dark .comments-area .comment-form p textarea,
+body.layout-dark blockquote,
+body.layout-dark ol.comment-list li.comment .comment-author .fn,
+body.layout-dark .header-nav .nav > li .sub-menu li a,
+body.layout-dark .find-job-bx .bootstrap-select .dropdown-toggle,
+body.layout-dark .find-job-bx .bootstrap-select .dropdown-toggle:active,
+body.layout-dark .find-job-bx .bootstrap-select .dropdown-toggle:focus,
+body.layout-dark .find-job-bx .bootstrap-select .dropdown-toggle:hover,
+body.layout-dark .bootstrap-select div.dropdown-menu ul li a,
+body.layout-dark .side-nav .nav.navbar-nav li a i.fa-chevron-down,
+body.layout-dark .nav.navbar-nav li a i.fa-chevron-down,
+body.layout-dark .nav.navbar-nav li a i.fa-angle-right,
+body.layout-dark .job-time span,
+body.layout-dark .find-job-bx .form-control,
+body.layout-dark .job-search-form .form-control,
+body.layout-dark .browse-job .job-post-info .site-button:hover,
+body.layout-dark .job-bx-title .btn.dropdown-toggle.btn-default,
+body.layout-dark .modal-bx-info .modal-body li strong,
+body.layout-dark .form-control,
+body.layout-dark .form-check-label.site-button-link,
+body.layout-dark .browse-job .btn.dropdown-toggle.btn-default,
+body.layout-dark .job-info li strong,
+body.layout-dark .list-num-count.no-round > li:before,
+body.layout-dark .layout-btn:before{
+ 	color: #fff;
+}
+body.layout-dark .bootstrap-select .dropdown-toggle{
+ 	color: #fff!important;
+}
+
+
+/* Background Dark Color ==================== */
+body.layout-dark .bg-gray,
+body.layout-dark .job-bx,
+body.layout-dark .card,
+body.layout-dark .post-job-bx > li:nth-of-type(2n+1) .post-bx,
+body.layout-dark .candidates-are-sys,
+body.layout-dark .candidate-info .candidate-detail,
+body.layout-dark .candidate-info ul li a,
+body.layout-dark .modal-bx-info .modal-body,
+body.layout-dark .modal-bx-info .modal-footer,
+body.layout-dark .modal-bx-info .modal-header,
+body.layout-dark .find-job-bx form,
+body.layout-dark .pricingtable-wrapper.style2,
+body.layout-dark .widget-newslatter .news-box,
+body.layout-dark .pagination > li > a, 
+body.layout-dark .pagination > li > span,
+body.layout-dark .custom-control-label:before,
+body.layout-dark .sidebar-filter,
+body.layout-dark .comment-respond,
+body.layout-dark blockquote,
+body.layout-dark ol.comment-list li.comment .comment-body,
+body.layout-dark .login-form-bx .box-skew .login-2:after,
+body.layout-dark .login-2,
+body.layout-dark .header-nav .nav > li .sub-menu,
+body.layout-dark .dropdown-menu,
+body.layout-dark .browse-candidates .form-control,
+body.layout-dark .browse-job .form-control,
+body.layout-dark .modal-bx-info .modal-header .close,
+body.layout-dark .form-check-input{
+    background-color: #222339;
+}
+
+body.layout-dark .dropdown-menu li a,
+body.layout-dark .header-nav .nav > li .sub-menu li a,
+body.layout-dark .extra-nav .dropdown .sub-menu li a {
+	color: #e2e8f0 !important;
+}
+
+body.layout-dark .dropdown-menu li a:hover,
+body.layout-dark .header-nav .nav > li .sub-menu li a:hover,
+body.layout-dark .extra-nav .dropdown .sub-menu li a:hover {
+	background-color: #1e293b;
+	color: #ffffff !important;
+}
+
+body.layout-dark .login-bx li ul {
+	background-color: #0f172a;
+	border: 1px solid #1e293b;
+	box-shadow: 0 14px 30px rgba(2, 6, 23, 0.55);
+}
+
+body.layout-dark .login-bx li ul li a {
+	color: #e2e8f0;
+}
+
+body.layout-dark .login-bx li ul li a:hover {
+	background-color: #1e293b;
+	color: #ffffff;
+}
+
+body.dark-theme .login-bx li ul,
+body.layout-dark .login-bx li ul {
+	background-color: #0f172a !important;
+	border: 1px solid #1e293b !important;
+	box-shadow: 0 14px 30px rgba(2, 6, 23, 0.55) !important;
+}
+
+body.dark-theme .login-bx li ul li {
+	border-bottom: 1px solid #1f2a3d;
+}
+
+body.dark-theme .login-bx li ul li a,
+body.layout-dark .login-bx li ul li a {
+	color: #e2e8f0 !important;
+}
+
+body.dark-theme .login-bx li ul li a:hover,
+body.layout-dark .login-bx li ul li a:hover {
+	background-color: #1e293b !important;
+	color: #ffffff !important;
+}
+
+body.dark-theme .login-bx .arrow-up:after,
+body.layout-dark .login-bx .arrow-up:after {
+	border-bottom-color: #0f172a;
+}
+
+body.dark-theme .login-bx .arrow-up-border:before,
+body.layout-dark .login-bx .arrow-up-border:before {
+	border-bottom-color: #1e293b;
+}
+
+
+body.layout-dark .bootstrap-select .dropdown-toggle{
+    background-color: #222339!important;
+}
+
+body.layout-dark .browse-job-find .bootstrap-select .dropdown-toggle{
+    background-color: #222339!important;	
+}
+
+
+
+/* Border Color ==================== */
+body.layout-dark .job-bx-title,
+body.layout-dark .modal-bx-info .modal-footer,
+body.layout-dark .table-job-bx tbody tr,
+body.layout-dark .list-row .list-line,
+body.layout-dark .modal-bx-info .modal-header .close,
+body.layout-dark .modal-bx-info .modal-header,
+body.layout-dark .pagination > li > a,
+body.layout-dark .pagination > li > span,
+body.layout-dark .cv-manager > li,
+body.layout-dark .company-logo-wg li,
+body.layout-dark .category-bx li a,
+body.layout-dark .category-bx li a img,
+body.layout-dark .widget.bg-white,
+body.layout-dark .dez-box[class*="border-"],
+body.layout-dark .dez-info[class*="border-"],
+body.layout-dark .contact-style-1 .border-1,
+body.layout-dark .contact-style-1 .form-control,
+body.layout-dark .search-bx.style-1 .input-group,
+body.layout-dark .widget-newslatter .form-control,
+body.layout-dark .acod-head a,
+body.layout-dark .acod-body,
+body.layout-dark .comment-respond,
+body.layout-dark .comments-area p:before,
+body.layout-dark .comments-area .comment-form p input[type="text"],
+body.layout-dark .comments-area .comment-form p textarea,
+body.layout-dark .dez-post-tags,
+body.layout-dark .dez-post-tags .post-tags a,
+body.layout-dark ol.comment-list li.comment .comment-body,
+body.layout-dark .header-nav .nav > li .sub-menu,
+body.layout-dark .bootstrap-select div.dropdown-menu,
+body.layout-dark .header-nav .nav > li > a,
+body.layout-dark .job-search-form .form-control{
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.layout-dark .job-bx-title .btn.dropdown-toggle.btn-light{
+    border-color: rgba(255,255,255,0.1)!important;
+}
+
+body.layout-dark .candidate-info ul li a,
+body.layout-dark .contact-style-1 .dez-social-icon-lg{
+    border-top-color: rgba(255,255,255,0.1);
+}
+body.layout-dark .post-job-bx .post-bx{
+    border-left-color: #30313e;
+}
+body.layout-dark .post-job-bx .post-bx:hover{
+    border-left-color: var(--primary);
+}
+body.layout-dark .bg-gray-dark{
+    background-color: rgba(255,255,255,0.1);
+}
+body.layout-dark .testimonial-pic{
+    border-color: #0b0b2a;
+}
+body.layout-dark .checkmark {
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+
+/* Form Controls ==================== */
+body.layout-dark .job-bx .btn.dropdown-toggle.btn-light, 
+body.layout-dark .submit-resume .form-control, 
+body.layout-dark .submit-resume .btn.dropdown-toggle.btn-light,
+body.layout-dark .contact-style-1 .form-control,
+body.layout-dark .browse-job .job-alert-bx .btn.dropdown-toggle.btn-light,
+body.layout-dark .modal-bx-info .modal-body .btn.dropdown-toggle.btn-light,
+body.layout-dark .browse-job.modal .form-control{
+    background-color: #0e0f20!important;
+}
+
+
+body.layout-dark .job-bx .form-control, 
+body.layout-dark .category-bx li a,
+body.layout-dark .tag_complete,
+body.layout-dark .widget-newslatter .form-control,
+body.layout-dark .comments-area .comment-form p input[type="text"],
+body.layout-dark .comments-area .comment-form p textarea,
+body.layout-dark .custom-file,
+body.layout-dark .card .form-control,
+body.layout-dark .browse-job.login-style2 .form-control,
+body.layout-dark .job-bx .form-check-input,
+body.layout-dark .sidebar-filter .form-check-input,
+body.layout-dark .modal .form-check-input{
+    background-color: #0e0f20;
+}
+body.layout-dark .browse-job .form-control,
+body.layout-dark .browse-job .form-control::placeholder{
+	color: #dbdbdb;
+}
+
+
+/* a tags Hover Color ==================== */
+body.layout-dark .table-job-bx .job-name a:hover, 
+body.layout-dark .browse-job-grid a:hover, 
+body.layout-dark .post-job-bx .job-post-info li a:hover, 
+body.layout-dark .cv-manager .job-post-info a:hover, 
+body.layout-dark .browse-job .job-post-info a:hover, 
+body.layout-dark .candidate-title a:hover,
+body.layout-dark .save-job .criterias a:hover, 
+body.layout-dark .login-form .forget-pass:hover,
+body.layout-dark .login-form label a:hover, 
+body.layout-dark .login-2 .forget-pass:hover, 
+body.layout-dark .forget-pass:hover, 
+body.layout-dark .category-list li a:hover{
+    color: var(--primary);
+}
+
+/* Primary Background Color ==================== */
+body.layout-dark .sidebar-filter .custom-checkbox .custom-control-label::before,
+body.layout-dark .sidebar-filter .custom-radio .custom-control-label::before,
+body.layout-dark .header-nav .nav > li .sub-menu li a:hover,
+body.layout-dark .pagination li.active a,
+body.layout-dark .pagination li a:hover,
+body.layout-dark .job-time span{
+	background-color: var(--primary);
+}
+
+
+/* Primary Color ==================== */
+body.layout-dark .candidates-bx:before,
+body.layout-dark .candidates-bx:after,
+body.layout-dark .layout-btn:after{
+	color: var(--primary);
+}
+
+
+/* Dark Theme Extra Color ==================== */
+body.layout-dark,
+body.layout-dark .search-bx.style-1 .form-control,
+body.layout-dark .job-search-form .form-control,
+body.layout-dark .canditate-des .upload-link,
+body.layout-dark .job-bx .custom-control-label:before{
+    background-color: #0b0b2a;
+}
+body.layout-dark .post-job-bx .post-bx{
+    background-color: #161722;
+}
+body.layout-dark .job-bx .browse-job-grid .post-bx{
+    background-color: #161722!important;
+}
+body.layout-dark .post-job-bx ul li,
+body.layout-dark ol.comment-list li.comment p,
+body.layout-dark ol.comment-list li.comment .comment-meta,
+body.layout-dark ol.comment-list li.comment .comment-meta a,
+body.layout-dark ol.comment-list li.comment .reply a:before{
+	color: #dbdbdb;
+}
+body.layout-dark .table-job-bx tbody tr:nth-child(2n+2) {
+    background-color: #2b2d46;
+}
+body.layout-dark .table-job-bx thead th{
+    background-color: #393c5a;
+}
+body.layout-dark .job-post-info .posted-info,
+body.layout-dark .job-bx .bg-gray{
+    background-color: #0e0f20;
+}
+body.layout-dark ol.comment-list li.comment .comment-body:before {
+    border-color: transparent #222339 transparent rgba(255,255,255,0.1);
+}
+body.layout-dark ol.comment-list li.comment .comment-body:after{
+	border-color: transparent #39394d transparent #39394d;
+}
+body.layout-dark .main-slider:after{
+	background: -moz-linear-gradient(left,  rgba(11,11,42,0.9) 40%,rgba(125,185,232,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, rgba(11,11,42,0.9) 40%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  rgba(11,11,42,0.9) 40%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+body.layout-dark .is-fixed .main-bar {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+body.layout-dark .navbar-toggler span{
+	background-color: #fff;
+}
+body.layout-dark .site-button.white:hover .text-primary{
+	color: var(--primary)!important;
+}
+@media only screen and (max-width: 991px) {
+	body.layout-dark .header-nav .nav .open > a, .header-nav .nav .open > a:focus, 
+	body.layout-dark .header-nav .nav .open > a:hover{
+		border-color: rgba(255,255,255,0.1);
+	}
+	body.layout-dark .mo-left .header-nav,
+	body.layout-dark .header-nav .nav{
+		background-color: #222339;
+	}
+}
+
+
+/* css value with !important ==================== */
+body.layout-dark .job-bx-title .btn.dropdown-toggle.btn-default,
+body.layout-dark .browse-job .btn.dropdown-toggle.btn-default{
+    background-color: #222339!important;
+}
+body.layout-dark .job-bx-title .btn.dropdown-toggle.btn-default{
+    border-color: rgba(255,255,255,0.1)!important;
+}
+
+/* Dark Theme Extra css ==================== */
+body.layout-dark .job-categories .icon-bx-wraper:after {
+    background-image: url(../images/categories-bg-dark.png);
+}
+body.layout-dark .logo-header .logo{
+	display: none;
+}
+body.layout-dark .logo-header .logo-white{
+	display: table-cell;
+}
+body.layout-dark .right-arrow {
+    background-image: url(../images/sap-dark.png);
+}
+
+/* dark-theme index-3*/
+body.layout-dark .page-wraper {
+    background: unset;
+}
+body.layout-dark .main-bnr{
+	background:#0C152F;
+}
+body.layout-dark .main-bnr h1 {
+	color: #ffffff;
+}
+body.layout-dark .find-job-bx.style-1 form{
+	background: #fff;
+}
+body.layout-dark .main-bnr .banner-content .dz-searches h4 {
+    color: #fff;
+}
+body.layout-dark .partners-media img {
+    width: 100%;
+    height: 100%;
+    filter: contrast(0);
+    opacity: unset;
+}
+body.layout-dark .icon-bx-wraper.style-1 {
+    background-color: #222339;
+}
+
+body.layout-dark .icon-bx-wraper.style-1 .icon-content .dez-tilte {
+    color: var(--primary);
+}
+
+/* Public profile dark mode fixes */
+body.layout-dark .public-profile-card,
+body.layout-dark .public-profile-hero__card,
+body.layout-dark .public-profile-card--combined {
+	background: #0f172a;
+	border-color: #1e293b;
+	box-shadow: 0 18px 50px rgba(2, 6, 23, 0.45);
+}
+
+body.layout-dark .public-profile-text,
+body.layout-dark .public-profile-info-list,
+body.layout-dark .public-profile-info-list div,
+body.layout-dark .public-profile-section-title,
+body.layout-dark .public-profile-name {
+	color: #e2e8f0;
+}
+
+body.layout-dark .public-profile-subtitle,
+body.layout-dark .public-profile-info-title,
+body.layout-dark .public-profile-info-list span,
+body.layout-dark .public-profile-stats span,
+body.layout-dark .public-profile-topskills__items {
+	color: #94a3b8;
+}
+
+body.layout-dark .public-profile-info-block,
+body.layout-dark .public-profile-topskills,
+body.layout-dark .public-profile-stats div {
+	background: #0b1220;
+	border-color: #1f2a3d;
+}
+
+body.layout-dark .public-profile-topskills__icon,
+body.layout-dark .public-profile-social a {
+	background: #0b1220;
+	border-color: #1f2a3d;
+	color: #cbd5f5;
+}
+
+body.layout-dark .public-profile-info-list div {
+	border-bottom-color: #1f2a3d;
+}
+body.layout-dark .icon-bx-wraper.style-1:hover .icon-content .dez-tilte {
+    color: #fff;
+}
+body.layout-dark .icon-bx-wraper.style-1 .icon-content .dz-text {
+    color: #fff;
+}
+body.layout-dark .job-bx-wraper .icon-content {
+    background: #222339;
+}
+body.layout-dark .job-bx-wraper .icon-content .job-name {
+    color: #fff;
+}
+body.layout-dark .job-bx-wraper:hover .icon-content .job-name,
+body.layout-dark .job-bx-wraper .icon-content span {
+    color: #fff;
+}
+body.layout-dark .job-wrapper {
+    background: #222339;
+}
+body.layout-dark .job-wrapper .jobs-profile .Profile-inner .profile-name {
+    color: var(--primary);
+}
+body.layout-dark .job-wrapper .jobs-profile .dz-icon {
+    border: 1px solid var(--primary);
+    background: #fff;
+}
+body.layout-dark .profile-positions,
+body.layout-dark .job-wrapper .Profile-inner-2 p,
+body.layout-dark .job-wrapper .Profile-inner-2 .dz-buttons .dz-salary,
+body.layout-dark .job-wrapper .dz-timing span {
+    color: #fff;
+}
+body.layout-dark .testimonial-wrapper,
+body.layout-dark .testimonial-wrapper .testimonial-inner,
+body.layout-dark .testimonial-pic.style-1,
+body.layout-dark .review-testimonial .owl-prev, 
+body.layout-dark .review-testimonial .owl-next  {
+    background: #222339;
+}
+body.layout-dark .testimonial-wrapper .testimonial-inner .profile-info .profile-name,
+body.layout-dark .testimonial-wrapper .dz-text-3 {
+    color: #fff;
+}
+body.layout-dark .review-testimonial .owl-prev:hover, 
+body.layout-dark .review-testimonial .owl-next:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+body.layout-dark .find-jobs:after {
+    background: #222339;
+}
+body.layout-dark .footer-top.style-1 {
+    background: #222339;
+}
+body.layout-dark .widget.style-1 h5 {
+    color: #fff;
+}
+body.layout-dark .widget.style-1 ul li a,
+body.layout-dark .widget.style-1 p,
+body.layout-dark .dzSubscribe.style-1 .input-group.style-1 .form-control::placeholder{
+    color: #c6cffa;
+}
+body.layout-dark .widget.style-1 ul li a:hover{
+	color:var(--primary);
+}
+body.layout-dark .logo-footer.style-1.logo-dark{
+	display: none;
+}
+body.layout-dark .logo-footer.style-1.logo-white{
+	display: table;
+}
+body.layout-dark .footer-bottom.style-1 {
+    background: #171d36;
+	border-top: 1px solid rgba(255,255,255,0.05);
+	color: #c6cffa;
+}	
+body.layout-dark .site-filters.style1 li a::after {
+	background-color: #fff;
+}
+/* ====== */
+
+body:not(.layout-dark) .logo-header.logo-white{
+	display: none;
+}
+body.layout-dark .logo-header.logo-dark{
+	display: none;
+}

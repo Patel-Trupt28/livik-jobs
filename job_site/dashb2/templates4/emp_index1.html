@@ -1,0 +1,185 @@
+  {% extends 'emp_base1.html' %}
+{% load static %}
+{% block content %}
+<!--end header-->
+      <div class="box-content">
+        <!-- CINEMA EMPLOYER COMMAND HUD -->
+        <div class="cinema-dash-hud cinema-perspective">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-3">
+              <div class="position-relative">
+                <img src="/static/assets/imgs/page/dashboard/computer.svg" alt="Employer" style="width: 58px; height: 58px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); padding: 8px; border: 2px solid var(--cinema-neon-emerald); box-shadow: var(--cinema-glow-emerald);">
+                <span class="cinema-radar-pulse" style="position: absolute; bottom: 2px; right: 2px;"></span>
+              </div>
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <h4 class="fw-bold mb-0 text-white">Talent Acquisition Command Center</h4>
+                  <span class="badge bg-primary rounded-pill px-2 py-1" style="font-size: 11px;">RECRUITMENT ACTIVE</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size: 13px;">
+                  <i class="fas fa-chart-line text-success me-1"></i> Live applicant ingestion and candidate pipeline metrics.
+                </p>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="/dashboard2/emp_post_job/" class="btn btn-sm btn-primary rounded-pill px-3 cinema-shimmer" data-cinema-magnetic style="background: linear-gradient(135deg, #2563eb 0%, #4361ee 100%); border: none;">
+                <i class="fas fa-plus-circle me-1"></i> Post New Job
+              </a>
+              <a href="/dashboard2/emp_job_applications/" class="btn btn-sm btn-outline-light rounded-pill px-3" data-cinema-magnetic>
+                <i class="fas fa-users me-1"></i> Applications
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-heading">
+          <div class="box-title">
+            <h3 class="mb-35">Dashboard</h3>
+          </div>
+          <div class="box-breadcrumb">
+            <div class="breadcrumbs">
+              <ul>
+                <li> <a class='icon-home' href='/dashboard2/emp_index/'>Admin</a></li>
+                <li><span>Dashboard</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xxl-9 col-xl-8 col-lg-8">
+            <div class="section-box">
+              <div class="row col-12 dashboard-metrics" data-cinema-stagger>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d >
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/computer.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="total_jobs">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Total Jobs</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d>
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/bank.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="open_jobs">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Open Jobs</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d>
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/lamp.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="closed_jobs">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Closed Jobs</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d>
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/headphone.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="total_applications">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Total Applications</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d>
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/look.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="pending_applications">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Pending Applications</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d>
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/open-file.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="shortlisted_applications">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Shortlisted</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d>
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/doc.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="hired_applications">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Hired</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                  <div class="card-style-1 hover-up cinema-dash-metric-card cinema-3d-card" data-cinema-tilt-3d>
+                    <div class="card-image"> <img src="{% static 'assets/imgs/page/dashboard/man.svg' %}" alt="jobBox"></div>
+                    <div class="card-info">
+                      <div class="card-title">
+                        <h3><span class="stat-value" data-metric="rejected_applications">0</span></h3>
+                      </div>
+                      <p class="color-text-paragraph-2">Rejected</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="section-box">
+              <div class="container">
+                <div class="panel-white cinema-3d-card" data-cinema-tilt>
+                  <div class="panel-head">
+                    <h5>Vacancy Stats</h5><a class="menudrop" id="dropdownMenu2" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"></a>
+                    <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenu2">
+                      <li><a class="dropdown-item active" href="#">Add new</a></li>
+                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li><a class="dropdown-item" href="#">Actions</a></li>
+                    </ul>
+                  </div>
+                  <div class="panel-body">
+                    <div id="chartdiv" data-stats-url="{% url 'emp_stats' %}"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="mt-10">
+          <div class="section-box">
+            <div class="container">
+              <div class="panel-white pt-30 pb-30 pl-15 pr-15">
+                <div class="box-swiper">
+                  <div class="swiper-container swiper-group-10">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/microsoft.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/sony.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/acer.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/nokia.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/asus.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/casio.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/dell.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/panasonic.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/vaio.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/sony.svg' %}" alt="jobBox"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+{% endblock %}

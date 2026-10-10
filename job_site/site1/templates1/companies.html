@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Content -->
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
+            <div class="container">
+                <div class="dez-bnr-inr-entry">
+                    <h1 class="text-white">Employer Companies</h1>
+					<!-- Breadcrumb row -->
+					<div class="breadcrumb-row">
+						<ul class="list-inline">
+							<li><a href="/">Home</a></li>
+							<li>Companies</li>
+						</ul>
+					</div>
+					<!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
+        <!-- inner page banner END -->
+        <!-- contact area -->
+        <div class="content-block">
+			<!-- Find Job -->
+			<div class="section-full bg-white content-inner">
+				<div class="container">
+					<div class="site-filters clearfix center  m-b40">
+						<ul class="filters" data-bs-toggle="buttons">
+							<li data-filter="" class="btn active">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>A</span></a>
+							</li>
+							<li data-filter="web" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>B</span></a>
+							</li>
+							<li data-filter="advertising" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>C</span></a>
+							</li>
+							<li data-filter="branding" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>D</span></a>
+							</li>
+							<li data-filter="design" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>E</span></a>
+							</li>
+							<li data-filter="photography" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>F</span></a>
+							</li>
+							<li data-filter="" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>G</span></a>
+							</li>
+							<li data-filter="web" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>H</span></a>
+							</li>
+							<li data-filter="advertising" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>I</span></a>
+							</li>
+							<li data-filter="branding" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>J</span></a>
+							</li>
+							<li data-filter="design" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>K</span></a>
+							</li>
+							<li data-filter="photography" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>L</span></a>
+							</li>
+							<li data-filter="" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>M</span></a>
+							</li>
+							<li data-filter="web" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>N</span></a>
+							</li>
+							<li data-filter="advertising" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>O</span></a>
+							</li>
+							<li data-filter="branding" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>P</span></a>
+							</li>
+							<li data-filter="design" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>Q</span></a>
+							</li>
+							<li data-filter="photography" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>R</span></a>
+							</li>
+							<li data-filter="" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>S</span></a>
+							</li>
+							<li data-filter="web" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>T</span></a>
+							</li>
+							<li data-filter="advertising" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>U</span></a>
+							</li>
+							<li data-filter="branding" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>V</span></a>
+							</li>
+							<li data-filter="design" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>W</span></a>
+							</li>
+							<li data-filter="photography" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>X</span></a>
+							</li>
+							<li data-filter="" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>Y</span></a>
+							</li>
+							<li data-filter="web" class="btn">
+								<input type="radio">
+								<a href="#" class="site-button-secondry radius-sm"><span>Z</span></a>
+							</li>
+						</ul>
+					</div>
+					<ul id="masonry" class="dez-gallery-listing gallery-grid-4 gallery mfp-gallery row">
+						{% for name in companies %}
+						<li class="card-container col-lg-3 col-md-4 col-sm-4">
+							<div class="dez-gallery-box">
+								<div class="dez-media overlay-black-light">
+									<a href="javascript:void(0);">
+										<img src="{% static 'images/gallery/middle/pic1.jpg' %}" alt="">
+									</a>
+									<div class="overlay-icon overlay-logo">
+										<span class="text-white font-18">{{ name }}</span>
+									</div>
+								</div>
+							</div>
+						</li>
+						{% empty %}
+						<li class="col-12">
+							<p class="text-muted">No companies found yet.</p>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+            <!-- Find Job END -->
+		</div>
+    </div>
+    <!-- Content END-->
+	<!-- Modal Box -->
+	<div class="modal fade lead-form-modal" id="car-details" tabindex="-1" role="dialog" >
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="modal-body row m-a0 clearfix">
+					<div class="col-lg-6 col-md-6 d-flex p-a0" style="background-image: url(images/background/bg3.jpg);  background-position:center; background-size:cover;">
+
+					</div>
+					<div class="col-lg-6 col-md-6 p-a0">
+						<div class="lead-form browse-job text-left">
+							<form>
+								<h3 class="m-t0">Personal Details</h3>
+								<div class="form-group">
+									<input value="" class="form-control" placeholder="Name"/>
+								</div>
+								<div class="form-group">
+									<input value="" class="form-control" placeholder="Mobile Number"/>
+								</div>
+								<div class="clearfix">
+									<button type="button" class="btn-primary site-button btn-block">Submit </button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Box End -->
+{% endblock %}

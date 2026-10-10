@@ -1,0 +1,320 @@
+{% extends 'emp_base1.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .apps-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 22px;
+    border: 1px solid #e8edf6;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f7f9ff 0%, #f3f8ff 45%, #f7fbff 100%);
+  }
+  .apps-hero h3 { margin: 0; font-weight: 700; }
+  .apps-hero p { margin: 6px 0 0; color: #5b6b7f; }
+  .apps-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eef4ff;
+    color: #2d5bff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+  .apps-card {
+    grid-column: span 12;
+    background: #ffffff;
+    border: 1px solid #edf1f7;
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .apps-card h6 { margin: 0 0 10px; font-weight: 700; }
+  .apps-kpi {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+  .kpi { grid-column: span 4; border: 1px solid #edf1f7; border-radius: 12px; padding: 14px; background: #fff; }
+  .kpi p { margin: 0 0 6px; color: #6b7a90; }
+  .kpi h3 { margin: 0; }
+  .apps-toolbar {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 12px;
+    align-items: center;
+  }
+  .toolbar-item { grid-column: span 3; }
+  .toolbar-item.full { grid-column: span 6; }
+  .apps-table thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #6b7a90; }
+  .apps-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+  .pill-pending { background: #fff6e6; color: #9c6b00; }
+  .pill-shortlisted { background: #e8f7ef; color: #117a4b; }
+  .pill-rejected { background: #fdeaea; color: #b42318; }
+  .apps-help { font-size: 12px; color: #6b7a90; margin-top: 6px; }
+  @media (max-width: 992px) {
+    .kpi, .toolbar-item, .toolbar-item.full { grid-column: span 12; }
+    .apps-hero { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+      <div class="box-content">
+        <div class="box-heading">
+          <div class="box-title apps-hero">
+            <div>
+              <h3>Job Applications</h3>
+              <p>Review candidates, shortlist quickly, and keep your hiring pipeline organized.</p>
+            </div>
+            <span class="apps-badge">Employer Dashboard</span>
+          </div>
+          <div class="box-breadcrumb">
+            <div class="breadcrumbs">
+              <ul>
+                <li><a class='icon-home' href='/dashboard2/emp_index/'>Admin</a></li>
+                <li><span>Applications</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% if messages %}
+        <div class="row">
+          <div class="col-lg-12">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="apps-kpi mb-20">
+          <div class="kpi cinema-3d-card" data-cinema-tilt>
+            <p>Total applications</p>
+            <h3>{{ total_applications }}</h3>
+            <div class="apps-help">All applications across your jobs.</div>
+          </div>
+          <div class="kpi cinema-3d-card" data-cinema-tilt>
+            <p>Shortlisted</p>
+            <h3>{{ shortlisted_count }}</h3>
+            <div class="apps-help">Candidates in your shortlist.</div>
+          </div>
+          <div class="kpi cinema-3d-card" data-cinema-tilt>
+            <p>On this page</p>
+            <h3>{{ applications|length }}</h3>
+            <div class="apps-help">Visible in current page view.</div>
+          </div>
+        </div>
+
+        <div class="section-box">
+          <div class="container">
+            <div class="panel-white mb-30">
+              <div class="box-padding">
+                <div class="d-flex justify-content-between align-items-center mb-20">
+                  <h6 class="mb-0">Shortlisted</h6>
+                  <span class="font-sm text-muted">{{ shortlisted_applications|length }} candidate(s)</span>
+                </div>
+                <div class="row">
+                  {% for app in shortlisted_applications %}
+                  <div class="col-md-6 col-lg-4">
+                    <div class="card-grid-2 hover-up">
+                      <div class="card-block-info">
+                        <h6 class="mb-5">{{ app.applicant_name }}</h6>
+                        <p class="text-muted mb-5">{{ app.email }}</p>
+                        <p class="font-xs text-muted mb-10">{{ app.phone }} • {{ app.current_location|default:'-' }}</p>
+                        <p class="font-xs text-muted mb-10"><strong>{{ app.job.job_title }}</strong> at {{ app.job.company_name }}</p>
+                        <div class="d-flex gap-2">
+                          <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ app.id }}">
+                            <input type="hidden" name="action" value="hire">
+                            <button type="submit" class="btn btn-sm btn-primary">Hire for interview</button>
+                          </form>
+                          <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ app.id }}">
+                            <input type="hidden" name="action" value="unshortlist">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">Cancel</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% empty %}
+                  <div class="col-12">
+                    <p class="text-muted mb-0">No shortlisted candidates yet.</p>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-box">
+          <div class="container">
+            <div class="panel-white mb-30">
+              <div class="box-padding">
+                <div class="d-flex justify-content-between align-items-center mb-20">
+                  <h6 class="mb-0">Applications</h6>
+                  <span class="font-sm text-muted">
+                    Showing
+                    {% if applications.paginator.count %}
+                      {{ applications.start_index }}-{{ applications.end_index }}
+                    {% else %}
+                      0
+                    {% endif %}
+                    of {{ applications.paginator.count }}
+                  </span>
+                </div>
+
+                <div class="apps-card mb-20">
+                  <div class="apps-toolbar">
+                    <div class="toolbar-item full">
+                      <input class="form-control" type="text" placeholder="Search by candidate name or email (visual only)">
+                    </div>
+                    <div class="toolbar-item">
+                      <select class="form-control">
+                        <option>All statuses</option>
+                        <option>Pending</option>
+                        <option>Shortlisted</option>
+                        <option>Rejected</option>
+                      </select>
+                    </div>
+                    <div class="toolbar-item">
+                      <select class="form-control">
+                        <option>Newest first</option>
+                        <option>Oldest first</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="apps-help">Filters are visual for now. Ask to wire them if needed.</div>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle apps-table">
+                    <thead>
+                      <tr>
+                        <th>Candidate</th>
+                        <th>Job</th>
+                        <th>Contact</th>
+                        <th>Location / Exp</th>
+                        <th>Applied</th>
+                        <th>Status</th>
+                        <th>Resume</th>
+                        <th class="text-end">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for app in applications %}
+                      <tr>
+                        <td>
+                          <div class="d-flex flex-column">
+                            <strong>{{ app.applicant_name }}</strong>
+                            <small class="text-muted">{{ app.email }}</small>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="d-flex flex-column">
+                            <span class="fw-bold">{{ app.job.job_title }}</span>
+                            <small class="text-muted">{{ app.job.company_name }}</small>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="d-flex flex-column">
+                            <span>{{ app.phone }}</span>
+                            <small class="text-muted">{{ app.current_location }}</small>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="badge bg-light text-dark">{{ app.current_location|default:'-' }}</span>
+                          <span class="badge bg-secondary ms-1">{{ app.experience_years }} yrs</span>
+                        </td>
+                        <td>{{ app.created_at|date:'M d, Y' }}</td>
+                        <td>
+                          {% if app.is_shortlisted %}
+                            <span class="apps-pill pill-shortlisted">Shortlisted</span>
+                          {% elif app.status == 'rejected' %}
+                            <span class="apps-pill pill-rejected">Rejected</span>
+                          {% else %}
+                            <span class="apps-pill pill-pending">Pending</span>
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if app.resume %}
+                            <a class="btn btn-link p-0" href="{{ app.resume.url }}" target="_blank">View</a>
+                          {% else %}
+                            <span class="text-muted">N/A</span>
+                          {% endif %}
+                        </td>
+                        <td class="text-end">
+                          <form method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ app.id }}">
+                            <input type="hidden" name="action" value="shortlist">
+                            <button type="submit" class="btn btn-sm btn-success" {% if app.is_shortlisted %}disabled{% endif %}>Shortlist</button>
+                          </form>
+                          <form method="post" class="d-inline ms-1">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ app.id }}">
+                            <input type="hidden" name="action" value="unshortlist">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary" {% if not app.is_shortlisted %}disabled{% endif %}>Unshortlist</button>
+                          </form>
+                          {% if app.is_shortlisted %}
+                          <form method="post" class="d-inline ms-1">
+                            {% csrf_token %}
+                            <input type="hidden" name="application_id" value="{{ app.id }}">
+                            <input type="hidden" name="action" value="hire">
+                            <button type="submit" class="btn btn-sm btn-primary">Hire for interview</button>
+                          </form>
+                          {% endif %}
+                        </td>
+                      </tr>
+                      {% empty %}
+                      <tr>
+                        <td colspan="8" class="text-center py-4">
+                          <h5 class="text-muted mb-10">No applications yet</h5>
+                          <p class="text-muted mb-0">Once candidates apply to your posted jobs, they will appear here.</p>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+                {% if applications.has_other_pages %}
+                <div class="paginations mt-20">
+                  <ul class="pager">
+                    {% if applications.has_previous %}
+                    <li><a class="pager-prev" href="?page={{ applications.previous_page_number }}"></a></li>
+                    {% endif %}
+
+                    {% for num in applications.paginator.page_range %}
+                      {% if applications.number == num %}
+                        <li><a class="pager-number active" href="?page={{ num }}">{{ num }}</a></li>
+                      {% elif num > applications.number|add:'-3' and num < applications.number|add:'3' %}
+                        <li><a class="pager-number" href="?page={{ num }}">{{ num }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% if applications.has_next %}
+                    <li><a class="pager-next" href="?page={{ applications.next_page_number }}"></a></li>
+                    {% endif %}
+                  </ul>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

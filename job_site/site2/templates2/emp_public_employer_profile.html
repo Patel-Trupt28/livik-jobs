@@ -1,0 +1,146 @@
+{% extends 'emp_base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-content bg-white">
+    <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
+        <div class="container">
+            <div class="dez-bnr-inr-entry">
+                <div class="public-profile-banner text-center">
+                    <p class="public-profile-banner__eyebrow">Company Profile</p>
+                    <h1 class="text-white">Employer Profile</h1>
+                    <div class="breadcrumb-row">
+                        <ul class="list-inline">
+                            <li><a href="/employer/emp/">Home</a></li>
+                            <li>Profile</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-full content-inner">
+        <div class="container">
+            <div class="public-profile-shell">
+                <div class="public-profile-hero">
+                    <div class="public-profile-hero__card">
+                        <div class="public-profile-hero__top">
+                            <div class="public-profile-identity">
+                                {% if photo_url %}
+                                    <img class="public-profile-avatar" src="{{ photo_url }}" alt="{{ profile.full_name|default:profile.user.username }}">
+                                {% else %}
+                                    <div class="public-profile-avatar public-profile-avatar--placeholder">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </div>
+                                {% endif %}
+                                <div class="public-profile-identity__meta">
+                                    <h2 class="public-profile-name">{{ profile.full_name|default:profile.user.username }}</h2>
+                                    <div class="public-profile-subtitle">@{{ profile.user.username }}</div>
+                                    <div class="public-profile-identity__details">
+                                        {% if profile.categories %}<span class="meta-chip">{{ profile.categories }}</span>{% endif %}
+                                        {% if profile.city or profile.country %}
+                                            <span class="meta-chip">{{ profile.city }}{% if profile.city and profile.country %}, {% endif %}{{ profile.country }}</span>
+                                        {% endif %}
+                                        {% if profile.experience_years %}<span class="meta-chip">{{ profile.experience_years }} experience</span>{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="public-profile-hero__actions">
+                                {% if profile.website %}
+                                    <a class="site-button outline" href="{{ profile.website }}" target="_blank" rel="noopener">Website</a>
+                                {% endif %}
+                                <a class="site-button" href="/employer/companies/">Browse Companies</a>
+                            </div>
+                        </div>
+                        <div class="public-profile-hero__bottom">
+                            <div class="public-profile-stats">
+                                {% if skill_list %}<div><strong>{{ skill_list|length }}</strong><span>Skills</span></div>{% endif %}
+                                {% if profile.languages %}<div><strong>{{ profile.languages|length }}</strong><span>Languages</span></div>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="public-profile-layout public-profile-layout--stacked">
+                <div class="public-profile-main">
+                    <div class="public-profile-card public-profile-card--about">
+                        <div class="public-profile-card__header">
+                            <h5 class="public-profile-section-title">About</h5>
+                        </div>
+                        {% if profile.bio %}
+                            <p class="public-profile-text">{{ profile.bio }}</p>
+                        {% endif %}
+
+                        {% if skill_list %}
+                            <div class="public-profile-topskills">
+                                <div class="public-profile-topskills__icon">
+                                    <i class="fa fa-diamond" aria-hidden="true"></i>
+                                </div>
+                                <div class="public-profile-topskills__meta">
+                                    <div class="public-profile-topskills__title">Top skills</div>
+                                    <div class="public-profile-topskills__items">
+                                        {% for skill in skill_list|slice:":4" %}
+                                            {{ skill }}{% if not forloop.last %} • {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="public-profile-topskills__arrow">
+                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="public-profile-sidebar">
+                    <div class="public-profile-card public-profile-card--combined">
+                        <h5 class="public-profile-section-title">Details</h5>
+                        <div class="public-profile-info-grid">
+                            <div class="public-profile-info-block">
+                                <h6 class="public-profile-info-title">Contact</h6>
+                                <div class="public-profile-info-list">
+                                    {% if profile.email %}<div><span>Email</span>{{ profile.email }}</div>{% endif %}
+                                    {% if profile.phone %}<div><span>Phone</span>{{ profile.phone }}</div>{% endif %}
+                                    {% if profile.website %}<div><span>Website</span>{{ profile.website }}</div>{% endif %}
+                                </div>
+                            </div>
+
+                            <div class="public-profile-info-block">
+                                <h6 class="public-profile-info-title">Background & Location</h6>
+                                <div class="public-profile-info-list">
+                                    {% if profile.education %}<div><span>Education</span>{{ profile.education }}</div>{% endif %}
+                                    {% if profile.languages %}<div><span>Languages</span>{{ profile.languages }}</div>{% endif %}
+                                    {% if profile.country %}<div><span>Country</span>{{ profile.country }}</div>{% endif %}
+                                    {% if profile.city %}<div><span>City</span>{{ profile.city }}</div>{% endif %}
+                                    {% if profile.address %}<div><span>Address</span>{{ profile.address }}</div>{% endif %}
+                                </div>
+                            </div>
+
+                            {% if profile.current_salary or profile.expected_salary %}
+                                <div class="public-profile-info-block">
+                                    <h6 class="public-profile-info-title">Compensation</h6>
+                                    <div class="public-profile-info-list">
+                                        {% if profile.current_salary %}<div><span>Current Salary</span>{{ profile.current_salary }}</div>{% endif %}
+                                        {% if profile.expected_salary %}<div><span>Expected Salary</span>{{ profile.expected_salary }}</div>{% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if profile.facebook or profile.twitter or profile.instagram %}
+                                <div class="public-profile-info-block">
+                                    <h6 class="public-profile-info-title">Social Profiles</h6>
+                                    <div class="public-profile-social">
+                                        {% if profile.facebook %}<a href="{{ profile.facebook }}" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>{% endif %}
+                                        {% if profile.twitter %}<a href="{{ profile.twitter }}" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>{% endif %}
+                                        {% if profile.instagram %}<a href="{{ profile.instagram }}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>{% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

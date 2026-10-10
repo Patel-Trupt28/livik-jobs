@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="msapplication-TileColor" content="#0E0E0E">
+    <meta name="template-color" content="#0E0E0E">
+    <link rel="manifest" href="manifest.html" crossorigin>
+    <meta name="msapplication-config" content="browserconfig.html">
+    <meta name="description" content="Index page">
+    <meta name="keywords" content="index, page">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'LOGO.jpg' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link href="{% static 'assets/css/stylecd4e.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/dashboard-custom.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/emp-job-grid.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/cinema-ui.css' %}" rel="stylesheet">
+    <style>
+      .layout-btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:3px;
+        height:42px;
+        line-height:40px;
+        width:80px;
+        background-color: var(--primary, #2d5bff);
+        padding:4px!important;
+        position:relative;
+        z-index:1;
+        cursor:pointer;
+        vertical-align:middle;
+        margin-right:10px;
+      }
+      .layout-btn input{
+        z-index:9;
+        position:relative;
+        height:100%;
+        width:100%;
+        opacity:0;
+        cursor:pointer;
+      }
+      .layout-btn:before,
+      .layout-btn:after{
+        font-family:'Font Awesome 5 Free';
+        font-size:18px;
+        font-weight:500;
+        width:50%;
+        text-align:center;
+        color:#fff;
+        transition:all 0.3s ease;
+        height:42px;
+        line-height:42px;
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+      }
+      .layout-btn:before{
+        content:"\f185";
+        left:2px;
+        color:var(--primary, #2d5bff);
+      }
+      .layout-btn:after{
+        content:"\f186";
+        right:2px;
+        color:#fff;
+      }
+      .layout-btn .mode-label:after{
+        content:"";
+        width:calc(50% - 4px);
+        display:block;
+        height:34px;
+        background:#fff;
+        border-radius:3px;
+        position:absolute;
+        right:50%;
+        top:4px;
+        z-index:-1;
+        transition:all 0.3s ease;
+      }
+      .layout-btn input:checked + .mode-label:after{
+        right:4px;
+      }
+      body.layout-dark .layout-btn:before{
+        color:#0b1220;
+      }
+      body.layout-dark .layout-btn:after{
+        color:#fff;
+      }
+      body.layout-dark{
+        background:#0f172a;
+        color:#e2e8f0;
+      }
+      body.layout-dark .header,
+      body.layout-dark .panel-white,
+      body.layout-dark .card-grid-2,
+      body.layout-dark .nav,
+      body.layout-dark .footer,
+      body.layout-dark .box-content,
+      body.layout-dark .section-box{
+        background:#111827 !important;
+        color:#e2e8f0 !important;
+      }
+      body.layout-dark .header{
+        border-bottom:1px solid #1f2937;
+      }
+      body.layout-dark .nav{
+        border-right:1px solid #1f2937;
+      }
+      body.layout-dark .box-heading h3,
+      body.layout-dark .box-title h3,
+      body.layout-dark h1,
+      body.layout-dark h2,
+      body.layout-dark h3,
+      body.layout-dark h4,
+      body.layout-dark h5,
+      body.layout-dark h6{
+        color:#e2e8f0;
+      }
+      body.layout-dark .table,
+      body.layout-dark .form-control,
+      body.layout-dark .dropdown-menu,
+      body.layout-dark .breadcrumbs,
+      body.layout-dark .card-grid-2 .card-block-info{
+        background:#0b1220 !important;
+        color:#e2e8f0 !important;
+        border-color:#1f2937 !important;
+      }
+      body.layout-dark .card-grid-2{
+        background:#0b1220 !important;
+        border-color:#1f2937 !important;
+        box-shadow:none !important;
+      }
+      body.layout-dark .card-grid-2:hover{
+        border-color:#334155;
+      }
+      body.layout-dark .nav-main-menu .main-menu > li > a{
+        color:#cbd5e1;
+      }
+      body.layout-dark .nav-main-menu .main-menu > li > a:hover{
+        background:#0b1220;
+        color:#e2e8f0;
+      }
+      body.layout-dark .nav-main-menu .main-menu > li > a.active,
+      body.layout-dark .nav-main-menu .main-menu > li > a.dashboard2.active{
+        background:#1d4ed8;
+        color:#ffffff;
+      }
+      body.layout-dark .btn.btn-default{
+        background:#1f2937 !important;
+        color:#e2e8f0 !important;
+        border-color:#334155 !important;
+      }
+      body.layout-dark .btn.btn-default:hover{
+        background:#334155;
+      }
+      body.layout-dark .btn.btn-primary,
+      body.layout-dark .btn.btn-brand{
+        background:#2563eb !important;
+        border-color:#2563eb !important;
+        color:#ffffff !important;
+      }
+      body.layout-dark .btn.btn-outline-secondary{
+        color:#e2e8f0;
+        border-color:#334155;
+      }
+      body.layout-dark .member-login img{
+        border:2px solid #1f2937;
+      }
+      body.layout-dark .card-grid-2 .color-brand-1,
+      body.layout-dark .card-grid-2 .color-text-paragraph-2{
+        color:#cbd5e1 !important;
+      }
+      body.layout-dark .badge{
+        border:1px solid #1f2937;
+      }
+      body.layout-dark .box-profile-completed{
+        background:#0b1220 !important;
+        border:1px solid #1f2937 !important;
+      }
+      body.layout-dark .box-profile-completed h6{
+        color:#e2e8f0;
+      }
+      body.layout-dark .site-copyright,
+      body.layout-dark .menu-footer a{
+        color:#9aa7bd;
+      }
+      body.layout-dark .text-muted,
+      body.layout-dark .color-text-mutted,
+      body.layout-dark .color-text-paragraph-2{
+        color:#9aa7bd !important;
+      }
+      body.layout-dark .table thead th{
+        color:#cbd5e1;
+        border-color:#1f2937;
+      }
+      body.layout-dark .table tbody td{
+        color:#e2e8f0;
+        border-color:#1f2937;
+      }
+      body.layout-dark .badge.bg-light{
+        background:#1f2937 !important;
+        color:#e2e8f0 !important;
+      }
+      body.layout-dark .btn.btn-default{
+        background:#1f2937;
+        color:#e2e8f0;
+        border-color:#334155;
+      }
+      body.layout-dark #post-job-btn{
+        background:#2563eb !important;
+        color:#ffffff !important;
+        border-color:#2563eb !important;
+        -webkit-text-fill-color:#ffffff !important;
+      }
+      body.layout-dark .header .main-header .header-right .block-signin #post-job-btn{
+        background:#2563eb !important;
+        color:#ffffff !important;
+        border-color:#2563eb !important;
+        box-shadow:0 8px 20px rgba(37,99,235,0.35) !important;
+        -webkit-text-fill-color:#ffffff !important;
+      }
+      body.layout-dark .btn.btn-outline-secondary{
+        color:#e2e8f0;
+        border-color:#334155;
+      }
+      body.layout-dark .panel-white{
+        box-shadow:none;
+      }
+      body.layout-dark a{ color:#93c5fd; }
+      body.layout-dark a{ color:#93c5fd; }
+    </style>
+    <title>LIVIK JOBS</title>
+    <style>
+      body.layout-dark .card-style-1{
+        background-color:#0b1220 !important;
+        border-color:#1f2937 !important;
+        box-shadow:none !important;
+      }
+      body.layout-dark .card-style-1 .card-info h3,
+      body.layout-dark .card-style-1 .card-info p{
+        color:#e2e8f0 !important;
+      }
+      body.layout-dark .card-style-1 .color-text-paragraph-2{
+        color:#9aa7bd !important;
+      }
+      body.layout-dark #chartdiv{
+        background:#0b1220 !important;
+      }
+    </style>
+    <style>
+      /* Force dark-mode header icon visibility */
+      body.layout-dark .layout-btn{
+        background-color:#1e293b !important;
+      }
+      body.layout-dark .layout-btn:before,
+      body.layout-dark .layout-btn:after{
+        color:#e2e8f0 !important;
+      }
+      body.layout-dark .layout-btn .mode-label:after{
+        background:#0b1220 !important;
+      }
+      body.layout-dark .btn.icon-edit{
+        filter: brightness(0) invert(1) !important;
+      }
+      body.layout-dark .btn.btn-default.icon-edit{
+        background-color:#2563eb !important;
+        color:#ffffff !important;
+      }
+      /* Ensure header-right never disappears and icons are visible */
+      .header .main-header .header-right{
+        display:flex !important;
+        align-items:center !important;
+        gap:10px;
+        width:auto !important;
+        visibility:visible !important;
+        opacity:1 !important;
+      }
+      .header .main-header .block-signin{
+        display:flex !important;
+        align-items:center !important;
+        gap:10px;
+        visibility:visible !important;
+        opacity:1 !important;
+      }
+      .header .main-header .block-signin > a,
+      .header .main-header .block-signin > div{
+        display:inline-flex !important;
+        align-items:center !important;
+        visibility:visible !important;
+        opacity:1 !important;
+      }
+      .header .main-header .header-right .btn.btn-notify{
+        background-color:transparent !important;
+      }
+      body.layout-dark .header .main-header .header-right .btn.btn-notify{
+        filter: brightness(0) invert(1) !important;
+      }
+      body.layout-dark .header .main-header .header-right .btn.btn-default.icon-edit{
+        background-color:#2563eb !important;
+        color:#ffffff !important;
+        opacity:1 !important;
+      }
+      #post-job-btn{
+        display:inline-flex !important;
+        align-items:center !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        min-height:38px;
+        padding:10px 16px 10px 44px !important;
+        background-color:#2563eb !important;
+        color:#ffffff !important;
+        border:1px solid #2563eb !important;
+        font-size:14px !important;
+        font-weight:600 !important;
+        text-indent:0 !important;
+        text-transform:none !important;
+        -webkit-text-fill-color:#ffffff !important;
+        line-height:1.2 !important;
+        white-space:nowrap !important;
+        text-shadow:0 1px 0 rgba(0,0,0,0.2) !important;
+        filter:none !important;
+      }
+      #post-job-btn *{
+        color:#ffffff !important;
+        -webkit-text-fill-color:#ffffff !important;
+      }
+      #post-job-btn .post-job-text{
+        color:#ffffff !important;
+        -webkit-text-fill-color:#ffffff !important;
+        font-size:14px !important;
+        font-weight:600 !important;
+        mix-blend-mode:normal !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="preloader-active">
+      <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+          <div class="text-center"><img src="{% static 'assets/imgs/template/loading.gif' %}" alt="jobBox"></div>
+        </div>
+      </div>
+    </div>
+    <header class="header sticky-bar">
+      <div class="container">
+        <div class="main-header">
+          <div class="header-left">
+            <div class="header-logo"><a class='d-flex' alt="jobBox" href='/dashboard2/emp_index/'><img src="{% static 'assets/imgs/page/dashboard/LOGO.svg' %}">
+            </div>
+          </div>
+          <div class="header-menu header-menu-center d-none d-md-block" style="flex:1;display:flex;justify-content:center;">
+            <ul>
+              <li> <a href="/employer/emp/">Home</a></li>
+              <li> <a href="/employer/emp_about_us/">About us</a></li>
+              <li> <a href="/contact/">Contact</a></li>
+            </ul>
+          </div>
+          <div class="header-right">
+            <div class="block-signin"><a id="post-job-btn" class='btn btn-primary icon-edit hover-up' href='/dashboard2/emp_post_job/' style="background:#2563eb;color:#ffffff;border-color:#2563eb;"><span class="post-job-text">Post Job</span></a>
+              <a href="javascript:void(0);" class="layout-btn" title="Toggle theme">
+                <input type="checkbox" id="layout-toggle">
+                <span class="mode-label"></span>
+              </a>
+              <div class="dropdown d-inline-block"><a class="btn btn-notify" id="dropdownNotify" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"></a>
+                <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownNotify">
+                  <li><a class="dropdown-item active" href="#">10 notifications</a></li>
+                  <li><a class="dropdown-item" href="#">12 messages</a></li>
+                  <li><a class="dropdown-item" href="#">20 replies</a></li>
+                </ul>
+              </div>
+              <div class="member-login">
+                <img alt="" src="{% if request.user.is_authenticated and request.user.employer.photo %}{{ request.user.employer.photo.url }}{% else %}{% static 'assets/imgs/page/dashboard/profile.png' %}{% endif %}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+                <div class="info-member">
+                  <strong class="color-brand-1">
+                    {% if request.user.is_authenticated %}
+                      {{ request.user.get_full_name|default:request.user.username }}
+                    {% else %}
+                      Guest
+                    {% endif %}
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+    <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
+      <div class="mobile-header-wrapper-inner">
+        <div class="mobile-header-content-area">
+          <div class="perfect-scroll">
+            <div class="mobile-search mobile-header-border mb-30">
+              <form action="#">
+                <input type="text" placeholder="Search…"><i class="fi-rr-search"></i>
+              </form>
+            </div>
+            <div class="mobile-menu-wrap mobile-header-border">
+              <!-- mobile menu start-->
+              <nav>
+                <ul class="main-menu">
+                  <li> <a class='dashboard2 active' href='/dashboard2/index/'><img src="{% static 'assets/imgs/page/dashboard/dashboard.svg' %}" alt="jobBox"><span class="name">Dashboard</span></a>
+                  </li>
+                  <li> <a class='dashboard2' href='/dashboard2/emp_recruiters/'><img src="{% static 'assets/imgs/page/dashboard/recruiters.svg' %}" alt="jobBox"><span class="name">Recruiters</span></a>
+                  </li>
+                  <li> <a class='dashboard2' href='/dashboard2/emp_job_applications/'><img src="{% static 'assets/imgs/page/dashboard/jobs.svg' %}" alt="jobBox"><span class="name">Applications</span></a>
+                  </li>
+                  <li> <a class='dashboard2' href='/dasboard2/emp_my_job_grid/'><img src="{% static 'assets/imgs/page/dashboard/jobs.svg' %}" alt="jobBox"><span class="name">Jobs</span></a>
+                  </li>
+                  <li> <a class='dashboard2' href='/dashboard2/emp_profile/'><img src="{% static 'assets/imgs/page/dashboard/profiles.svg' %}" alt="jobBox"><span class="name">My Profiles</span></a>
+                  </li>
+                  <li> <a class='dashboard2' href='/dashboard2/emp_settings/'><img src="{% static 'assets/imgs/page/dashboard/settings.svg' %}" alt="jobBox"><span class="name">Setting</span></a>
+                  </li>
+                  <li> <a class='dashboard2' href='/dashboard2/emp_google_auth/'><img src="{% static 'assets/imgs/page/dashboard/settings.svg' %}" alt="jobBox"><span class="name">Google Auth</span></a>
+                  </li>
+                  <li> <a class='dashboard2' href='/account/emp_logout/'><img src="{% static 'assets/imgs/page/dashboard/logout.svg' %}" alt="jobBox"><span class="name">Logout</span></a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="mobile-account">
+              <h6 class="mb-10">Your Account</h6>
+              <ul class="mobile-menu font-heading">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Work Preferences</a></li>
+                <li><a href="#">Account Settings</a></li>
+                <li><a href="#">Go Pro</a></li>
+                <li><a href="page-signin.html">Sign Out</a></li>
+              </ul>
+              <div class="mb-15 mt-15"> <a class='btn btn-primary icon-edit hover-up' href='/dashboard2/post_job/' style="background:#2563eb;color:#ffffff;border-color:#2563eb;"><span class="post-job-text">Post Job</span></a></div>
+            </div>
+            <div class="site-copyright">Copyright 2022 &copy; JobBox. <br>Designed by AliThemes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main class="main">
+      <div class="nav"><a class="btn btn-expanded"></a>
+        <nav class="nav-main-menu">
+            <ul class="main-menu">
+            <li> <a class='dashboard2 active' href='/dashboard2/emp_index/'><img src="{% static 'assets/imgs/page/dashboard/dashboard.svg' %}" alt="jobBox"><span class="name">Dashboard</span></a>
+            </li>
+            <li> <a class='dashboard2' href='/dashboard2/emp_recruiters/'><img src="{% static 'assets/imgs/page/dashboard/recruiters.svg' %}" alt="jobBox"><span class="name">Recruiters</span></a>
+            </li>
+            <li> <a class='dashboard2' href='/dashboard2/emp_job_applications/'><img src="{% static 'assets/imgs/page/dashboard/jobs.svg' %}" alt="jobBox"><span class="name">Applications</span></a>
+            </li>
+            <li> <a class='dashboard2' href='/dashboard2/emp_my_job_grid/'><img src="{% static 'assets/imgs/page/dashboard/jobs.svg' %}" alt="jobBox"><span class="name"> Jobs</span></a>
+            </li>
+            <li> <a class='dashboard2' href='/dashboard2/emp_profile/'><img src="{% static 'assets/imgs/page/dashboard/profiles.svg' %}" alt="jobBox"><span class="name">My Profiles</span></a>
+            </li>
+            <li> <a class='dashboard2' href='/dashboard2/emp_settings/'><img src="{% static 'assets/imgs/page/dashboard/settings.svg' %}" alt="jobBox"><span class="name">Setting</span></a>
+            </li>
+            <li> <a class='dashboard2' href='/dashboard2/emp_google_auth/'><img src="{% static 'assets/imgs/page/dashboard/settings.svg' %}" alt="jobBox"><span class="name">Google Auth</span></a>
+            </li>
+            <li> <a class='dashboard2' href='/account/emp_logout/'><img src="{% static 'assets/imgs/page/dashboard/logout.svg' %}" alt="jobBox"><span class="name">Logout</span></a>
+            </li>
+          </ul>
+        </nav>
+        <div class="border-bottom mb-20 mt-20"></div>
+        <div class="box-profile-completed text-center mb-30">
+          <div id="circle-staticstic-demo"></div>
+          <h6 class="mb-10">Profile Completed</h6>
+          <p class="font-xs color-text-mutted">Please add detailed information to your profile. This will help you develop your career more quickly.</p>
+        </div>
+        <div class="sidebar-border-bg mt-50"><span class="text-grey">WE ARE</span><span class="text-hiring">HIRING</span>
+          <p class="font-xxs color-text-paragraph mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae architecto</p>
+          <div class="mt-15"><a class="btn btn-paragraph-2" href="#">Know More</a></div>
+        </div>
+      </div>
+<!--          </main>-->
+
+      {% block content %}
+      {% endblock %}
+    </main>
+   <footer class="footer mt-20">
+          <div class="container">
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-md-6 col-sm-12 mb-25 text-center text-md-start">
+                  <p class="font-sm color-text-paragraph-2">© 2022 - <a class="color-brand-2" href="https://themeforest.net/item/jobbox-job-portal-html-bootstrap-5-template/39217891" target="_blank">JobBox </a>Dashboard <span> Made by  </span><a class="color-brand-2" href="http://alithemes.com/" target="_blank"> AliThemes</a></p>
+                </div>
+                <div class="col-md-6 col-sm-12 text-center text-md-end mb-25">
+                  <ul class="menu-footer">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Policy</a></li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
+    <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-migrate-3.3.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/waypoints.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/magnific-popup.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.circliful.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/charts/index.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/charts/xy.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/charts/Animated.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/armcharts5-script.js' %}"></script>
+    <script src="{% static 'assets/js/main8c94.js' %}"></script>
+    <script>
+      (function () {
+        var toggle = document.getElementById('layout-toggle');
+        if (!toggle) return;
+        var saved = localStorage.getItem('layout');
+        if (saved === 'dark') {
+          document.body.classList.add('layout-dark');
+          toggle.checked = true;
+        }
+        toggle.addEventListener('change', function () {
+          if (window.CinemaTheme) {
+            window.CinemaTheme.set(toggle.checked ? 'dark' : 'light');
+          } else {
+            document.body.classList.toggle('layout-dark', toggle.checked);
+            localStorage.setItem('layout', toggle.checked ? 'dark' : 'light');
+          }
+        });
+      })();
+    </script>
+    <style>
+      body.layout-dark #post-job-btn,
+      body.layout-dark .header .main-header .header-right .block-signin #post-job-btn {
+        background-color: #2563eb !important;
+        color: #ffffff !important;
+        border-color: #2563eb !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-image: none !important;
+      }
+    </style>
+    <!-- CINEMA ANIMEJS & 3D ENGINE -->
+    <script src="{% static 'assets/js/plugins/anime.min.js' %}"></script>
+    <script src="{% static 'assets/js/cinema-darkmode.js' %}"></script>
+    <script src="{% static 'assets/js/cinema-effects.js' %}"></script>
+  </body>
+
+<!-- Mirrored from jobbox-html.netlify.app/dashboard/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 12:22:52 GMT -->
+</html>

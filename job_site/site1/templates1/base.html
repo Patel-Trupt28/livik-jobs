@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+	<script>
+		(function() {
+			var s = localStorage.getItem('layout');
+			var m = document.cookie.match(/(?:^|;\s*)version=(dark|light)/);
+			var t = s || (m ? m[1] : null);
+			if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+				document.documentElement.classList.add('layout-dark');
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		})();
+	</script>
+
+	{% load static %}
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="DexignZone">
+	<meta name="robots" content="">
+	<meta name="keywords" content="applicant, candidate, career, companies, employment, freelancer, job board, job directory, Job guru, job listing, job posting, job seeker, recruiting, resume, resume listing">
+	<meta name="description" content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
+	<meta property="og:title" content="LIVIK jobs">
+	<meta property="og:description" content="JobBoard: is a flexible and smooth theme to make it simple as possible to create a professional job portal website. It covers all the features that are necessary for job board like searching option, login and register.">
+	<meta property="og:image" content="../job-board.dexignzone.com/xhtml/social-image.html">
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- MOBILE SPECIFIC -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- FAVICONS ICON -->
+	<link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+
+	<!-- PAGE TITLE HERE -->
+	<title>LIVIK jobs</title>
+
+	<!--[if lt IE 9]>
+	<script src="{% static 'js/html5shiv.min.js' %}"></script>
+	<script src="{% static 'js/respond.min.js' %}"></script>
+	<![endif]-->
+
+	<!-- STYLESHEETS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/templete.css' %}">
+	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'css/skin/skin-1.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/dark-layout.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/cinema-ui.css' %}">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;family=Roboto:wght@100;300;400;500;700;900&amp;family=Rubik:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+
+</head>
+<body id="bg">
+<div id="loading-area"></div>
+<div class="page-wraper">
+	<!-- header -->
+    <header class="site-header mo-left header fullwidth">
+		<!-- Main Header -->
+        <div class="sticky-header main-bar-wraper navbar-expand-lg">
+            <div class="main-bar clearfix">
+                <div class="container clearfix">
+					<!-- Website Logo-->
+                    <div class="logo-header mostion logo-dark">
+						<a href="/"><img src="{% static 'images/LOGO.jpg' %}" ></a>
+					</div>
+                    <div class="logo-header mostion logo-white">
+						<a href="/"><img src="{% static 'images/LOGO.jpg' %}" alt=""></a>
+                    </div>
+
+					<!-- Nav Toggle Button -->
+                    <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+                    <!-- Extra Nav -->
+                    <div class="extra-nav">
+                        <div class="extra-cell">
+							<a class="nav-search-link d-none d-lg-inline-flex" href="/search/" aria-label="Search">
+								<i class="fa fa-search"></i>
+							</a>
+							<a href="javascript:void(0);" class="layout-btn">
+								<input type="checkbox">
+								<span class="mode-label"></span>
+							</a>
+							<div class="dropdown">
+							<a href="" class="site-button" ><i class="fa fa-user"></i> LOGIN <i class="fa fa-chevron-down"></i></a>
+								<ul class="sub-menu dropdown-menu">
+										{% if user.is_authenticated %}
+											<li><a href="#">Hello {{user.username}}</a></li>
+											<li><a href="/dashboard1/index/">Dashboard</a></li>
+											<li><a href="/logout/">Logout</a></li>
+										{% else %}
+											<li><a href="/account/login/">Employee</a></li>
+											<li><a href="/account/emp_login/">Employer</a></li>
+										{% endif %}
+								</ul>
+							</div>
+						</div>
+                    </div>
+                    <!-- Main Nav -->
+                    <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
+						<div class="logo-header logo-dark">
+							<a href="/"><img src="{% static 'images/LOGO.jpg' %}" alt=""></a>
+						</div>
+						<div class="logo-header logo-white">
+							<a href="/"><img src="{% static 'images/LOGO.jpg' %}" alt=""></a>
+                        </div>
+						<ul class="nav navbar-nav">
+							<li>
+								<a href="/">Home</a>
+
+							</li>
+							<li>
+								<a href="javascript:void(0);">Details<i class="fa fa-chevron-down"></i></a>
+								<ul class="sub-menu">
+										<li><a href="/job_my_resume/" class="dez-page">My Resume</a></li>
+									<li><a href="/job_cv_manager/" class="dez-page">CV Manager</a></li>
+									<li><a href="/contact/" class="dez-page">Contact Us</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:void(0);">Blog <i class="fa fa-chevron-down"></i></a>
+								<ul class="sub-menu">
+									<li><a href="/blog_classic/" class="dez-page">Classic</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="/about_us/" class="dez-page">About Us</a>
+							</li>
+							<li>
+								<a href="/browse_job_list/" >browse job</a>
+							</li>
+						<li>
+							<a href="/companies/" class="dez-page">companies</a>
+						</li>
+					</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Header END -->
+    </header>
+    <!-- header END -->
+    {% block content %}
+    {% endblock %}
+    	<!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+					<div class="col-xl-5 col-lg-4 col-md-12 col-sm-12">
+                        <div class="widget">
+							<div class="logo-white">
+								<img class="logo m-b15" src="{% static 'images/LOGO.jpg' %}" width="180" alt=""/>
+							</div>
+							<p class="text-capitalize m-b20">Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the.</p>
+                            <div class="subscribe-form m-b20">
+								<form class="dzSubscribe" action="https://job-board-html.vercel.app/script/mailchamp.php" method="post">
+									<div class="dzSubscribeMsg"></div>
+									<div class="input-group">
+										<input name="dzEmail" required="required"  class="form-control" placeholder="Your Email Address" type="email">
+										<span class="input-group-btn">
+											<button name="submit" value="Submit" type="submit" class="site-button radius-xl">Subscribe</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<ul class="list-inline m-a0">
+								<li><a target="_blank" href="https://www.facebook.com/" class="site-button white facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+								<li><a target="_blank" href="https://www.google.com/" class="site-button white google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+								<li><a target="_blank" href="https://www.linkedin.com/" class="site-button white linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+								<li><a target="_blank" href="https://www.instagram.com/" class="site-button white instagram circle "><i class="fab fa-instagram"></i></a></li>
+								<li><a target="_blank" href="https://twitter.com/" class="site-button white twitter circle "><i class="fab fa-twitter"></i></a></li>
+							</ul>
+                        </div>
+                    </div>
+					<div class="col-xl-5 col-lg-5 col-md-8 col-sm-8 col-12">
+                        <div class="widget border-0">
+                            <h5 class="m-b30 text-white">Frequently Asked Questions</h5>
+                            <ul class="list-2 list-line">
+                                <li><a href="javascript:void(0);">Privacy & Seurty</a></li>
+                                <li><a href="javascript:void(0);">Terms of Serice</a></li>
+                                <li><a href="javascript:void(0);">Communications</a></li>
+                                <li><a href="javascript:void(0);">Referral Terms</a></li>
+                                <li><a href="javascript:void(0);">Lending Licnses</a></li>
+								<li><a href="javascript:void(0);">Support</a></li>
+                                <li><a href="javascript:void(0);">How It Works</a></li>
+                                <li><a href="javascript:void(0);">For Employers</a></li>
+                                <li><a href="javascript:void(0);">Underwriting</a></li>
+                                <li><a href="javascript:void(0);">Contact Us</a></li>
+								<li><a href="javascript:void(0);">Lending Licnses</a></li>
+								<li><a href="javascript:void(0);">Support</a></li>
+                            </ul>
+                        </div>
+                    </div>
+					<div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-12">
+                        <div class="widget border-0">
+                            <h5 class="m-b30 text-white">Find Jobs</h5>
+                            <ul class="list-2 w10 list-line">
+                                <li><a href="javascript:void(0);">US Jobs</a></li>
+                                <li><a href="javascript:void(0);">Canada Jobs</a></li>
+                                <li><a href="javascript:void(0);">UK Jobs</a></li>
+                                <li><a href="javascript:void(0);">Emplois en Fnce</a></li>
+                                <li><a href="javascript:void(0);">Jobs in Deuts</a></li>
+								<li><a href="javascript:void(0);">Vacatures China</a></li>
+                            </ul>
+                        </div>
+                    </div>
+				</div>
+            </div>
+        </div>
+        <!-- footer bottom part -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+						<span> © Copyright  2026 by <a href="https://dexignzone.com/" target="_blank"> </a> All rights reserved.</span>
+					</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- scroll top button -->
+    <button class="scroltop fa fa-arrow-up" ></button>
+</div>
+<div class="chatbot-widget" id="chatbotWidget">
+	<button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat">
+		<i class="fa fa-comments"></i>
+	</button>
+	<div class="chatbot-panel" id="chatbotPanel" aria-hidden="true">
+		<div class="chatbot-header">
+			<span>Job Assistant</span>
+			<label class="chatbot-toggle-provider">
+				<input type="checkbox" id="chatbotUseOllama" aria-label="Use Ollama">
+			</label>
+			<button class="chatbot-close" id="chatbotClose" aria-label="Close chat">×</button>
+		</div>
+		<div class="chatbot-messages" id="chatbotMessages">
+			<div class="chatbot-msg bot">Hi! Ask me about jobs, companies, or how to apply.</div>
+		</div>
+		<form class="chatbot-input" id="chatbotForm">
+			<input type="text" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
+			<button type="submit" class="site-button btn-sm">Send</button>
+		</form>
+	</div>
+</div>
+<style>
+	.chatbot-widget {
+		position: fixed;
+		right: 22px;
+		bottom: 22px;
+		z-index: 9999;
+	}
+	.chatbot-toggle {
+		width: 54px;
+		height: 54px;
+		border-radius: 50%;
+		border: none;
+		background: #2f5bea;
+		color: #fff;
+		box-shadow: 0 16px 28px rgba(15, 23, 42, 0.25);
+	}
+	.chatbot-panel {
+		position: absolute;
+		right: 0;
+		bottom: 70px;
+		width: 320px;
+		background: #ffffff;
+		border-radius: 16px;
+		box-shadow: 0 24px 48px rgba(15, 23, 42, 0.25);
+		overflow: hidden;
+		display: none;
+	}
+	.chatbot-panel.open {
+		display: block;
+	}
+	.chatbot-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 12px 14px;
+		background: #0f172a;
+		color: #fff;
+	}
+	.chatbot-toggle-provider {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 12px;
+	}
+	.chatbot-toggle-provider input {
+		width: 14px;
+		height: 14px;
+	}
+	.chatbot-messages {
+		padding: 12px;
+		max-height: 320px;
+		overflow-y: auto;
+		background: #f8fafc;
+	}
+	.chatbot-msg {
+		padding: 10px 12px;
+		border-radius: 12px;
+		margin-bottom: 10px;
+		font-size: 14px;
+		line-height: 1.45;
+	}
+	.chatbot-msg.bot {
+		background: #e2e8f0;
+		color: #0f172a;
+	}
+	.chatbot-msg.user {
+		background: #2f5bea;
+		color: #ffffff;
+		margin-left: 30px;
+	}
+	.chatbot-input {
+		display: flex;
+		gap: 8px;
+		padding: 12px;
+		border-top: 1px solid #e2e8f0;
+	}
+	.chatbot-input input {
+		flex: 1;
+		border: 1px solid #cbd5f5;
+		border-radius: 999px;
+		padding: 8px 12px;
+	}
+	body.layout-dark .chatbot-panel {
+		background: #0f172a;
+	}
+	body.layout-dark .chatbot-messages {
+		background: #0b1224;
+	}
+	body.layout-dark .chatbot-msg.bot {
+		background: #1e293b;
+		color: #f8fafc;
+	}
+	body.layout-dark .chatbot-input {
+		border-top: 1px solid #1e293b;
+	}
+	body.layout-dark .chatbot-input input {
+		background: #0b1224;
+		border-color: #1e293b;
+		color: #f8fafc;
+	}
+	@media (max-width: 576px) {
+		.chatbot-panel {
+			width: 90vw;
+			right: -8px;
+		}
+	}
+	.site-header .nav-search-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 6px;
+		background: #f4f7ff;
+		color: #2f5bea;
+		margin-right: 10px;
+	}
+	.site-header .header-nav .nav {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		flex-wrap: nowrap;
+		white-space: nowrap;
+	}
+	.site-header .header-nav .nav > li {
+		margin-right: 0;
+		white-space: nowrap;
+	}
+	.site-header .header-nav .nav > li > a {
+		display: inline-flex;
+		align-items: center;
+		line-height: 1;
+	}
+	.site-header .header-nav .nav > li > a .fa-chevron-down {
+		margin-left: 6px;
+	}
+	.site-header .header-nav .nav > li:last-child {
+		margin-left: 6px;
+	}
+	.site-header .header-nav .sub-menu {
+		margin-top: 0;
+	}
+	.site-header .header-nav {
+		overflow: visible;
+	}
+	@media (min-width: 992px) {
+		.site-header .header-nav .nav {
+			gap: 18px !important;
+		}
+		.site-header .header-nav .nav > li > a {
+			padding-left: 6px !important;
+			padding-right: 6px !important;
+		}
+	}
+	@media (max-width: 991px) {
+		.site-header .header-nav .nav {
+			gap: 0;
+		}
+	}
+</style>
+<!-- JAVASCRIPT FILES ========================================= -->
+<script src="{% static 'js/jquery.min.js' %}"></script><!-- JQUERY.MIN JS -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script><!-- BOOTSTRAP.MIN JS -->
+<script src="{% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script><!-- FORM JS -->
+<script src="{% static 'plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}"></script><!-- FORM JS -->
+<script src="{% static 'plugins/magnific-popup/magnific-popup.js' %}"></script><!-- MAGNIFIC POPUP JS -->
+<script src="{% static 'plugins/counter/waypoints-min.js' %}"></script><!-- WAYPOINTS JS -->
+<script src="{% static 'plugins/counter/counterup.min.js' %}"></script><!-- COUNTERUP JS -->
+<script src="{% static 'plugins/imagesloaded/imagesloaded.js' %}"></script><!-- IMAGESLOADED -->
+<script src="{% static 'plugins/masonry/masonry-3.1.4.js' %}"></script><!-- MASONRY -->
+<script src="{% static 'plugins/masonry/masonry.filter.js' %}"></script><!-- MASONRY -->
+<script src="{% static 'plugins/owl-carousel/owl.carousel.js' %}"></script><!-- OWL SLIDER -->
+<script src="{% static 'plugins/scroll/scrollbar.min.js' %}"></script><!-- OWL SLIDER -->
+<script src="{% static 'js/custom.js' %}"></script><!-- CUSTOM FUCTIONS  -->
+<script src="{% static 'js/dz.carousel.js' %}"></script><!-- SORTCODE FUCTIONS  -->
+<script src="{% static 'js/dz.ajax.js' %}"></script><!-- CONTACT JS  -->
+<script src="{% static 'plugins/switcher/switcher.js' %}"></script><!-- SWITCHER -->
+<script>
+	(function () {
+		const toggle = document.getElementById('chatbotToggle');
+		const panel = document.getElementById('chatbotPanel');
+		const closeBtn = document.getElementById('chatbotClose');
+		const form = document.getElementById('chatbotForm');
+		const input = document.getElementById('chatbotInput');
+		const messages = document.getElementById('chatbotMessages');
+		const useOllama = document.getElementById('chatbotUseOllama');
+		let history = [];
+
+		function appendMessage(text, role) {
+			const div = document.createElement('div');
+			div.className = 'chatbot-msg ' + role;
+			div.textContent = text;
+			messages.appendChild(div);
+			messages.scrollTop = messages.scrollHeight;
+		}
+
+		function togglePanel() {
+			panel.classList.toggle('open');
+			panel.setAttribute('aria-hidden', panel.classList.contains('open') ? 'false' : 'true');
+		}
+
+		toggle.addEventListener('click', togglePanel);
+		closeBtn.addEventListener('click', togglePanel);
+
+		form.addEventListener('submit', async function (e) {
+			e.preventDefault();
+			const text = input.value.trim();
+			if (!text) return;
+			appendMessage(text, 'user');
+			history.push({ role: 'user', content: text });
+			input.value = '';
+
+			appendMessage('Typing...', 'bot');
+			const typing = messages.lastChild;
+
+			try {
+				const res = await fetch('/chat/', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						messages: history.slice(-8),
+						use_ollama: !!useOllama && useOllama.checked
+					})
+				});
+				const data = await res.json();
+				typing.remove();
+				const reply = data.text || data.error || 'Sorry, I could not respond.';
+				appendMessage(reply, 'bot');
+				if (data.text) {
+					history.push({ role: 'assistant', content: reply });
+				}
+			} catch (err) {
+				typing.remove();
+				appendMessage('Sorry, something went wrong.', 'bot');
+			}
+		});
+	})();
+</script>
+
+<!-- CINEMA FLOATING COMMAND DOCK -->
+<div class="cinema-floating-dock" id="cinemaQuickDock">
+	<a href="/" class="cinema-dock-btn"><i class="fa fa-home"></i> Home</a>
+	<a href="/browse_job_list/" class="cinema-dock-btn"><i class="fa fa-briefcase"></i> Jobs</a>
+	<a href="/companies/" class="cinema-dock-btn"><i class="fa fa-building"></i> Companies</a>
+	<div class="cinema-dock-divider"></div>
+	<a href="/employer/" class="cinema-dock-btn primary"><i class="fa fa-user-tie"></i> For Employers</a>
+	{% if user.is_authenticated %}
+	<a href="/dashboard1/index/" class="cinema-dock-btn"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+	{% else %}
+	<a href="/account/login/" class="cinema-dock-btn"><i class="fa fa-sign-in-alt"></i> Login</a>
+	{% endif %}
+	<button type="button" class="cinema-dock-btn" id="dockThemeBtn" title="Toggle Dark Mode"><i class="fa fa-moon" id="dockThemeIcon"></i></button>
+	<button type="button" class="cinema-dock-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="Return to Top"><i class="fa fa-arrow-up"></i></button>
+</div>
+
+<!-- CINEMA ANIMEJS & 3D ENGINE -->
+<script src="{% static 'js/anime.min.js' %}"></script>
+<script src="{% static 'js/cinema-darkmode.js' %}"></script>
+<script src="{% static 'js/cinema-effects.js' %}"></script>
+</body>
+
+</html>

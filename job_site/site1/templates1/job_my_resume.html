@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-content resume-page">
+  <div class="content-block">
+    <div class="section-full p-t50 p-b50">
+      <div class="container">
+        <div class="shell">
+          <div class="head">
+            <div>
+              <p class="kicker">Resume Template</p>
+              <h1>Format matched to your sample</h1>
+              <p class="sub">Edit fields on left, preview on right, download same layout as PDF.</p>
+            </div>
+            <button id="download-btn" class="dl-btn" type="button">Download PDF</button>
+          </div>
+
+          <div class="grid">
+            <section class="editor">
+              <h2>Inputs</h2>
+
+              <div class="block">
+                <h3>Header</h3>
+                <div class="row">
+                  <div class="col-md-6 m-b15"><label for="full-name">Full Name</label><input id="full-name" class="form-control field" placeholder="TRUPT PATEL"></div>
+                  <div class="col-md-6 m-b15"><label for="role">Role</label><input id="role" class="form-control field" placeholder="Jr. Software Developer"></div>
+                  <div class="col-md-6 m-b15"><label for="phone">Phone</label><input id="phone" class="form-control field" placeholder="+91 9999999999"></div>
+                  <div class="col-md-6 m-b15"><label for="email">Email</label><input id="email" class="form-control field" placeholder="name@email.com"></div>
+                  <div class="col-md-6 m-b15"><label for="linkedin">LinkedIn</label><input id="linkedin" class="form-control field" placeholder="https://linkedin.com/in/name"></div>
+                  <div class="col-md-6 m-b15"><label for="location">Location</label><input id="location" class="form-control field" placeholder="Ahmedabad"></div>
+                  <div class="col-12"><label for="photo">Photo (optional)</label><input id="photo" type="file" class="form-control field" accept="image/*"></div>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3>Summary</h3>
+                <textarea id="summary" class="form-control field area" rows="4" placeholder="Write summary"></textarea>
+              </div>
+
+              <div class="block">
+                <h3>Experience</h3>
+                <div class="row">
+                  <div class="col-md-6 m-b15"><label for="exp-title">Title</label><input id="exp-title" class="form-control field" placeholder="Aspiring Software Developer"></div>
+                  <div class="col-md-6 m-b15"><label for="exp-period">Date period</label><input id="exp-period" class="form-control field" placeholder="Not provided"></div>
+                  <div class="col-12"><label for="exp-points">Bullet points (one per line)</label><textarea id="exp-points" class="form-control field area" rows="5" placeholder="- Built full-stack apps&#10;- Integrated frontend and backend"></textarea></div>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3>Education + Certifications</h3>
+                <div class="row">
+                  <div class="col-md-6 m-b15"><label for="edu-degree">Degree</label><input id="edu-degree" class="form-control field" placeholder="B.E. Computer Engineering"></div>
+                  <div class="col-md-6 m-b15"><label for="edu-uni">University</label><input id="edu-uni" class="form-control field" placeholder="Gujarat Technological University"></div>
+                  <div class="col-md-6 m-b15"><label for="edu-period">Period</label><input id="edu-period" class="form-control field" placeholder="08/2023 - 06/2026"></div>
+                  <div class="col-md-6 m-b15"><label for="edu-loc">Location</label><input id="edu-loc" class="form-control field" placeholder="Gujarat"></div>
+                  <div class="col-12"><label for="certs">Certifications (one per line)</label><textarea id="certs" class="form-control field area" rows="4" placeholder="Web Development&#10;Python Programming&#10;DBMS"></textarea></div>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3>Right Column</h3>
+                <label for="achievements">Key Achievements (Title | Description)</label>
+                <textarea id="achievements" class="form-control field area" rows="5" placeholder="Achievements in Application Development | Built and deployed full-stack apps"></textarea>
+                <label class="m-t15" for="languages">Languages (Language | Level | Dots out of 5)</label>
+                <textarea id="languages" class="form-control field area" rows="4" placeholder="English | Native | 5&#10;Hindi | Proficient | 4"></textarea>
+                <label class="m-t15" for="skills">Skills (comma separated)</label>
+                <input id="skills" class="form-control field" placeholder="Gmail, GitHub, Angular, Node.js, MongoDB, React">
+              </div>
+            </section>
+
+            <section class="preview-wrap">
+              <h2>Live Preview</h2>
+              <div id="preview" class="paper">
+                <header class="p-head">
+                  <div class="p-left">
+                    <h1 id="pv-name">TRUPT PATEL</h1>
+                    <h2 id="pv-role">Jr. Software Developer</h2>
+                    <div class="contacts">
+                      <p><i class="fas fa-phone-alt"></i><span id="pv-phone">+91 9999999999</span></p>
+                      <p><i class="fas fa-envelope"></i><span id="pv-email">name@email.com</span></p>
+                      <p><i class="fas fa-link"></i><span id="pv-linkedin">https://linkedin.com/in/name</span></p>
+                      <p><i class="fas fa-map-marker-alt"></i><span id="pv-location">Ahmedabad</span></p>
+                    </div>
+                  </div>
+                  <div class="p-right">
+                    <div id="avatar-placeholder" class="avatar"><i class="far fa-user"></i></div>
+                    <img id="avatar-img" class="avatar-img" alt="photo">
+                  </div>
+                </header>
+
+                <div class="p-body">
+                  <div>
+                    <section class="sec"><h3>SUMMARY</h3><p id="pv-summary" class="txt">I am a motivated and detail-oriented professional.</p></section>
+                    <section class="sec"><h3>EXPERIENCE</h3><h4 id="pv-exp-title">Aspiring Software Developer</h4><p id="pv-exp-period" class="meta">Date period: Not provided</p><ul id="pv-exp-list" class="list"><li>Not specified</li></ul></section>
+                    <section class="sec"><h3>EDUCATION</h3><h4 id="pv-edu-degree">B.E. Computer Engineering</h4><p id="pv-edu-uni" class="link">Gujarat Technological University</p><p id="pv-edu-meta" class="meta">08/2023 - 06/2026 | Gujarat</p></section>
+                    <section class="sec"><h3>CERTIFICATIONS</h3><div id="pv-certs" class="certs"><div class="cert">Web Development</div><div class="cert">Python Programming</div></div></section>
+                  </div>
+                  <div>
+                    <section class="sec"><h3>KEY ACHIEVEMENTS</h3><div id="pv-ach" class="ach-list"></div></section>
+                    <section class="sec"><h3>LANGUAGES</h3><div id="pv-langs" class="lang-list"></div></section>
+                    <section class="sec"><h3>SKILLS</h3><div id="pv-skills" class="skills"></div></section>
+                  </div>
+                </div>
+
+                <img src="{% static 'images/resume-stamp.png' %}" class="stamp" alt="stamp">
+              </div>
+            </section>
+          </div>
+
+          <div id="status" class="status"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.resume-page{--ink:#1f1f1f;--blue:#1f87e5;--line:#cfd6de;--paper:#f2f2f2;}
+.shell{border:1px solid #d8e3ef;border-radius:18px;padding:18px;background:linear-gradient(140deg,#eef5fb,#fff);box-shadow:0 20px 52px rgba(15,39,68,.14);font-family:"Montserrat","Lato",sans-serif}
+.head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
+.kicker{margin:0;color:#1f5c88;font-size:12px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase}
+.head h1{margin:7px 0;color:#0f2744;font-size:clamp(23px,4vw,34px);font-weight:800;line-height:1.15}
+.sub{margin:0;color:#607386;font-size:14px}
+.dl-btn{border:0;border-radius:10px;padding:10px 14px;background:linear-gradient(125deg,#0f3f63,#1f6c9b);color:#fff;font-weight:800}
+.grid{display:grid;grid-template-columns:minmax(340px,1.1fr) minmax(340px,1fr);gap:14px}
+.editor,.preview-wrap{border:1px solid #d6e1ee;border-radius:13px;background:#fff;padding:14px}
+.editor h2,.preview-wrap h2{margin:0 0 10px;color:#0f2d4a;font-size:19px;font-weight:800}
+.block{border:1px solid #dde7f2;border-radius:10px;background:#fcfdff;padding:10px;margin-bottom:9px}
+.block h3{margin:0 0 8px;color:#24577f;font-size:14px;font-weight:800}
+.block label{display:block;margin-bottom:6px;color:#3e5266;font-size:12px;font-weight:700}
+.field{border:1px solid #cad8e6;border-radius:8px;padding:9px 10px;font-size:13px;color:#16324e;box-shadow:none}
+.field:focus{border-color:#2f79ad;box-shadow:0 0 0 3px rgba(47,121,173,.14)}
+.area{min-height:80px;resize:vertical}
+.paper{position:relative;min-height:1122px;border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:22px 20px 76px;box-shadow:0 16px 34px rgba(15,39,68,.12);font-family:"Lato","Montserrat",sans-serif}
+.p-head{display:flex;justify-content:space-between;gap:14px;margin-bottom:12px}
+.p-left{min-width:0;flex:1}
+.p-head h1{margin:0;color:var(--ink);font-size:48px;font-weight:900;line-height:1;text-transform:uppercase}
+.p-head h2{margin:4px 0 8px;color:var(--blue);font-size:30px;font-weight:800;line-height:1.1}
+.contacts{display:grid;grid-template-columns:1fr 1fr;gap:3px 12px}
+.contacts p{margin:0;color:#4f5f6e;font-size:12.7px;display:flex;align-items:center;gap:7px}
+.contacts i{color:var(--blue);width:13px;text-align:center;flex-shrink:0}
+.contacts span{overflow-wrap:anywhere}
+.p-right{width:104px;height:104px;position:relative;flex-shrink:0}
+.avatar,.avatar-img{width:104px;height:104px;border-radius:50%}
+.avatar{border:2px solid #c8c8c8;background:#e0e0e0;color:#8c8c8c;display:flex;align-items:center;justify-content:center;font-size:48px}
+.avatar-img{position:absolute;inset:0;object-fit:cover;border:2px solid #c8c8c8;display:none}
+.p-body{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.sec{margin-bottom:12px}
+.sec h3{margin:0 0 6px;color:#242424;font-size:16px;font-weight:900;border-bottom:3px solid #707070;padding-bottom:2px}
+.txt{margin:0;color:#3b3b3b;font-size:12.1px;line-height:1.45}
+.sec h4{margin:0;color:#222;font-size:14.7px;font-weight:900}
+.meta{margin:3px 0 6px;color:#777;font-size:11.2px}
+.list{margin:0 0 0 16px;padding:0}
+.list li{margin-bottom:2px;color:#3c3c3c;font-size:11.8px;line-height:1.35}
+.link{margin:3px 0;color:var(--blue);font-size:12.9px;font-weight:800}
+.cert{padding:7px 0;border-bottom:1px dashed #c5c9ce;color:#313131;font-size:12.6px;font-weight:700}
+.cert:last-child{border-bottom:0}
+.ach{display:flex;gap:8px;padding:7px 0;border-bottom:1px dashed #c8ccd1}
+.ach:last-child{border-bottom:0}
+.ach i{width:16px;color:var(--blue);padding-top:2px}
+.ach h4{margin:0 0 2px;font-size:13px}
+.ach p{margin:0;color:#4a4a4a;font-size:11.4px;line-height:1.35}
+.lang{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed #ccd0d5}
+.lang:last-child{border-bottom:0}
+.lang h4{margin:0;font-size:13px}
+.lang p{margin:0;color:#5c5c5c;font-size:10.8px}
+.dots{display:flex;align-items:center;gap:4px}
+.dot{width:10px;height:10px;border-radius:50%;background:#c7d2de}
+.dot.on{background:var(--blue)}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.skills span{display:block;border:1px solid #cbd1d8;background:#fff;text-align:center;color:#4a4a4a;font-size:11.2px;font-weight:800;padding:5px 3px}
+.stamp{position:absolute;right:14px;bottom:12px;width:80px;height:auto;opacity:.9}
+.status{margin-top:8px;min-height:18px;color:#1f5b88;font-size:13px;font-weight:600}
+.reveal-up{opacity:0;transform:translateY(10px);animation:up .55s ease forwards}
+.delay-1{animation-delay:.08s}.delay-2{animation-delay:.16s}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:1199px){.grid{grid-template-columns:1fr}.paper{min-height:980px}.p-head h1{font-size:38px}.p-head h2{font-size:24px}}
+@media (max-width:767px){.shell{padding:12px;border-radius:13px}.head{flex-direction:column}.dl-btn{width:100%}.contacts{grid-template-columns:1fr}.p-body{grid-template-columns:1fr}.p-right,.avatar,.avatar-img{width:82px;height:82px}}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+(function(){
+  var fields=["full-name","role","phone","email","linkedin","location","summary","exp-title","exp-period","exp-points","edu-degree","edu-uni","edu-period","edu-loc","certs","achievements","languages","skills"];
+  var icons=["fa-check","fa-award","fa-flag","fa-lightbulb","fa-rocket"];
+  var st={photo:null};
+  var sbox=document.getElementById("status"), btn=document.getElementById("download-btn");
+  function v(id){return document.getElementById(id).value.trim();}
+  function lines(t){return t?t.split("\n").map(function(x){return x.trim();}).filter(function(x){return x;}):[];}
+  function setStatus(m,e){sbox.textContent=m;sbox.style.color=e?"#b42318":"#1f5b88";}
+  function updHeader(){
+    document.getElementById("pv-name").textContent=(v("full-name")||"TRUPT PATEL").toUpperCase();
+    document.getElementById("pv-role").textContent=v("role")||"Jr. Software Developer";
+    document.getElementById("pv-phone").textContent=v("phone")||"+91 9999999999";
+    document.getElementById("pv-email").textContent=v("email")||"name@email.com";
+    document.getElementById("pv-linkedin").textContent=v("linkedin")||"https://linkedin.com/in/name";
+    document.getElementById("pv-location").textContent=v("location")||"Ahmedabad";
+  }
+  function updSummary(){document.getElementById("pv-summary").textContent=v("summary")||"I am a motivated and detail-oriented professional.";}
+  function updExp(){
+    document.getElementById("pv-exp-title").textContent=v("exp-title")||"Aspiring Software Developer";
+    document.getElementById("pv-exp-period").textContent="Date period: "+(v("exp-period")||"Not provided");
+    var ul=document.getElementById("pv-exp-list"), arr=lines(v("exp-points")); ul.innerHTML="";
+    if(!arr.length){arr=["Not specified"];}
+    arr.forEach(function(t){var li=document.createElement("li");li.textContent=t.replace(/^[-*]\s*/,"");ul.appendChild(li);});
+  }
+  function updEdu(){
+    document.getElementById("pv-edu-degree").textContent=v("edu-degree")||"B.E. Computer Engineering";
+    document.getElementById("pv-edu-uni").textContent=v("edu-uni")||"Gujarat Technological University";
+    document.getElementById("pv-edu-meta").textContent=(v("edu-period")||"08/2023 - 06/2026")+" | "+(v("edu-loc")||"Gujarat");
+  }
+  function updCert(){
+    var arr=lines(v("certs")); if(!arr.length){arr=["Web Development","Python Programming","DBMS","ReactJS / Full Stack Development"];}
+    var w=document.getElementById("pv-certs"); w.innerHTML=""; arr.forEach(function(t){var d=document.createElement("div");d.className="cert";d.textContent=t;w.appendChild(d);});
+  }
+  function updAch(){
+    var arr=lines(v("achievements")).map(function(l){var p=l.split("|");return{t:(p[0]||"").trim(),d:(p.slice(1).join("|")||"").trim()};}).filter(function(x){return x.t||x.d;});
+    if(!arr.length){arr=[{t:"Achievements in Application Development",d:"Successfully developed and deployed full-stack applications."},{t:"Secure Systems Implementation",d:"Designed secure systems for real workflows."},{t:"Performance Optimization",d:"Built scalable APIs and improved performance."},{t:"End-to-End Project Development",d:"Completed projects from UI to backend integration."}];}
+    var w=document.getElementById("pv-ach"); w.innerHTML="";
+    arr.forEach(function(x,i){var d=document.createElement("div");d.className="ach";d.innerHTML="<i class='fas "+icons[i%icons.length]+"'></i><div><h4>"+(x.t||"Achievement")+"</h4><p>"+(x.d||"Not provided")+"</p></div>";w.appendChild(d);});
+  }
+  function updLang(){
+    var arr=lines(v("languages")).map(function(l){var p=l.split("|"),n=parseInt((p[2]||"4").trim(),10);if(!n||n<1)n=4;if(n>5)n=5;return{l:(p[0]||"").trim(),x:(p[1]||"Proficient").trim(),n:n};}).filter(function(x){return x.l;});
+    if(!arr.length){arr=[{l:"English",x:"Native",n:5},{l:"Hindi",x:"Proficient",n:4},{l:"Gujarati",x:"Proficient",n:4}];}
+    var w=document.getElementById("pv-langs"); w.innerHTML="";
+    arr.forEach(function(x){var d=document.createElement("div");d.className="lang";var dots="<div class='dots'>";for(var i=1;i<=5;i+=1){dots+="<span class='dot"+(i<=x.n?" on":"")+"'></span>";}dots+="</div>";d.innerHTML="<div><h4>"+x.l+"</h4><p>"+x.x+"</p></div>"+dots;w.appendChild(d);});
+  }
+  function updSkills(){
+    var arr=v("skills").split(",").map(function(s){return s.trim();}).filter(function(s){return s;});
+    if(!arr.length){arr=["Gmail","GitHub","Angular","Node.js","MongoDB","React","Django","Python","HTML","CSS","Git"];}
+    var w=document.getElementById("pv-skills"); w.innerHTML=""; arr.slice(0,18).forEach(function(s){var sp=document.createElement("span");sp.textContent=s;w.appendChild(sp);});
+  }
+  function updPhoto(){
+    var im=document.getElementById("avatar-img"),ph=document.getElementById("avatar-placeholder");
+    if(st.photo){im.src=st.photo;im.style.display="block";ph.style.display="none";}else{im.style.display="none";ph.style.display="flex";}
+  }
+  function updateAll(){updHeader();updSummary();updExp();updEdu();updCert();updAch();updLang();updSkills();updPhoto();}
+  document.getElementById("photo").addEventListener("change",function(e){var f=e.target.files&&e.target.files[0];if(!f){st.photo=null;updPhoto();return;}var r=new FileReader();r.onload=function(ev){st.photo=ev.target.result;updPhoto();};r.readAsDataURL(f);});
+  fields.forEach(function(id){document.getElementById(id).addEventListener("input",updateAll);});
+  btn.addEventListener("click",function(){
+    if(!window.html2pdf){setStatus("PDF library is loading. Try again.",true);return;}
+    updateAll(); setStatus("Generating PDF...",false); btn.disabled=true;
+    var fn=(v("full-name")||"resume").replace(/\s+/g,"_")+"_resume.pdf";
+    var opt={margin:[0.08,0.08,0.08,0.08],filename:fn,image:{type:"jpeg",quality:0.98},html2canvas:{scale:2,useCORS:true,backgroundColor:"#f2f2f2"},jsPDF:{unit:"in",format:"a4",orientation:"portrait"}};
+    window.html2pdf().set(opt).from(document.getElementById("preview")).save().then(function(){setStatus("PDF downloaded successfully.",false);}).catch(function(){setStatus("Could not download PDF.",true);}).finally(function(){btn.disabled=false;});
+  });
+  updateAll();
+})();
+</script>
+{% endblock %}

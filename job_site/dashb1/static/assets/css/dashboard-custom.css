@@ -1,0 +1,93 @@
+.dashboard-metrics .card-style-1 {
+  min-height: 120px;
+}
+
+.dashboard-metrics .card-title h3 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.dashboard-metrics .color-text-paragraph-2 {
+  font-size: 13px;
+}
+
+#chartdiv {
+  width: 100%;
+  height: 320px;
+}
+
+.header .main-header {
+  align-items: center;
+}
+
+.header .header-menu-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header .header-menu-center ul {
+  gap: 28px;
+}
+
+.header .member-login .info-member {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Header logo sizing */
+.header .header-logo img {
+  height: 32px !important;
+  width: auto !important;
+  max-width: 140px !important;
+  object-fit: contain !important;
+}
+
+/* Tighten avatar/name spacing */
+.header .member-login {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.header .member-login .info-member {
+  line-height: 1.1 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  text-align: left;
+}
+
+.header .member-login img {
+  float: none !important;
+  margin: 0 8px 0 0 !important;
+}
+
+/* Keep header layout balanced */
+.header .main-header .header-right {
+  width: auto !important;
+  text-align: right !important;
+}
+
+.header .main-header .header-left {
+  min-width: 200px !important;
+}
+
+/* Dark mode header icon visibility */
+body.layout-dark .layout-btn {
+  background-color: #1e293b !important;
+}
+
+body.layout-dark .layout-btn:before,
+body.layout-dark .layout-btn:after {
+  color: #e2e8f0 !important;
+}
+
+body.layout-dark .layout-btn .mode-label:after {
+  background: #0b1220 !important;
+}
+
+/* Make "Post Job" icon visible in dark mode */
+body.layout-dark .btn.icon-edit {
+  filter: brightness(1.2);
+}

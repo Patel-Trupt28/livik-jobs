@@ -1,0 +1,1017 @@
+/* ==========================================================================
+   LIVIK JOBS - CINEMA UI DESIGN SYSTEM & 3D ANIMATION FRAMEWORK
+   Cinema-grade visual effects, glassmorphism, 3D perspective, & neon ambiance
+   ========================================================================== */
+
+:root {
+  /* Cinema Dark Core Palette */
+  --cinema-bg-dark: #070a13;
+  --cinema-bg-dark-surface: #0b1122;
+  --cinema-bg-dark-card: rgba(14, 22, 42, 0.72);
+  --cinema-bg-dark-card-hover: rgba(20, 32, 62, 0.88);
+  --cinema-border-dark: rgba(255, 255, 255, 0.08);
+  --cinema-border-dark-hover: rgba(67, 97, 238, 0.45);
+
+  /* Cinema Light Core Palette */
+  --cinema-bg-light: #f8fafc;
+  --cinema-bg-light-surface: #ffffff;
+  --cinema-bg-light-card: rgba(255, 255, 255, 0.85);
+  --cinema-bg-light-card-hover: rgba(255, 255, 255, 0.98);
+  --cinema-border-light: rgba(226, 232, 240, 0.85);
+  --cinema-border-light-hover: rgba(45, 91, 255, 0.4);
+
+  /* Cinematic Luminescence & Neon Tokens */
+  --cinema-neon-cyan: #00f2fe;
+  --cinema-neon-blue: #3b82f6;
+  --cinema-neon-indigo: #4361ee;
+  --cinema-neon-violet: #8b5cf6;
+  --cinema-neon-purple: #7928ca;
+  --cinema-neon-pink: #ec4899;
+  --cinema-neon-emerald: #10b981;
+  --cinema-neon-gold: #f59e0b;
+  --cinema-neon-amber: #ff9f43;
+
+  /* Glowing Shadows */
+  --cinema-glow-cyan: 0 0 35px rgba(0, 242, 254, 0.28);
+  --cinema-glow-blue: 0 0 40px rgba(67, 97, 238, 0.32);
+  --cinema-glow-purple: 0 0 35px rgba(121, 40, 202, 0.3);
+  --cinema-glow-gold: 0 0 30px rgba(245, 158, 11, 0.28);
+  --cinema-glow-emerald: 0 0 30px rgba(16, 185, 129, 0.28);
+
+  /* Cinema Elevations */
+  --cinema-shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
+  --cinema-shadow-md: 0 12px 30px rgba(2, 6, 23, 0.12);
+  --cinema-shadow-lg: 0 24px 60px rgba(2, 6, 23, 0.18);
+  --cinema-shadow-3d: 0 30px 70px -15px rgba(2, 6, 23, 0.35);
+
+  /* Motion & Glass */
+  --cinema-glass-blur: blur(16px);
+  --cinema-glass-blur-heavy: blur(28px);
+  --cinema-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --cinema-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Perspective & 3D Container Systems
+   -------------------------------------------------------------------------- */
+.cinema-perspective {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.cinema-perspective-deep {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+/* 3D Tilt Card Base */
+.cinema-3d-card,
+[data-cinema-tilt],
+[data-cinema-tilt-3d] {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.4s var(--cinema-ease-out), border-color 0.4s ease;
+  will-change: transform;
+}
+
+/* Dynamic Specular Light Layer */
+.cinema-card-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 10;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.22) 0%, transparent 65%);
+}
+
+.cinema-3d-card:hover .cinema-card-shine,
+[data-cinema-tilt]:hover .cinema-card-shine,
+[data-cinema-tilt-3d]:hover .cinema-card-shine {
+  opacity: 1;
+}
+
+/* 3D Depth Layers inside Cards */
+[data-cinema-depth="10"] { transform: translateZ(10px); }
+[data-cinema-depth="20"] { transform: translateZ(20px); }
+[data-cinema-depth="30"] { transform: translateZ(30px); }
+[data-cinema-depth="40"] { transform: translateZ(40px); }
+[data-cinema-depth="50"] { transform: translateZ(50px); }
+
+/* --------------------------------------------------------------------------
+   Ambient Cinema Lighting & Backgrounds
+   -------------------------------------------------------------------------- */
+.cinema-ambient-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.cinema-ambient-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cinema-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.cinema-orb-cyan {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.6) 0%, rgba(67, 97, 238, 0.2) 65%, transparent 100%);
+  top: -100px;
+  left: -80px;
+}
+
+.cinema-orb-purple {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(121, 40, 202, 0.55) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 100%);
+  top: 10%;
+  right: -120px;
+}
+
+.cinema-orb-gold {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(239, 68, 68, 0.15) 70%, transparent 100%);
+  bottom: -60px;
+  left: 35%;
+}
+
+/* Grid Matrix Overlay */
+.cinema-cyber-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Interactive Particle Canvas */
+.cinema-particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Hero Section Styles
+   -------------------------------------------------------------------------- */
+.cinema-hero {
+  position: relative;
+  isolation: isolate;
+  padding: 110px 0 90px;
+  background: #080d1a;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.cinema-hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: var(--cinema-glass-blur);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #e2e8f0;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.cinema-hero-title {
+  font-size: 54px;
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.cinema-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 40%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.cinema-gradient-text-gold {
+  background: linear-gradient(135deg, #ffd700 0%, #ff9f43 50%, #ff6b6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.cinema-hero-subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #94a3b8;
+  max-width: 620px;
+  margin-bottom: 35px;
+}
+
+/* Cinema Search Glass HUD */
+.cinema-search-hud {
+  position: relative;
+  z-index: 5;
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: var(--cinema-glass-blur-heavy);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--cinema-shadow-3d), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cinema-search-hud:hover {
+  border-color: rgba(67, 97, 238, 0.5);
+  box-shadow: var(--cinema-shadow-3d), var(--cinema-glow-blue);
+}
+
+.cinema-input-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.cinema-input-box:focus-within {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--cinema-neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+}
+
+.cinema-input-box i {
+  color: var(--cinema-neon-cyan);
+  font-size: 16px;
+  margin-right: 12px;
+}
+
+.cinema-input-box input {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: #ffffff !important;
+  font-size: 15px;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.cinema-input-box input::placeholder {
+  color: #64748b !important;
+}
+
+/* Floating 3D Zero-G Badges */
+.cinema-floating-badge {
+  position: absolute;
+  padding: 14px 20px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: var(--cinema-glass-blur);
+  box-shadow: var(--cinema-shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 6;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cinema-floating-badge:hover {
+  border-color: var(--cinema-neon-cyan);
+  box-shadow: var(--cinema-glow-cyan);
+}
+
+.cinema-badge-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.cinema-badge-icon.blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+.cinema-badge-icon.purple { background: rgba(139, 92, 246, 0.2); color: #c084fc; }
+.cinema-badge-icon.gold { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+.cinema-badge-icon.green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+
+.cinema-floating-badge h6 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cinema-floating-badge p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Bento Grid Architecture
+   -------------------------------------------------------------------------- */
+.cinema-bento-section {
+  position: relative;
+  padding: 85px 0;
+}
+
+.cinema-section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(67, 97, 238, 0.12);
+  color: #3b82f6;
+  border: 1px solid rgba(67, 97, 238, 0.25);
+  margin-bottom: 14px;
+}
+
+.cinema-section-heading {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  margin-bottom: 12px;
+}
+
+.cinema-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+
+.cinema-bento-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 22px;
+  padding: 30px;
+  overflow: hidden;
+  box-shadow: var(--cinema-shadow-md);
+  transition: all 0.35s var(--cinema-ease-out);
+}
+
+body.layout-dark .cinema-bento-card,
+body.dark-layout .cinema-bento-card {
+  background: var(--cinema-bg-dark-card);
+  border-color: var(--cinema-border-dark);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.cinema-bento-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--cinema-neon-blue);
+  box-shadow: var(--cinema-shadow-3d);
+}
+
+body.layout-dark .cinema-bento-card:hover,
+body.dark-layout .cinema-bento-card:hover {
+  border-color: rgba(67, 97, 238, 0.55);
+  box-shadow: var(--cinema-shadow-3d), var(--cinema-glow-blue);
+}
+
+.bento-span-4 { grid-column: span 4; }
+.bento-span-6 { grid-column: span 6; }
+.bento-span-8 { grid-column: span 8; }
+.bento-span-12 { grid-column: span 12; }
+
+@media (max-width: 991px) {
+  .bento-span-4,
+  .bento-span-6,
+  .bento-span-8 {
+    grid-column: span 12;
+  }
+}
+
+/* Bento Visual Features */
+.bento-icon-glow {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.bento-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* Radar pulse indicator */
+.cinema-radar-pulse {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cinema-neon-emerald);
+  display: inline-block;
+}
+
+.cinema-radar-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--cinema-neon-emerald);
+  animation: cinemaPulse 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes cinemaPulse {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   Cinema HUD Metric Counter Badges
+   -------------------------------------------------------------------------- */
+.cinema-hud-counter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: var(--cinema-glass-blur);
+}
+
+.cinema-hud-number {
+  font-size: 32px;
+  font-weight: 850;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.cinema-hud-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Job Cards Upgrade
+   -------------------------------------------------------------------------- */
+.cinema-job-card {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  background: #ffffff;
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: all 0.35s var(--cinema-ease-out);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+body.layout-dark .cinema-job-card,
+body.dark-layout .cinema-job-card {
+  background: var(--cinema-bg-dark-card);
+  border-color: var(--cinema-border-dark);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.cinema-job-card:hover {
+  border-color: var(--cinema-neon-blue);
+  box-shadow: var(--cinema-shadow-3d);
+}
+
+body.layout-dark .cinema-job-card:hover,
+body.dark-layout .cinema-job-card:hover {
+  border-color: rgba(67, 97, 238, 0.5);
+  box-shadow: var(--cinema-shadow-3d), 0 0 30px rgba(67, 97, 238, 0.22);
+}
+
+.cinema-job-card .company-logo-frame {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: #f1f5f9;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+body.layout-dark .cinema-job-card .company-logo-frame,
+body.dark-layout .cinema-job-card .company-logo-frame {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cinema-job-card:hover .company-logo-frame {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.cinema-salary-chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.layout-dark .cinema-salary-chip,
+body.dark-layout .cinema-salary-chip {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Dashboard Cards & HUD
+   -------------------------------------------------------------------------- */
+.cinema-dash-hud {
+  padding: 24px 28px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #111827 0%, #0f172a 50%, #1e1b4b 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--cinema-shadow-lg);
+}
+
+.cinema-dash-metric-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 22px 20px;
+  transition: all 0.35s var(--cinema-ease-out);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+body.layout-dark .cinema-dash-metric-card,
+body.dark-layout .cinema-dash-metric-card {
+  background: #111827 !important;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.cinema-dash-metric-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--cinema-neon-blue);
+  box-shadow: var(--cinema-shadow-3d);
+}
+
+body.layout-dark .cinema-dash-metric-card:hover,
+body.dark-layout .cinema-dash-metric-card:hover {
+  border-color: rgba(67, 97, 238, 0.5);
+  box-shadow: var(--cinema-shadow-3d), 0 0 25px rgba(67, 97, 238, 0.25);
+}
+
+.cinema-dash-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 14px;
+  transition: transform 0.3s ease;
+}
+
+.cinema-dash-metric-card:hover .cinema-dash-icon-box {
+  transform: scale(1.15) rotate(4deg);
+}
+
+.cinema-dash-stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.1;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body.layout-dark .cinema-dash-stat-number,
+body.dark-layout .cinema-dash-stat-number {
+  color: #f8fafc;
+}
+
+.cinema-dash-stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 4px 0 0;
+}
+
+body.layout-dark .cinema-dash-stat-label,
+body.dark-layout .cinema-dash-stat-label {
+  color: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Floating Quick Dock / Command Pill
+   -------------------------------------------------------------------------- */
+.cinema-floating-dock {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: var(--cinema-glass-blur-heavy);
+  box-shadow: var(--cinema-shadow-3d), 0 0 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s var(--cinema-ease-spring), opacity 0.3s ease;
+}
+
+.cinema-dock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cinema-dock-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.cinema-dock-btn.active,
+.cinema-dock-btn.primary {
+  background: linear-gradient(135deg, var(--cinema-neon-blue) 0%, var(--cinema-neon-indigo) 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+}
+
+.cinema-dock-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Cinema Holographic Shimmer & Glow Animations
+   -------------------------------------------------------------------------- */
+.cinema-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.cinema-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  animation: cinemaShimmerSweep 5s infinite;
+}
+
+@keyframes cinemaShimmerSweep {
+  0% { transform: translateX(-150%) rotate(25deg); }
+  35% { transform: translateX(150%) rotate(25deg); }
+  100% { transform: translateX(150%) rotate(25deg); }
+}
+
+/* Magnetic Button Utility */
+[data-cinema-magnetic] {
+  display: inline-block;
+  will-change: transform;
+  cursor: pointer;
+}
+
+/* Stagger entrance utility classes */
+.cinema-stagger-item {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cinema-3d-card,
+  [data-cinema-tilt],
+  [data-cinema-tilt-3d],
+  .cinema-shimmer::after,
+  .cinema-radar-pulse::after,
+  .cinema-orb {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   UNIFIED CINEMA DARK MODE FIXES & COMPREHENSIVE OVERRIDES
+   Resolves contrast bugs, white boxes, unreadable text, and flashes across all pages
+   ========================================================================== */
+
+html.layout-dark,
+body.layout-dark,
+body.dark-layout {
+  background-color: #070a13 !important;
+  color: #e2e8f0 !important;
+}
+
+html.layout-dark .bg-white,
+body.layout-dark .bg-white,
+body.dark-layout .bg-white,
+html.layout-dark .page-content,
+body.layout-dark .page-content,
+body.dark-layout .page-content {
+  background-color: #070a13 !important;
+  color: #e2e8f0 !important;
+}
+
+html.layout-dark .section-full,
+body.layout-dark .section-full {
+  background-color: transparent !important;
+}
+
+/* Header & Nav in Dark Mode */
+html.layout-dark .site-header .main-bar,
+body.layout-dark .site-header .main-bar {
+  background-color: rgba(11, 17, 34, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.layout-dark .site-header.fullwidth .is-fixed .main-bar,
+body.layout-dark .site-header.fullwidth .is-fixed .main-bar {
+  background-color: rgba(11, 17, 34, 0.98) !important;
+}
+
+html.layout-dark .header-nav,
+body.layout-dark .header-nav {
+  background-color: #0b1122 !important;
+}
+
+html.layout-dark .header-nav .nav > li > a,
+body.layout-dark .header-nav .nav > li > a {
+  color: #f1f5f9 !important;
+}
+
+html.layout-dark .sub-menu,
+body.layout-dark .sub-menu,
+html.layout-dark .dropdown-menu,
+body.layout-dark .dropdown-menu {
+  background-color: #0f172a !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.layout-dark .sub-menu li a,
+body.layout-dark .sub-menu li a,
+html.layout-dark .dropdown-menu li a,
+body.layout-dark .dropdown-menu li a {
+  color: #cbd5e1 !important;
+}
+
+html.layout-dark .sub-menu li a:hover,
+body.layout-dark .sub-menu li a:hover,
+html.layout-dark .dropdown-menu li a:hover,
+body.layout-dark .dropdown-menu li a:hover {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+/* Cards & Containers in Dark Mode */
+html.layout-dark .icon-bx-wraper,
+body.layout-dark .icon-bx-wraper,
+html.layout-dark .company-card,
+body.layout-dark .company-card,
+html.layout-dark .post-bx,
+body.layout-dark .post-bx,
+html.layout-dark .panel-white,
+body.layout-dark .panel-white,
+html.layout-dark .card-grid-2,
+body.layout-dark .card-grid-2,
+html.layout-dark .login-card,
+body.layout-dark .login-card {
+  background-color: rgba(15, 23, 42, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.layout-dark .icon-bx-wraper .dez-tilte,
+body.layout-dark .icon-bx-wraper .dez-tilte,
+html.layout-dark .post-bx h4 a,
+body.layout-dark .post-bx h4 a,
+html.layout-dark .company-card h5,
+body.layout-dark .company-card h5,
+html.layout-dark .login-card h4,
+body.layout-dark .login-card h4 {
+  color: #f8fafc !important;
+}
+
+/* Forms, Inputs, Textareas & Selects */
+html.layout-dark .form-control,
+body.layout-dark .form-control,
+html.layout-dark select.form-control,
+body.layout-dark select.form-control,
+html.layout-dark textarea.form-control,
+body.layout-dark textarea.form-control,
+html.layout-dark .input-group .form-control,
+body.layout-dark .input-group .form-control,
+html.layout-dark input[type="text"],
+body.layout-dark input[type="text"],
+html.layout-dark input[type="password"],
+body.layout-dark input[type="password"],
+html.layout-dark input[type="email"],
+body.layout-dark input[type="email"] {
+  background-color: #0b1122 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+}
+
+html.layout-dark .form-control:focus,
+body.layout-dark .form-control:focus,
+html.layout-dark input:focus,
+body.layout-dark input:focus {
+  border-color: var(--cinema-neon-cyan) !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25) !important;
+}
+
+html.layout-dark .form-control::placeholder,
+body.layout-dark .form-control::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+html.layout-dark .input-group-text,
+body.layout-dark .input-group-text {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #94a3b8 !important;
+}
+
+/* Headings & Text */
+html.layout-dark h1, body.layout-dark h1,
+html.layout-dark h2, body.layout-dark h2,
+html.layout-dark h3, body.layout-dark h3,
+html.layout-dark h4, body.layout-dark h4,
+html.layout-dark h5, body.layout-dark h5,
+html.layout-dark h6, body.layout-dark h6 {
+  color: #f8fafc !important;
+}
+
+html.layout-dark .text-muted,
+body.layout-dark .text-muted,
+html.layout-dark p,
+body.layout-dark p {
+  color: #94a3b8 !important;
+}
+
+/* Modals */
+html.layout-dark .modal-content,
+body.layout-dark .modal-content {
+  background-color: #0f172a !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #e2e8f0 !important;
+}
+
+/* Tables */
+html.layout-dark table,
+body.layout-dark table {
+  color: #e2e8f0 !important;
+}
+
+html.layout-dark table thead th,
+body.layout-dark table thead th {
+  background-color: #111827 !important;
+  color: #cbd5e1 !important;
+  border-color: #1f2937 !important;
+}
+
+html.layout-dark table tbody td,
+body.layout-dark table tbody td {
+  border-color: #1f2937 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Footers */
+html.layout-dark .site-footer,
+body.layout-dark .site-footer,
+html.layout-dark .footer,
+body.layout-dark .footer {
+  background-color: #05070d !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Layout Button Switcher Animation in Dark Mode */
+html.layout-dark .layout-btn,
+body.layout-dark .layout-btn {
+  background-color: #1e293b !important;
+}
+
+html.layout-dark .layout-btn .mode-label:after,
+body.layout-dark .layout-btn .mode-label:after {
+  right: 4px !important;
+}
+
+/* Shop Account Registration Dark Mode */
+html.layout-dark .shop-account,
+body.layout-dark .shop-account {
+  background-color: #070a13 !important;
+}
+
+html.layout-dark .shop-account .card,
+body.layout-dark .shop-account .card {
+  background-color: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.layout-dark .shop-account .card .form-control,
+body.layout-dark .shop-account .card .form-control {
+  background-color: #0b1122 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.layout-dark .shop-account .card label,
+body.layout-dark .shop-account .card label {
+  color: #e2e8f0 !important;
+}

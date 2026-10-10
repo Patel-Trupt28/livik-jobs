@@ -1,0 +1,382 @@
+:root {
+	--resume-teal: #0a6f70;
+	--resume-teal-deep: #07595a;
+	--resume-bg: #e6eaed;
+	--resume-paper: #ffffff;
+	--resume-text: #313a41;
+	--resume-muted: #66727c;
+	--resume-line: #c8d1d7;
+	--resume-card-shadow: 0 16px 36px rgba(8, 53, 55, 0.1);
+	--resume-radius: 12px;
+}
+
+body.resume-inspired {
+	margin: 0;
+	background: var(--resume-bg);
+	color: var(--resume-text);
+	font-family: "Lato", sans-serif;
+	line-height: 1.5;
+	position: relative;
+	isolation: isolate;
+}
+
+body.resume-inspired::before {
+	content: "";
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: min(20vw, 290px);
+	background: linear-gradient(180deg, #0b7677 0%, #07595a 100%);
+	z-index: 0;
+}
+
+body.resume-inspired::after {
+	content: "";
+	position: fixed;
+	left: min(20vw, 290px);
+	top: 0;
+	bottom: 0;
+	width: 1px;
+	background: rgba(7, 89, 90, 0.35);
+	z-index: 0;
+}
+
+body.resume-inspired .page-wraper {
+	position: relative;
+	z-index: 1;
+	background: transparent;
+	padding-left: min(20vw, 290px);
+}
+
+body.resume-inspired h1,
+body.resume-inspired h2,
+body.resume-inspired h3,
+body.resume-inspired h4,
+body.resume-inspired h5,
+body.resume-inspired h6 {
+	font-family: "Montserrat", sans-serif;
+	color: #2f383f;
+}
+
+body.resume-inspired p,
+body.resume-inspired li {
+	color: var(--resume-muted);
+}
+
+body.resume-inspired .text-primary {
+	color: var(--resume-teal) !important;
+}
+
+body.resume-inspired .sticky-header.main-bar-wraper {
+	background: rgba(9, 92, 94, 0.96);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+	backdrop-filter: blur(8px);
+}
+
+body.resume-inspired .site-header .main-bar {
+	box-shadow: 0 8px 20px rgba(7, 60, 62, 0.25);
+}
+
+body.resume-inspired .site-header .header-nav .nav > li > a,
+body.resume-inspired .extra-nav .site-button,
+body.resume-inspired .extra-nav .layout-btn {
+	color: #eef8f8;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+body.resume-inspired .extra-nav .dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+body.resume-inspired .extra-nav .sub-menu {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	min-width: 220px;
+	padding: 8px 0;
+	margin: 0;
+	list-style: none;
+	background: #ffffff;
+	border: 1px solid var(--resume-line);
+	border-radius: 10px;
+	box-shadow: var(--resume-card-shadow);
+	z-index: 1000;
+}
+
+body.resume-inspired .extra-nav .sub-menu li a {
+	display: block;
+	padding: 10px 16px;
+	color: #344047;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+body.resume-inspired .extra-nav .sub-menu li a:hover {
+	background: #e6f1f1;
+	color: var(--resume-teal-deep);
+}
+
+body.resume-inspired .extra-nav .dropdown:hover .sub-menu {
+	display: block;
+}
+
+body.resume-inspired .page-content {
+	padding-top: 18px;
+}
+
+body.resume-inspired .main-slider {
+	position: relative;
+	background-size: cover;
+	background-position: center;
+	border-radius: 0;
+	overflow: hidden;
+	margin: 0;
+	max-width: none;
+	box-shadow: none;
+}
+
+body.resume-inspired .main-slider::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(105deg, rgba(8, 93, 95, 0.88) 0%, rgba(8, 93, 95, 0.7) 38%, rgba(236, 241, 244, 0.83) 100%);
+}
+
+body.resume-inspired .main-slider .container {
+	position: relative;
+	z-index: 1;
+}
+
+body.resume-inspired .find-job-bx {
+	background: rgba(255, 255, 255, 0.97);
+	border: 1px solid var(--resume-line);
+	border-radius: var(--resume-radius);
+	box-shadow: var(--resume-card-shadow);
+	padding: 32px 30px;
+}
+
+body.resume-inspired .find-job-bx h2 {
+	line-height: 1.35;
+	color: #2d373d;
+}
+
+body.resume-inspired .section-full {
+	max-width: none;
+	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+body.resume-inspired .section-full .container {
+	background: var(--resume-paper);
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	border-top: 1px solid #d5dde2;
+	padding: 30px;
+}
+
+body.resume-inspired .section-full.bg-white,
+body.resume-inspired .section-full.bg-gray,
+body.resume-inspired .section-full.job-categories {
+	background: transparent !important;
+}
+
+body.resume-inspired .section-head h2,
+body.resume-inspired .job-title-bx h2 {
+	color: var(--resume-teal-deep);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 1.25rem;
+	padding-bottom: 11px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+body.resume-inspired .section-head h2::after,
+body.resume-inspired .job-title-bx h2::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 74px;
+	height: 2px;
+	background: var(--resume-teal);
+}
+
+body.resume-inspired .section-head.text-center h2::after {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+body.resume-inspired .icon-bx-wraper,
+body.resume-inspired .post-bx,
+body.resume-inspired .quote-bx,
+body.resume-inspired .pricingtable-wrapper.style2 {
+	background: #ffffff;
+	border: 1px solid var(--resume-line);
+	border-radius: 6px;
+	box-shadow: 0 4px 10px rgba(7, 60, 62, 0.05);
+	overflow: hidden;
+	position: relative;
+}
+
+body.resume-inspired .icon-bx-wraper::before,
+body.resume-inspired .post-bx::before,
+body.resume-inspired .pricingtable-wrapper.style2::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	background: linear-gradient(180deg, #0c7b7c 0%, #086264 100%);
+}
+
+body.resume-inspired .city-bx {
+	position: relative;
+	border-radius: var(--resume-radius);
+	overflow: hidden;
+	border: 1px solid rgba(7, 89, 90, 0.22);
+	box-shadow: var(--resume-card-shadow);
+}
+
+body.resume-inspired .city-bx::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(8, 93, 95, 0) 20%, rgba(8, 93, 95, 0.9) 100%);
+}
+
+body.resume-inspired .city-bx .city-info {
+	position: relative;
+	z-index: 1;
+}
+
+body.resume-inspired .job-post-info h4 a,
+body.resume-inspired .dez-tilte,
+body.resume-inspired .salary-bx span {
+	color: #23333b;
+}
+
+body.resume-inspired .form-group .form-control,
+body.resume-inspired .bootstrap-select .dropdown-toggle,
+body.resume-inspired select,
+body.resume-inspired .input-group-text {
+	border-radius: 10px;
+	border: 1px solid #bdc9cf;
+	background: #f8fbfc;
+	color: #38444a;
+}
+
+body.resume-inspired .form-group .form-control:focus,
+body.resume-inspired .bootstrap-select .dropdown-toggle:focus,
+body.resume-inspired select:focus {
+	border-color: var(--resume-teal);
+	box-shadow: 0 0 0 0.2rem rgba(10, 111, 112, 0.14);
+}
+
+body.resume-inspired .site-button,
+body.resume-inspired .btn-primary,
+body.resume-inspired .job-time a span,
+body.resume-inspired .site-button.white:hover {
+	background: var(--resume-teal);
+	border-color: var(--resume-teal);
+	color: #ffffff;
+	border-radius: 999px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+body.resume-inspired .site-button:hover,
+body.resume-inspired .btn-primary:hover {
+	background: var(--resume-teal-deep);
+	border-color: var(--resume-teal-deep);
+}
+
+body.resume-inspired .site-button.white {
+	background: #ffffff;
+	color: var(--resume-teal-deep);
+}
+
+body.resume-inspired .pricingtable-wrapper.style2.active {
+	background: linear-gradient(180deg, #0e7b7d 0%, #096264 100%);
+	border-color: #096264;
+}
+
+body.resume-inspired .pricingtable-wrapper.style2.active p,
+body.resume-inspired .pricingtable-wrapper.style2.active h4,
+body.resume-inspired .pricingtable-wrapper.style2.active .pricingtable-bx,
+body.resume-inspired .pricingtable-wrapper.style2.active span {
+	color: #eff7f7;
+}
+
+body.resume-inspired .site-footer {
+	margin-top: 28px;
+	background: #0a4d50;
+}
+
+body.resume-inspired .footer-top {
+	background: linear-gradient(180deg, #0b6264 0%, #084a4d 100%);
+}
+
+body.resume-inspired .footer-bottom {
+	background: #073f41;
+	border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+body.resume-inspired .footer-top p,
+body.resume-inspired .footer-top li a,
+body.resume-inspired .footer-bottom span {
+	color: #d8ecec;
+}
+
+body.resume-inspired .footer-top h5 {
+	color: #ffffff;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+body.resume-inspired .subscribe-form .form-control {
+	background: rgba(255, 255, 255, 0.97);
+}
+
+body.resume-inspired .scroltop {
+	background: var(--resume-teal);
+	border-radius: 50%;
+}
+
+@media (max-width: 1199px) {
+	body.resume-inspired::before,
+	body.resume-inspired::after {
+		display: none;
+	}
+
+	body.resume-inspired .page-wraper {
+		padding-left: 0;
+	}
+
+	body.resume-inspired .section-full,
+	body.resume-inspired .main-slider {
+		max-width: 100%;
+	}
+}
+
+@media (max-width: 991px) {
+	body.resume-inspired .find-job-bx {
+		padding: 24px 20px;
+	}
+
+	body.resume-inspired .section-full .container {
+		padding: 22px;
+	}
+
+	body.resume-inspired .section-head h2,
+	body.resume-inspired .job-title-bx h2 {
+		font-size: 1.1rem;
+	}
+}

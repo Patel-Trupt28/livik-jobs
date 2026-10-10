@@ -1,0 +1,1303 @@
+{% extends 'emp_base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Content -->
+    <div class="page-content">
+		<style>
+			:root {
+				--emp-accent: #2f5bea;
+				--emp-accent-strong: #1f43d6;
+				--emp-soft: rgba(47, 91, 234, 0.08);
+				--emp-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+			}
+			.page-content {
+				background: linear-gradient(180deg, #f6f7fb 0%, #ffffff 35%, #f4f6fb 100%);
+			}
+			.dez-bnr-inr.main-slider {
+				position: relative;
+				isolation: isolate;
+			}
+			.dez-bnr-inr.main-slider::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(95deg, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.02) 40%, rgba(15, 23, 42, 0.18) 100%);
+				z-index: 0;
+			}
+			.dez-bnr-inr-entry {
+				position: relative;
+				z-index: 1;
+			}
+			.page-content .section-full {
+				position: relative;
+			}
+			.page-content .section-full::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				opacity: 0;
+				pointer-events: none;
+			}
+			.page-content .site-button,
+			.page-content .site-button:focus {
+				border-radius: 999px;
+				box-shadow: 0 10px 22px rgba(31, 67, 214, 0.2);
+				transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+			}
+			.page-content .site-button:hover {
+				transform: translateY(-2px) scale(1.01);
+				box-shadow: 0 14px 26px rgba(31, 67, 214, 0.26);
+			}
+			.page-content .site-button:active {
+				transform: translateY(0) scale(0.99);
+				box-shadow: 0 6px 14px rgba(31, 67, 214, 0.2);
+			}
+			.page-content .find-job-bx {
+				background: rgba(255, 255, 255, 0.92);
+				border-radius: 18px;
+				box-shadow: var(--emp-shadow);
+				backdrop-filter: blur(6px);
+			}
+			.page-content .find-job-bx > .site-button {
+				background: linear-gradient(135deg, var(--emp-accent) 0%, #1f3ed1 100%);
+				border: none;
+				letter-spacing: 0.2px;
+			}
+			.page-content .find-job-bx h2 {
+				font-weight: 800;
+				letter-spacing: -0.4px;
+			}
+			.page-content .find-job-bx h2,
+			.page-content .find-job-bx p,
+			.page-content .find-job-bx label {
+				color: #0f172a;
+			}
+			.page-content .find-job-bx .form-group label {
+				color: #475569;
+				font-weight: 600;
+			}
+			.page-content .find-job-bx .form-group {
+				position: relative;
+			}
+			.page-content .find-job-bx .form-group label {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
+			.page-content .find-job-bx .form-control {
+				border-radius: 999px;
+				border: 1px solid rgba(148, 163, 184, 0.35);
+				background: #ffffff;
+				padding-left: 16px;
+				color: #0f172a !important;
+				opacity: 1;
+			}
+			.page-content .find-job-bx .form-control::placeholder {
+				color: #4b5563 !important;
+				opacity: 1;
+			}
+			.page-content .find-job-bx .form-control::-webkit-input-placeholder {
+				color: #4b5563 !important;
+				opacity: 1;
+			}
+			.page-content .find-job-bx .form-control::-moz-placeholder {
+				color: #4b5563 !important;
+				opacity: 1;
+			}
+			.page-content .find-job-bx .form-control:-ms-input-placeholder {
+				color: #4b5563 !important;
+				opacity: 1;
+			}
+			.page-content .find-job-bx .input-group-text {
+				background: var(--emp-soft);
+				color: var(--emp-accent);
+				border-radius: 999px;
+			}
+			.page-content .find-job-bx .input-group {
+				border-radius: 999px;
+				border: 1px solid rgba(148, 163, 184, 0.25);
+				padding-right: 10px;
+			}
+			.page-content .find-job-bx .input-group .form-control {
+				border: none;
+				background: transparent;
+			}
+			.page-content .find-job-bx .input-group-append .input-group-text {
+				border: none;
+			}
+			.page-content .job-categories .icon-bx-wraper,
+			.page-content .city-bx,
+			.page-content .post-bx,
+			.page-content .snapshot-card {
+				transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, filter 0.35s ease;
+				will-change: transform;
+			}
+			.page-content .job-categories .icon-bx-wraper:hover,
+			.page-content .city-bx:hover,
+			.page-content .post-bx:hover,
+			.page-content .snapshot-card:hover {
+				transform: translateY(-6px) scale(1.01);
+				box-shadow: var(--emp-shadow);
+				filter: saturate(1.02);
+			}
+			.page-content .job-categories .icon-bx-wraper {
+				border-radius: 16px;
+				background: #ffffff;
+				box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+			}
+			.page-content .job-categories .icon-bx-wraper .dez-tilte,
+			.page-content .job-categories .icon-bx-wraper p {
+				color: #1f2937;
+			}
+			.page-content .city-bx {
+				border-radius: 18px;
+				overflow: hidden;
+			}
+			.page-content .city-bx img {
+				transition: transform 0.6s ease;
+			}
+			.page-content .city-bx:hover img {
+				transform: scale(1.04);
+			}
+			.page-content .city-bx::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(180deg, rgba(2, 6, 23, 0.15), rgba(2, 6, 23, 0.65));
+				opacity: 0.9;
+			}
+			.page-content .city-info {
+				position: relative;
+				z-index: 1;
+				color: #fff;
+			}
+			.page-content .post-job-bx .post-bx {
+				border-radius: 18px;
+				box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+			}
+			.page-content .post-job-bx .post-bx {
+				border: 1px solid rgba(148, 163, 184, 0.2);
+				background: #ffffff;
+			}
+			.page-content .post-job-bx .post-bx h4 a,
+			.page-content .post-job-bx .post-bx .job-post-info ul li,
+			.page-content .post-job-bx .post-bx .job-post-info ul li i,
+			.page-content .post-job-bx .post-bx .salary-bx span {
+				color: #0f172a;
+			}
+			.page-content .post-job-bx .post-bx .job-post-info ul li {
+				color: #475569;
+			}
+			.page-content .post-job-bx .post-bx .job-post-info ul li i {
+				color: #94a3b8;
+			}
+			body.layout-dark .page-content .post-job-bx .post-bx {
+				background: #0f172a;
+				border: 1px solid rgba(148, 163, 184, 0.15);
+				box-shadow: 0 16px 32px rgba(2, 6, 23, 0.45);
+			}
+			body.layout-dark .page-content .post-job-bx .post-bx h4 a,
+			body.layout-dark .page-content .post-job-bx .post-bx .job-post-info ul li,
+			body.layout-dark .page-content .post-job-bx .post-bx .job-post-info ul li i,
+			body.layout-dark .page-content .post-job-bx .post-bx .salary-bx span {
+				color: #f8fafc !important;
+			}
+			body.layout-dark .page-content .post-job-bx .post-bx .job-post-info ul li {
+				color: #cbd5f5 !important;
+			}
+			.page-content .post-job-bx .job-time a span {
+				border-radius: 999px;
+				background: var(--emp-soft);
+				color: var(--emp-accent-strong);
+			}
+			.page-content .testimonial-text {
+				font-size: 15px;
+				line-height: 1.7;
+			}
+			.page-content .quote-bx {
+				border-radius: 18px;
+				box-shadow: var(--emp-shadow);
+			}
+			.page-content .quote-bx .site-button {
+				width: 100%;
+				justify-content: center;
+			}
+
+			body.layout-dark .page-content {
+				background: linear-gradient(180deg, #0b1026 0%, #0b0f22 60%, #0b1026 100%);
+			}
+			body.layout-dark .page-content .find-job-bx {
+				background: rgba(15, 23, 42, 0.92);
+				border: 1px solid rgba(148, 163, 184, 0.18);
+				box-shadow: 0 20px 40px rgba(2, 6, 23, 0.4);
+			}
+			body.layout-dark .page-content .find-job-bx h2,
+			body.layout-dark .page-content .find-job-bx p,
+			body.layout-dark .page-content .find-job-bx label {
+				color: #e2e8f0;
+			}
+			body.layout-dark .page-content .find-job-bx .form-group label {
+				color: #e2e8f0 !important;
+				opacity: 0.95;
+			}
+			body.layout-dark .page-content .find-job-bx .input-group {
+				border-color: rgba(148, 163, 184, 0.25);
+				background: #0b1224;
+			}
+			body.layout-dark .page-content .find-job-bx .form-control {
+				color: #f8fafc !important;
+				background: transparent;
+				opacity: 1;
+			}
+			body.layout-dark .page-content .find-job-bx .form-control::placeholder {
+				color: #f8fafc !important;
+				opacity: 1;
+			}
+			body.layout-dark .page-content .find-job-bx .form-control::-webkit-input-placeholder {
+				color: #f8fafc !important;
+				opacity: 1;
+			}
+			body.layout-dark .page-content .find-job-bx .form-control::-moz-placeholder {
+				color: #f8fafc !important;
+				opacity: 1;
+			}
+			body.layout-dark .page-content .find-job-bx .form-control:-ms-input-placeholder {
+				color: #f8fafc !important;
+				opacity: 1;
+			}
+			body.layout-dark .page-content .find-job-bx .input-group-text {
+				color: #93c5fd;
+				background: rgba(59, 130, 246, 0.15);
+			}
+			body.layout-dark .page-content .job-categories .icon-bx-wraper {
+				background: #151a33;
+				box-shadow: 0 16px 32px rgba(2, 6, 23, 0.45);
+			}
+			body.layout-dark .page-content .job-categories .icon-bx-wraper .dez-tilte,
+			body.layout-dark .page-content .job-categories .icon-bx-wraper p {
+				color: #e2e8f0;
+			}
+			body.layout-dark .page-content .section-head h2,
+			body.layout-dark .page-content .section-head h6 {
+				color: #e2e8f0;
+			}
+			.page-content .section-head h2,
+			.page-content .job-title-bx h2 {
+				letter-spacing: -0.3px;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.page-content .job-categories .icon-bx-wraper,
+				.page-content .city-bx,
+				.page-content .post-bx,
+				.page-content .snapshot-card,
+				.page-content .site-button {
+					transition: none;
+				}
+				.page-content .city-bx img {
+					transition: none;
+				}
+			}
+
+			@media (max-width: 1399px) {
+				.page-content .find-job-bx {
+					padding: 26px 24px;
+				}
+			}
+			@media (max-width: 1199px) {
+				.page-content .find-job-bx h2 {
+					font-size: 30px;
+				}
+				.page-content .section-full.content-inner {
+					padding-top: 70px;
+					padding-bottom: 70px;
+				}
+				.page-content .find-job-bx .input-group {
+					padding-right: 6px;
+				}
+			}
+			@media (max-width: 991px) {
+				.page-content .find-job-bx {
+					margin: 0 10px;
+				}
+				.page-content .section-head.d-flex,
+				.page-content .job-title-bx.section-head {
+					gap: 10px;
+				}
+				.page-content .head-counter {
+					flex-wrap: wrap;
+					gap: 12px;
+				}
+				.page-content .head-counter-bx {
+					min-width: 120px;
+					padding: 8px 12px;
+					background: #ffffff;
+					border-radius: 12px;
+					box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+				}
+				.page-content .post-job-bx .post-bx {
+					padding: 20px;
+				}
+				.page-content .post-job-bx .post-bx .job-post-info ul {
+					display: grid;
+					gap: 6px;
+				}
+				.page-content .post-job-bx .post-bx .job-post-info ul li {
+					margin-right: 0;
+				}
+			}
+			@media (max-width: 767px) {
+				.page-content .find-job-bx {
+					padding: 22px 18px;
+				}
+				.page-content .find-job-bx h2 {
+					font-size: 24px;
+				}
+				.page-content .find-job-bx .site-button.btn-block {
+					height: 46px;
+				}
+				.page-content .find-job-bx .form-group label {
+					font-size: 13px;
+				}
+				.page-content .job-categories .icon-bx-wraper {
+					padding: 18px;
+				}
+				.page-content .city-bx {
+					min-height: 170px;
+				}
+				.page-content .post-job-bx .post-bx .d-flex {
+					gap: 10px;
+				}
+				.page-content .post-job-bx .post-bx .job-post-company span {
+					width: 54px;
+					height: 54px;
+				}
+				.page-content .post-job-bx .salary-bx {
+					font-size: 14px;
+				}
+				.page-content .quote-bx {
+					margin-top: 20px;
+				}
+			}
+			@media (max-width: 575px) {
+				.page-content .section-head h2 {
+					font-size: 24px;
+				}
+				.page-content .section-head h6 {
+					font-size: 13px;
+				}
+				.page-content .find-job-bx .row > [class*="col-"] {
+					margin-bottom: 12px;
+				}
+				.page-content .find-job-bx .row > [class*="col-"]:last-child {
+					margin-bottom: 0;
+				}
+				.page-content .city-bx {
+					min-height: 150px;
+				}
+			}
+
+			.site-header .nav.navbar-nav > li {
+				margin-right: 16px;
+			}
+			.site-header .nav.navbar-nav > li:last-child {
+				margin-right: 0;
+			}
+			@media (max-width: 1199px) {
+				.site-header .nav.navbar-nav > li {
+					margin-right: 12px;
+				}
+			}
+			@media (max-width: 991px) {
+				.site-header .nav.navbar-nav > li {
+					margin-right: 0;
+				}
+			}
+		</style>
+		<!-- CINEMA 3D EMPLOYER COMMAND HERO -->
+		<div class="cinema-hero cinema-perspective cinema-ambient-wrap">
+			<!-- Ambient Floating Orbs -->
+			<div class="cinema-ambient-orbs">
+				<div class="cinema-orb cinema-orb-cyan"></div>
+				<div class="cinema-orb cinema-orb-purple"></div>
+				<div class="cinema-orb cinema-orb-gold"></div>
+			</div>
+			<!-- Cyber Perspective Grid & Particle Canvas -->
+			<div class="cinema-cyber-grid"></div>
+			<canvas class="cinema-particle-canvas"></canvas>
+
+			<!-- 3D Zero-G Floating Candidate Badges -->
+			<div class="d-none d-xl-block">
+				<div class="cinema-floating-badge cinema-3d-card" data-cinema-float data-cinema-tilt style="top: 18%; left: 4%;">
+					<div class="cinema-badge-icon purple" data-cinema-depth="20">
+						<i class="fas fa-code"></i>
+					</div>
+					<div data-cinema-depth="15">
+						<h6>Staff Full-Stack Eng</h6>
+						<p>Ex-Stripe • 8 yrs exp</p>
+					</div>
+				</div>
+
+				<div class="cinema-floating-badge cinema-3d-card" data-cinema-float data-cinema-tilt data-cinema-float-dist="12" style="top: 22%; right: 4%;">
+					<div class="cinema-badge-icon blue" data-cinema-depth="20">
+						<i class="fas fa-brain"></i>
+					</div>
+					<div data-cinema-depth="15">
+						<h6>Principal AI Scientist</h6>
+						<p>LLM Fine-tuning • PyTorch</p>
+					</div>
+				</div>
+
+				<div class="cinema-floating-badge cinema-3d-card" data-cinema-float data-cinema-tilt data-cinema-float-dist="8" style="bottom: 12%; right: 6%;">
+					<div class="cinema-badge-icon gold" data-cinema-depth="20">
+						<i class="fas fa-crown"></i>
+					</div>
+					<div data-cinema-depth="15">
+						<h6>VP of Engineering</h6>
+						<p>Scaled from 0 to 120 eng</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="container position-relative" style="z-index: 5;">
+				<div class="row justify-content-center text-center">
+					<div class="col-lg-10">
+						<div class="cinema-hero-badge-pill" data-cinema-float data-cinema-float-dist="4">
+							<span class="cinema-radar-pulse"></span> Elite Enterprise Talent Acquisition
+						</div>
+						<h1 class="cinema-hero-title">
+							Hire The Top 1% Engineers & <br>
+							<span class="cinema-gradient-text" data-cinema-counter data-target="450,000+">450,000+</span>
+							<span class="cinema-gradient-text-gold">Vetted Candidates</span>
+						</h1>
+						<p class="cinema-hero-subtitle mx-auto">
+							Deploy world-class technical talent in days, not months. AI-verified skill portfolios, automated pre-screening, and direct candidate engagement on our high-performance recruitment engine.
+						</p>
+
+						<!-- Cinema Glass HUD Employer Action Box -->
+						<div class="cinema-search-hud text-start mx-auto cinema-3d-card" data-cinema-tilt-3d style="max-width: 960px;">
+							<div class="row g-3 align-items-center">
+								<div class="col-lg-7 col-md-12" data-cinema-depth="15">
+									<form method="GET" action="/employer/emp_browse_job_list/">
+										<div class="cinema-input-box">
+											<i class="fa fa-users"></i>
+											<input type="text" name="q" placeholder="Search candidate skills (e.g. Django, React, AI, DevOps)...">
+										</div>
+									</form>
+								</div>
+								<div class="col-lg-5 col-md-12 d-flex gap-2" data-cinema-depth="25">
+									<a href="/dashboard2/emp_post_job/" class="site-button btn-block cinema-shimmer" data-cinema-magnetic style="width: 100%; height: 50px; font-weight: 700; border-radius: 14px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); display: flex; align-items: center; justify-content: center; text-decoration: none;">
+										<i class="fas fa-plus-circle me-2"></i> Post a Job in 60s
+									</a>
+									<a href="/employer/emp_browse_job_list/" class="site-button" data-cinema-magnetic style="height: 50px; font-weight: 600; border-radius: 14px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; display: flex; align-items: center; justify-content: center; text-decoration: none; white-space: nowrap;">
+										<i class="fas fa-search me-2"></i> Search
+									</a>
+								</div>
+							</div>
+							<!-- Quick Skills Filter Chips -->
+							<div class="d-flex flex-wrap gap-2 align-items-center mt-3 pt-2" style="border-top: 1px solid rgba(255, 255, 255, 0.08);" data-cinema-depth="10">
+								<span style="font-size: 12px; color: #94a3b8; font-weight: 600;">ACTIVE TALENT POOLS:</span>
+								<a href="/employer/emp_browse_job_list/?q=Fullstack" class="badge bg-dark text-light border border-secondary px-3 py-2 text-decoration-none rounded-pill">Fullstack</a>
+								<a href="/employer/emp_browse_job_list/?q=AI" class="badge bg-dark text-light border border-secondary px-3 py-2 text-decoration-none rounded-pill">AI/ML Specialists</a>
+								<a href="/employer/emp_browse_job_list/?q=DevOps" class="badge bg-dark text-light border border-secondary px-3 py-2 text-decoration-none rounded-pill">Cloud & DevOps</a>
+								<a href="/employer/emp_browse_job_list/?q=Product" class="badge bg-dark text-light border border-secondary px-3 py-2 text-decoration-none rounded-pill">Product Leads</a>
+							</div>
+						</div>
+
+						<!-- Cinema Live Employer Metrics Ribbon -->
+						<div class="row g-3 justify-content-center mt-4 pt-2" data-cinema-stagger>
+							<div class="col-6 col-md-3">
+								<div class="cinema-hud-counter cinema-3d-card" data-cinema-tilt>
+									<div>
+										<div class="cinema-hud-number" data-cinema-counter data-target="450,000+">450,000+</div>
+										<p class="cinema-hud-label">Vetted Candidates</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3">
+								<div class="cinema-hud-counter cinema-3d-card" data-cinema-tilt>
+									<div>
+										<div class="cinema-hud-number" data-cinema-counter data-target="9 Days">9 Days</div>
+										<p class="cinema-hud-label">Avg Time to Hire</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3">
+								<div class="cinema-hud-counter cinema-3d-card" data-cinema-tilt>
+									<div>
+										<div class="cinema-hud-number" data-cinema-counter data-target="99.4%">99.4%</div>
+										<p class="cinema-hud-label">Offer Acceptance</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 col-md-3">
+								<div class="cinema-hud-counter cinema-3d-card" data-cinema-tilt>
+									<div>
+										<div class="cinema-hud-number" data-cinema-counter data-target="100%">100%</div>
+										<p class="cinema-hud-label">Verified Experience</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- CINEMA EMPLOYER HERO END -->
+
+		<!-- CINEMA EMPLOYER BENTO GRID -->
+		<div class="cinema-bento-section section-full">
+			<div class="container">
+				<div class="text-center mb-5">
+					<span class="cinema-section-eyebrow">
+						<i class="fas fa-network-wired"></i> Employer Command Architecture
+					</span>
+					<h2 class="cinema-section-heading">High-Velocity Hiring Platform</h2>
+					<p class="text-muted" style="max-width: 600px; margin: 0 auto; font-size: 16px;">
+						Turn your recruitment pipeline into a predictive hiring machine with automated candidate ranking, integrated interview schedulers, and global compliance.
+					</p>
+				</div>
+
+				<div class="cinema-bento-grid" data-cinema-stagger>
+					<!-- Bento Item 1: Automated Pipeline -->
+					<div class="cinema-bento-card bento-span-8 cinema-3d-card" data-cinema-tilt-3d>
+						<div class="d-flex justify-content-between align-items-center mb-3" data-cinema-depth="15">
+							<div class="bento-icon-glow" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+								<i class="fas fa-filter"></i>
+							</div>
+							<span class="bento-tag" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">
+								<span class="cinema-radar-pulse me-1"></span> Automated Funnel
+							</span>
+						</div>
+						<h3 class="fw-bold mb-2" data-cinema-depth="20">Smart Applicant Triage & Ranking</h3>
+						<p class="text-muted mb-4" data-cinema-depth="10">
+							Instantly score and stack-rank incoming applicants based on actual production code contributions, domain expertise, and role compatibility.
+						</p>
+						<div class="row g-2" data-cinema-depth="25">
+							<div class="col-md-4">
+								<div class="p-3 rounded-3" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+									<span class="d-block fw-bold text-success fs-6">99.1% Accuracy</span>
+									<small class="text-muted">Code Stack Validation</small>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="p-3 rounded-3" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+									<span class="d-block fw-bold text-primary fs-6">&lt; 15 Mins</span>
+									<small class="text-muted">Shortlist Assembly</small>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="p-3 rounded-3" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+									<span class="d-block fw-bold text-warning fs-6">Zero Spam</span>
+									<small class="text-muted">Bot & Fraud Shield</small>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Bento Item 2: Post Job in 60s -->
+					<div class="cinema-bento-card bento-span-4 cinema-3d-card cinema-shimmer" data-cinema-tilt-3d style="background: linear-gradient(135deg, rgba(67, 97, 238, 0.08) 0%, rgba(121, 40, 202, 0.05) 100%);">
+						<div class="bento-icon-glow" style="background: rgba(67, 97, 238, 0.2); color: #4361ee;" data-cinema-depth="20">
+							<i class="fas fa-magic"></i>
+						</div>
+						<span class="bento-tag" style="background: rgba(67, 97, 238, 0.2); color: #4361ee;" data-cinema-depth="10">Express Job Posting</span>
+						<h4 class="fw-bold mb-2" data-cinema-depth="25">Launch in 60 Seconds</h4>
+						<p class="text-muted mb-3" data-cinema-depth="15">
+							Create beautiful, high-converting job posts with smart suggestions for salary bands and requirements.
+						</p>
+						<a href="/dashboard2/emp_post_job/" class="btn btn-sm btn-primary w-100 rounded-pill py-2" data-cinema-depth="30">
+							Create Role Now <i class="fas fa-arrow-right ms-1"></i>
+						</a>
+					</div>
+
+					<!-- Bento Item 3: Global Payroll -->
+					<div class="cinema-bento-card bento-span-4 cinema-3d-card" data-cinema-tilt-3d>
+						<div class="bento-icon-glow" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;" data-cinema-depth="20">
+							<i class="fas fa-file-contract"></i>
+						</div>
+						<h4 class="fw-bold mb-2" data-cinema-depth="20">Global Contracts & Tax</h4>
+						<p class="text-muted" data-cinema-depth="10">
+							Hire full-time employees or contractors globally with compliant contracts and localized currencies.
+						</p>
+					</div>
+
+					<!-- Bento Item 4: Instant Schedulers -->
+					<div class="cinema-bento-card bento-span-4 cinema-3d-card" data-cinema-tilt-3d>
+						<div class="bento-icon-glow" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6;" data-cinema-depth="20">
+							<i class="fas fa-calendar-check"></i>
+						</div>
+						<h4 class="fw-bold mb-2" data-cinema-depth="20">Integrated Calendar Sync</h4>
+						<p class="text-muted" data-cinema-depth="10">
+							Send direct self-scheduling interview invites that sync straight into Google Calendar and Outlook.
+						</p>
+					</div>
+
+					<!-- Bento Item 5: High Retention -->
+					<div class="cinema-bento-card bento-span-4 cinema-3d-card" data-cinema-tilt-3d>
+						<div class="bento-icon-glow" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;" data-cinema-depth="20">
+							<i class="fas fa-award"></i>
+						</div>
+						<h4 class="fw-bold mb-2" data-cinema-depth="20">99.2% Retention Guarantee</h4>
+						<p class="text-muted" data-cinema-depth="10">
+							Candidates placed via Livik stay longer and contribute faster thanks to cultural and architectural alignment.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- CINEMA EMPLOYER BENTO GRID END -->
+        <!-- About Us -->
+		<div class="section-full job-categories content-inner-2 bg-white">
+			<div class="container">
+				<div class="section-head d-flex head-counter clearfix">
+					<div class="me-auto">
+						<h2 class="m-b5">Popular Categories</h2>
+						<h6 class="fw3">20+ Catetories work wating for you</h6>
+					</div>
+					<div class="head-counter-bx">
+						<h2 class="m-b5 counter">1800</h2>
+						<h6 class="fw3">Jobs Posted</h6>
+					</div>
+					<div class="head-counter-bx">
+						<h2 class="m-b5 counter">4500</h2>
+						<h6 class="fw3">Tasks Posted</h6>
+					</div>
+					<div class="head-counter-bx">
+						<h2 class="m-b5 counter">1500</h2>
+						<h6 class="fw3">Freelancers</h6>
+					</div>
+				</div>
+				<div class="row sp20" data-cinema-stagger>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-location-pin"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Design, Art & Multimedia</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-location-pin"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-wand"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Education Training</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-wand"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-wallet"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Accounting / Finance</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-wallet"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-cloud-up"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Human Resource</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-cloud-up"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-bar-chart"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Telecommunications</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-bar-chart"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-tablet"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Restaurant / Food Service</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-tablet"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-camera"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Construction / Facilities</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-camera"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="icon-bx-wraper cinema-3d-card" data-cinema-tilt>
+							<div class="icon-content">
+								<div class="icon-md text-primary m-b20"><i class="ti-panel"></i></div>
+								<a href="/emp_companies/" class="dez-tilte">Health</a>
+								<p class="m-a0">198 Open Positions</p>
+								<div class="rotate-icon"><i class="ti-panel"></i></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 text-center m-t30">
+						<a href="/emp_companies/" class="site-button radius-xl">All Categories</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- About Us END -->
+		<!-- Call To Action -->
+		<div class="section-full content-inner bg-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 section-head text-center">
+						<h2 class="m-b5">Featured Cities</h2>
+						<h6 class="fw4 m-b0">20+ Featured Cities Added Jobs</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+						<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic1.jpg' %}');">
+				<div class="city-info">
+					<h5>Iraq</h5>
+					<span>765 Jobs</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+		<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic2.jpg' %}');">
+				<div class="city-info">
+					<h5>Argentina</h5>
+					<span>352 Jobs</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+		<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic3.jpg' %}');">
+				<div class="city-info">
+					<h5>Indonesia</h5>
+					<span>893 Jobs</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+		<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic4.jpg' %}');">
+				<div class="city-info">
+					<h5>Gambia</h5>
+					<span>502 Jobs</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+		<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic5.jpg' %}');">
+				<div class="city-info">
+					<h5>India</h5>
+					<span>765 Jobs</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+		<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic6.jpg' %}');">
+				<div class="city-info">
+					<h5>Thailand</h5>
+					<span>352 Jobs</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+		<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic7.jpg' %}');">
+				<div class="city-info">
+					<h5>Banjul</h5>
+					<span>893 Jobs</span>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<div class="col-lg-3 col-sm-6 col-md-6 m-b30">
+		<a href="javascript:void(0);">
+			<div class="city-bx align-items-end d-flex cinema-3d-card" data-cinema-tilt
+			     style="background-image: url('{% static 'images/city/pic8.jpg' %}');">
+				<div class="city-info">
+					<h5>Spain</h5>
+					<span>502 Jobs</span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Call To Action END -->
+		<!-- Our Job -->
+		<div class="section-full bg-white content-inner-2">
+			<div class="container">
+				<div class="d-flex job-title-bx section-head">
+					<div class="me-auto">
+						<h2 class="m-b5">Recent Jobs</h2>
+						<h6 class="fw4 m-b0">20+ Recently Added Jobs</h6>
+					</div>
+					<div class="align-self-end">
+						<a href="/emp_companies/" class="site-button button-sm">Browse All Jobs <i class="fas fa-long-arrow-alt-right"></i></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-9">
+						<ul class="post-job-bx browse-job" data-cinema-stagger>
+							{% for job in recent_jobs %}
+							<li>
+								<div class="post-bx cinema-3d-card" data-cinema-tilt-3d>
+									<div class="d-flex m-b30">
+										<div class="job-post-company">
+											<span>
+												{% if job.file_upload %}
+												<img alt="" src="{{ job.file_upload.url }}"/>
+												{% else %}
+												<img alt="" src="{% static 'images/logo/svg/logo1.svg' %}"/>
+												{% endif %}
+											</span>
+										</div>
+										<div class="job-post-info">
+											<h4><a href="/emp_browse_job_list/">{{ job.job_title }}</a></h4>
+											<ul>
+												<li><i class="fas fa-map-marker-alt"></i> {{ job.location|default:"Location not specified" }}</li>
+												<li><i class="far fa-bookmark"></i> {{ job.job_type }}</li>
+												<li><i class="far fa-clock"></i> Published {{ job.created_at|timesince }} ago</li>
+											</ul>
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="job-time me-auto">
+											<a href="javascript:void(0);"><span>{{ job.job_type }}</span></a>
+										</div>
+										<div class="salary-bx">
+											<span>{{ job.salary|default:"Salary not disclosed" }}</span>
+										</div>
+									</div>
+									<label class="like-btn">
+										  <input type="checkbox">
+										  <span class="checkmark"></span>
+									</label>
+								</div>
+							</li>
+							{% empty %}
+							<li>
+								<div class="post-bx cinema-3d-card" data-cinema-tilt-3d>
+									<div class="job-post-info">
+										<h4>No recent jobs available.</h4>
+									</div>
+								</div>
+							</li>
+							{% endfor %}
+							<li>
+								<div class="post-bx cinema-3d-card" data-cinema-tilt-3d>
+									<div class="d-flex m-b30">
+										<div class="job-post-company">
+											<span><img alt="" src="{% static 'images/logo/icon1.png' %}"/></span>
+										</div>
+										<div class="job-post-info">
+											<h4><a href="/emp_companies/">Freelance UI Designer</a></h4>
+											<ul>
+												<li><i class="fas fa-map-marker-alt"></i> Sacramento, California</li>
+												<li><i class="far fa-bookmark"></i> Full Time</li>
+												<li><i class="far fa-clock"></i> Published 11 months ago</li>
+											</ul>
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="job-time me-auto">
+											<a href="javascript:void(0);"><span>Full Time</span></a>
+										</div>
+										<div class="salary-bx">
+											<span>$1200 - $ 2500</span>
+										</div>
+									</div>
+									<label class="like-btn">
+										  <input type="checkbox">
+										  <span class="checkmark"></span>
+									</label>
+								</div>
+							</li>
+						</ul>
+						<div class="m-t30">
+							<div class="d-flex">
+								<a class="site-button button-sm me-auto" href="javascript:void(0);"><i class="ti-arrow-left"></i> Prev</a>
+								<a class="site-button button-sm" href="javascript:void(0);">Next <i class="ti-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div class="sticky-top">
+							<div class="candidates-are-sys m-b30">
+								<div class="candidates-bx">
+									<div class="testimonial-pic radius"><img src="{% static 'images/testimonials/pic3.jpg' %}" alt="" width="100" height="100"></div>
+									<div class="testimonial-text">
+										<p>I just got a job that I applied for via careerfy! I used the site all the time during my job hunt.</p>
+									</div>
+									<div class="testimonial-detail"> <strong class="testimonial-name">Richard Anderson</strong> <span class="testimonial-position">Nevada, USA</span> </div>
+								</div>
+							</div>
+							<div class="quote-bx">
+								<div class="quote-info">
+									<h4>Make a Difference with Your Online Resume!</h4>
+									<p>Your resume in minutes with JobBoard resume assistant is ready!</p>
+									<a href="/account/emp_register/" class="site-button">Create an Account</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Our Job END -->
+		<!-- Real-Time Community Snapshot -->
+		<div class="section-full p-tb70 overlay-black-dark text-white bg-img-fix community-snapshot" style="background-image: url('{% static 'images/background/bg4.jpg' %}');">
+			<style>
+				.community-snapshot {
+					background-position: center;
+					background-size: cover;
+				}
+				.community-snapshot .snapshot-eyebrow {
+					display: inline-flex;
+					align-items: center;
+					gap: 8px;
+					padding: 6px 14px;
+					border-radius: 999px;
+					background: rgba(255, 255, 255, 0.12);
+					border: 1px solid rgba(255, 255, 255, 0.25);
+					font-size: 12px;
+					text-transform: uppercase;
+					letter-spacing: 0.12em;
+				}
+				.community-snapshot .snapshot-meta {
+					margin-top: 10px;
+					display: flex;
+					justify-content: center;
+					gap: 18px;
+					color: rgba(226, 232, 240, 0.85);
+					font-size: 13px;
+				}
+				.community-snapshot .snapshot-meta span {
+					display: inline-flex;
+					align-items: center;
+					gap: 6px;
+				}
+				.community-snapshot .section-head h2 {
+					font-weight: 800;
+					letter-spacing: 0.3px;
+				}
+				.community-snapshot .section-head h5 {
+					color: rgba(226, 232, 240, 0.9);
+				}
+				.community-snapshot .snapshot-card {
+					background: #ffffff !important;
+					border-radius: 16px;
+					box-shadow: 0 22px 46px rgba(15, 23, 42, 0.18);
+					border: 1px solid rgba(15, 23, 42, 0.08);
+					position: relative;
+					text-align: left;
+					color: #0f172a !important;
+					transition: transform 0.2s ease, box-shadow 0.2s ease;
+				}
+				.community-snapshot .snapshot-card * {
+					color: inherit !important;
+				}
+				.community-snapshot .snapshot-card:hover {
+					transform: translateY(-4px);
+					box-shadow: 0 26px 52px rgba(15, 23, 42, 0.24);
+				}
+				.community-snapshot .snapshot-card--accent {
+					background: linear-gradient(135deg, #3154f3 0%, #2947c7 100%) !important;
+					color: #ffffff !important;
+					border-color: rgba(255, 255, 255, 0.15);
+				}
+				.community-snapshot .snapshot-card--accent * {
+					color: #ffffff !important;
+				}
+				.community-snapshot .snapshot-card--accent:after {
+					content: "";
+					position: absolute;
+					left: 50%;
+					bottom: -10px;
+					transform: translateX(-50%);
+					width: 0;
+					height: 0;
+					border-left: 10px solid transparent;
+					border-right: 10px solid transparent;
+					border-top: 10px solid #2f5bea;
+				}
+				.community-snapshot .snapshot-card h5 {
+					font-weight: 700;
+					letter-spacing: 0.2px;
+				}
+				.community-snapshot .snapshot-card .snapshot-title {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					margin-bottom: 18px;
+				}
+				.community-snapshot .snapshot-badge {
+					display: inline-flex;
+					align-items: center;
+					gap: 6px;
+					padding: 4px 10px;
+					border-radius: 999px;
+					font-size: 12px;
+					background: rgba(47, 91, 234, 0.12);
+					color: #2f5bea;
+				}
+				.community-snapshot .snapshot-card--accent .snapshot-badge {
+					background: rgba(255, 255, 255, 0.2);
+					color: #ffffff;
+				}
+				.community-snapshot .snapshot-list li {
+					padding: 10px 0;
+					border-bottom: 1px solid #eef1f6;
+				}
+				.community-snapshot .snapshot-list li:last-child {
+					border-bottom: none;
+				}
+				.community-snapshot .snapshot-card--accent .snapshot-list li {
+					border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+				}
+				.community-snapshot .snapshot-card--accent .text-muted,
+				.community-snapshot .snapshot-card--accent .snapshot-quote {
+					color: rgba(255, 255, 255, 0.9) !important;
+				}
+				.community-snapshot .snapshot-card--accent h5,
+				.community-snapshot .snapshot-card--accent .fw-semibold,
+				.community-snapshot .snapshot-card--accent .small {
+					color: #ffffff !important;
+				}
+				.community-snapshot .snapshot-card .text-muted,
+				.community-snapshot .snapshot-card .snapshot-quote {
+					color: #56627a !important;
+				}
+				.community-snapshot .snapshot-card strong {
+					color: #0f172a !important;
+				}
+				.community-snapshot .snapshot-card span,
+				.community-snapshot .snapshot-card div,
+				.community-snapshot .snapshot-card p,
+				.community-snapshot .snapshot-card li {
+					color: inherit !important;
+				}
+				.community-snapshot .snapshot-card--accent span,
+				.community-snapshot .snapshot-card--accent div,
+				.community-snapshot .snapshot-card--accent p {
+					color: inherit;
+				}
+				.community-snapshot .snapshot-avatar {
+					width: 48px;
+					height: 48px;
+					border-radius: 50%;
+					object-fit: cover;
+					box-shadow: 0 6px 16px rgba(15, 23, 42, 0.18);
+				}
+				.community-snapshot .snapshot-placeholder {
+					width: 48px;
+					height: 48px;
+					border-radius: 50%;
+					background: #eef2ff;
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					color: #94a3b8;
+				}
+				.community-snapshot .snapshot-quote {
+					font-size: 14px;
+					line-height: 1.6;
+					color: #5b667a;
+				}
+				.community-snapshot .snapshot-cta {
+					margin-top: 28px;
+					text-align: center;
+				}
+				.community-snapshot .snapshot-cta .site-button {
+					border-radius: 999px;
+					padding: 10px 22px;
+					box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+				}
+				@media (max-width: 991px) {
+					.community-snapshot .snapshot-meta {
+						flex-wrap: wrap;
+						row-gap: 8px;
+					}
+				}
+			</style>
+			<div class="container">
+				<div class="section-head text-center text-white">
+					<div class="snapshot-eyebrow">
+						<i class="fa fa-signal"></i>
+						<span>Live Community</span>
+					</div>
+					<h2 class="m-b5">Community Snapshot</h2>
+					<h5 class="fw4">Live stats, new profiles, and recent feedback</h5>
+					<div class="snapshot-meta">
+						<span><i class="fa fa-bolt"></i> Updated in real time</span>
+						<span><i class="fa fa-shield-alt"></i> Verified profiles</span>
+						<span><i class="fa fa-star"></i> Trusted by teams</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 m-b30">
+						<div class="bg-white text-dark p-a30 h-100 snapshot-card">
+							<div class="snapshot-title">
+								<h5 class="m-b0">Live Stats</h5>
+								<span class="snapshot-badge"><i class="fa fa-chart-line"></i> Growth</span>
+							</div>
+							<ul class="list-unstyled m-b0 snapshot-list">
+								<li class="d-flex justify-content-between m-b10"><span>Published Jobs</span><strong>{{ total_jobs }}</strong></li>
+								<li class="d-flex justify-content-between m-b10"><span>Employees</span><strong>{{ total_employees }}</strong></li>
+								<li class="d-flex justify-content-between m-b10"><span>Employers</span><strong>{{ total_employers }}</strong></li>
+								<li class="d-flex justify-content-between"><span>Applications</span><strong>{{ total_applications }}</strong></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4 m-b30">
+						<div class="bg-white text-dark p-a30 h-100 snapshot-card snapshot-card--accent">
+							<div class="snapshot-title">
+								<h5 class="m-b0">Newest Profiles</h5>
+								<span class="snapshot-badge"><i class="fa fa-user-plus"></i> Fresh</span>
+							</div>
+							<ul class="list-unstyled m-b0 snapshot-list">
+								{% for profile in latest_employee_profiles %}
+									<li class="d-flex align-items-center m-b15">
+										{% if profile.photo_url %}
+											<img src="{{ profile.photo_url }}" alt="{{ profile.full_name|default:profile.user.username }}" class="snapshot-avatar me-3">
+										{% else %}
+											<div class="snapshot-placeholder me-3">
+												<i class="fa fa-user text-muted"></i>
+											</div>
+										{% endif %}
+										<div>
+											<div class="fw-semibold">{{ profile.full_name|default:profile.user.username }}</div>
+											<div class="text-muted small">Employee</div>
+										</div>
+									</li>
+								{% endfor %}
+								{% for profile in latest_employer_profiles %}
+									<li class="d-flex align-items-center m-b15">
+										{% if profile.photo_url %}
+											<img src="{{ profile.photo_url }}" alt="{{ profile.full_name|default:profile.user.username }}" class="snapshot-avatar me-3">
+										{% else %}
+											<div class="snapshot-placeholder me-3">
+												<i class="fa fa-user text-muted"></i>
+											</div>
+										{% endif %}
+										<div>
+											<div class="fw-semibold">{{ profile.full_name|default:profile.user.username }}</div>
+											<div class="text-muted small">Employer</div>
+										</div>
+									</li>
+								{% endfor %}
+								{% if not latest_employee_profiles and not latest_employer_profiles %}
+									<li class="text-muted">No profiles yet.</li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4 m-b30">
+						<div class="bg-white text-dark p-a30 h-100 snapshot-card">
+							<div class="snapshot-title">
+								<h5 class="m-b0">Recent Feedback</h5>
+								<span class="snapshot-badge"><i class="fa fa-comment-dots"></i> Trusted</span>
+							</div>
+							<ul class="list-unstyled m-b0 snapshot-list">
+								{% for t in testimonials %}
+									<li class="m-b15">
+										<div class="fw-semibold">{{ t.name }}</div>
+										<div class="text-muted small m-b5">{{ t.role }}</div>
+										<p class="m-b0 snapshot-quote">{{ t.bio }}</p>
+									</li>
+								{% endfor %}
+								{% if not testimonials %}
+									<li class="text-muted">No feedback yet.</li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="snapshot-cta">
+					<a href="/employer/emp_browse_job_list/" class="site-button">Explore Community</a>
+				</div>
+			</div>
+		</div>
+		<!-- Real-Time Community Snapshot END -->
+		<!-- Membership Plans section removed -->
+	</div>
+	<!-- Content END-->
+	<!-- Modal Box -->
+	<div class="modal fade lead-form-modal" id="car-details" tabindex="-1" role="dialog" >
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="modal-body row m-a0 clearfix">
+					<div class="col-lg-6 col-md-6 d-flex p-a0" style="background-image: url(images/background/bg3.jpg);  background-position:center; background-size:cover;">
+
+					</div>
+					<div class="col-lg-6 col-md-6 p-a0">
+						<div class="lead-form browse-job text-left">
+							<form>
+								<h3 class="m-t0">Personal Details</h3>
+								<div class="form-group">
+									<input value="" class="form-control" placeholder="Name"/>
+								</div>
+								<div class="form-group">
+									<input value="" class="form-control" placeholder="Mobile Number"/>
+								</div>
+								<div class="clearfix">
+									<button type="button" class="btn-primary site-button btn-block">Submit </button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Box End -->
+{% endblock %}

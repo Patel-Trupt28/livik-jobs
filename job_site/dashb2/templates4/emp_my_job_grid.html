@@ -1,0 +1,199 @@
+{% extends 'emp_base1.html' %}
+{% load static %}
+{% block content %}
+      <div class="box-content my-jobs-page">
+        <div class="box-heading">
+          <div class="box-title">
+            <h3 class="mb-35">My Jobs</h3>
+          </div>
+          <div class="box-heading-actions">
+            <a href="/dashboard2/emp_post_job/" class="btn btn-default btn-post-job">Post New Job</a>
+          </div>
+          <div class="box-breadcrumb">
+            <div class="breadcrumbs">
+              <ul>
+                <li> <a class='icon-home' href='/dashboard2/'>Admin</a></li>
+                <li><span>My Jobs</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% if messages %}
+        <div class="row">
+          <div class="col-lg-12">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-box">
+              <div class="container">
+                <div class="panel-white mb-30">
+                  <div class="box-padding">
+                    <div class="box-filters-job">
+                      <div class="row">
+                        <div class="col-xl-6 col-lg-5">
+                          <span class="font-sm text-showing color-text-paragraph">
+                            Showing
+                            {% if jobs %}
+                              {{ jobs.start_index }}-{{ jobs.end_index }} of {{ total_jobs }}
+                            {% else %}
+                              0
+                            {% endif %}
+                            jobs
+                          </span>
+                        </div>
+                        <div class="col-xl-6 col-lg-7 text-lg-end mt-sm-15">
+                          <div class="display-flex2">
+                            <div class="box-border mr-10"><span class="text-sortby">Show:</span>
+                              <div class="dropdown dropdown-sort">
+                                <button class="btn dropdown-toggle" id="dropdownSort" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"><span>12</span><i class="fi-rr-angle-small-down"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownSort">
+                                  <li><a class="dropdown-item active" href="#">10</a></li>
+                                  <li><a class="dropdown-item" href="#">12</a></li>
+                                  <li><a class="dropdown-item" href="#">20</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="box-border"><span class="text-sortby">Sort by:</span>
+                              <div class="dropdown dropdown-sort">
+                                <button class="btn dropdown-toggle" id="dropdownSort2" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"><span>Newest Post</span><i class="fi-rr-angle-small-down"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownSort2">
+                                  <li><a class="dropdown-item active" href="#">Newest Post</a></li>
+                                  <li><a class="dropdown-item" href="#">Oldest Post</a></li>
+                                  <li><a class="dropdown-item" href="#">Rating Post</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="box-view-type"><a class='view-type' href='my-job-list.html'><img src="{% static 'assets/imgs/template/icons/icon-list.svg' %}" alt="jobBox"></a><a class='view-type' href='my-job-grid.html'><img src="{% static 'assets/imgs/template/icons/icon-grid-hover.svg' %}" alt="jobBox"></a></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      {% for job in jobs %}
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="card-grid-2 cinema-3d-card" data-cinema-tilt-3d hover-up job-card">
+                          <div class="card-grid-2 cinema-3d-card" data-cinema-tilt-3d-image-left"><span class="flash"></span>
+                            <div class="image-box">
+                              {% if job.file_upload %}
+                                <img src="{{ job.file_upload.url }}" alt="{{ job.company_name }}">
+                              {% else %}
+                                <img src="{% static 'assets/imgs/brands/brand-1.png' %}" alt="jobBox">
+                              {% endif %}
+                            </div>
+                            <div class="right-info">
+                              <a class="name-job" href="#">{{ job.company_name }}</a>
+                              <span class="location-small">{{ job.location }}</span>
+                            </div>
+                          </div>
+                          <div class="card-block-info">
+                            <h6><a href="#">{{ job.job_title }}</a></h6>
+                            <div class="mt-5">
+                              <span class="card-briefcase">{{ job.job_type }}</span>
+                              <span class="card-time">{{ job.created_at|timesince }}<span> ago</span></span>
+                            </div>
+                            <p class="font-sm color-text-paragraph mt-15">{{ job.description|truncatewords:15 }}</p>
+                          <div class="mt-30">
+                            {% for tag in job.tag_list %}
+                              <a class="btn btn-grey-small mr-5" href="#">{{ tag }}</a>
+                            {% endfor %}
+                          </div>
+                            <div class="card-2-bottom mt-30">
+                              <div class="row">
+                                <div class="col-lg-7 col-7">
+                                  <span class="card-text-price">${{ job.salary }}</span>
+                                  <span class="text-muted">/Month</span>
+                                </div>
+                                <div class="col-lg-5 col-5 text-end">
+                                  <div class="d-flex justify-content-end gap-2 job-card-actions">
+                                    <a href="{% url 'edit_job' job.id %}" class="btn btn-sm btn-warning btn-job-action" title="Edit Job">
+                                        <i class="fi-rr-edit"></i><span>Edit</span>
+                                    </a>
+                                    <form method="POST" action="/dashboard2/delete_job/{{ job.id }}/" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this job?');">
+                                      {% csrf_token %}
+                                      <button type="submit" class="btn btn-sm btn-danger btn-job-action" title="Delete Job">
+                                        <i class="fi-rr-trash"></i><span>Delete</span>
+                                      </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% empty %}
+                      <div class="col-12">
+                        <div class="text-center py-5">
+                          <h4 class="text-muted">No jobs posted yet!</h4>
+                          <p class="font-md text-muted mt-3">Start by posting your first job to attract talented candidates.</p>
+                          <a href="/dashboard2/emp_post_job/" class="btn btn-default mt-3">Post a Job</a>
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+
+                    {% if jobs.has_other_pages %}
+                    <div class="paginations">
+                      <ul class="pager">
+                        {% if jobs.has_previous %}
+                        <li><a class="pager-prev" href="?page={{ jobs.previous_page_number }}"></a></li>
+                        {% endif %}
+
+                        {% for num in jobs.paginator.page_range %}
+                          {% if jobs.number == num %}
+                            <li><a class="pager-number active" href="?page={{ num }}">{{ num }}</a></li>
+                          {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+                            <li><a class="pager-number" href="?page={{ num }}">{{ num }}</a></li>
+                          {% endif %}
+                        {% endfor %}
+
+                        {% if jobs.has_next %}
+                        <li><a class="pager-next" href="?page={{ jobs.next_page_number }}"></a></li>
+                        {% endif %}
+                      </ul>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <div class="section-box">
+            <div class="container">
+              <div class="panel-white pt-30 pb-30 pl-15 pr-15">
+                <div class="box-swiper">
+                  <div class="swiper-container swiper-group-10">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/microsoft.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/sony.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/acer.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/nokia.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/asus.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/casio.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/dell.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/panasonic.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/vaio.svg' %}" alt="jobBox"></div>
+                      <div class="swiper-slide"> <img src="{% static 'assets/imgs/page/dashboard/sony.svg' %}" alt="jobBox"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

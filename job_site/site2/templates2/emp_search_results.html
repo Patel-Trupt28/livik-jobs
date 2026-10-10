@@ -1,0 +1,120 @@
+{% extends 'emp_base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-content bg-white">
+    <div class="dez-bnr-inr overlay-black-middle" style="background-image:url(images/banner/bnr1.jpg);">
+        <div class="container">
+            <div class="dez-bnr-inr-entry">
+                <h1 class="text-white">Search Results</h1>
+                <div class="breadcrumb-row">
+                    <ul class="list-inline">
+                        <li><a href="/employer/emp/">Home</a></li>
+                        <li>Search</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-full content-inner">
+        <div class="container">
+            <div class="search-panel">
+                <form class="search-panel__form" method="get" action="/employer/emp_search/">
+                    <div class="search-panel__field">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search employees, employers, or companies">
+                    </div>
+                    <button type="submit" class="site-button">Search</button>
+                </form>
+            </div>
+
+            {% if not query %}
+                <div class="alert alert-info">Enter a name or company to search.</div>
+            {% else %}
+                <div class="job-bx-title clearfix mb-4">
+                    <h5 class="font-weight-700 float-start text-uppercase">Results for "{{ query }}"</h5>
+                </div>
+            {% endif %}
+
+            {% if employee_profiles or employer_profiles or companies %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="search-results-header">
+                            <div>
+                                <h5 class="m-b5">Top matches</h5>
+                                <p class="text-muted m-b0">Profiles and companies matching your search.</p>
+                            </div>
+                            <span class="text-muted small">{{ employee_profiles|length|add:employer_profiles|length|add:companies|length }} results</span>
+                        </div>
+                        <ul class="list-unstyled">
+                            {% for profile in employee_profiles %}
+                                <li class="mb-2">
+                                    <div class="p-3 border rounded bg-white d-flex align-items-center gap-3 search-result-card">
+                                        {% if profile.photo_url %}
+                                            <img class="profile-result__avatar" src="{{ profile.photo_url }}" alt="{{ profile.full_name|default:profile.user.username }}">
+                                        {% else %}
+                                            <div class="profile-result__avatar profile-result__avatar--placeholder">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </div>
+                                        {% endif %}
+                                        <div class="flex-grow-1">
+                                            <div class="fw-semibold">
+                                                <a href="/employer/profile/employee/{{ profile.user.username }}/">{{ profile.full_name|default:profile.user.username }}</a>
+                                            </div>
+                                            <div class="text-muted small">@{{ profile.user.username }}</div>
+                                            {% if profile.categories %}
+                                                <div class="text-muted small">{{ profile.categories }}</div>
+                                            {% endif %}
+                                        </div>
+                                        <img src="{% static 'images/icons/employee.png' %}" alt="Employee" style="width:34px;height:34px;object-fit:contain;">
+                                    </div>
+                                </li>
+                            {% endfor %}
+
+                            {% for profile in employer_profiles %}
+                                <li class="mb-2">
+                                    <div class="p-3 border rounded bg-white d-flex align-items-center gap-3 search-result-card">
+                                        {% if profile.photo_url %}
+                                            <img class="profile-result__avatar" src="{{ profile.photo_url }}" alt="{{ profile.full_name|default:profile.user.username }}">
+                                        {% else %}
+                                            <div class="profile-result__avatar profile-result__avatar--placeholder">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </div>
+                                        {% endif %}
+                                        <div class="flex-grow-1">
+                                            <div class="fw-semibold">
+                                                <a href="/employer/profile/employer/{{ profile.user.username }}/">{{ profile.full_name|default:profile.user.username }}</a>
+                                            </div>
+                                            <div class="text-muted small">@{{ profile.user.username }}</div>
+                                            {% if profile.categories %}
+                                                <div class="text-muted small">{{ profile.categories }}</div>
+                                            {% endif %}
+                                        </div>
+                                        <img src="{% static 'images/icons/employer.png' %}" alt="Employer" style="width:34px;height:34px;object-fit:contain;">
+                                    </div>
+                                </li>
+                            {% endfor %}
+
+                            {% for company in companies %}
+                                <li class="mb-2">
+                                    <div class="p-3 border rounded bg-white d-flex align-items-center justify-content-between gap-3 search-result-card">
+                                        <div class="fw-semibold d-flex align-items-center gap-2">
+                                            <img src="{% static 'images/icons/company.png' %}" alt="Company" style="width:34px;height:34px;object-fit:contain;">
+                                            <span>{{ company }}</span>
+                                        </div>
+                                        <a class="site-button btn-sm" href="/employer/emp_browse_job_list/?q={{ company|urlencode }}">View Jobs</a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                {% if query %}
+                    <div class="text-muted">No results found.</div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
