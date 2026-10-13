@@ -1,38 +1,93 @@
+<div align="center">
+
 # 🎬 Livik Jobs — Cinema-Grade Job Portal
 
-[![Python](https://img.shields.io/badge/Python-3.13+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Django](https://img.shields.io/badge/Django-6.0+-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
-[![Anime.js](https://img.shields.io/badge/Anime.js-3.2.2-FF4B4B?style=for-the-badge&logo=javascript&logoColor=white)](https://animejs.com/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+### **Full-Featured Multi-Tenant Employment Platform Powered by Django & "Absolute Cinema" Visual Engine**
 
-**Livik Jobs** is a full-featured, multi-tenant employment platform engineered with Django and elevated by an "Absolute Cinema" visual experience. Featuring custom **Anime.js 3D physics engines**, interactive **Bento Grid** command hubs, seamless **Dark/Light Mode synchronization**, and dedicated portal ecosystems for both Job Candidates and Enterprise Employers.
+[![Django CI](https://github.com/Patel-Trupt28/livik-jobs/actions/workflows/ci.yml/badge.svg)](https://github.com/Patel-Trupt28/livik-jobs/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-6.0+-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![Anime.js](https://img.shields.io/badge/Anime.js-3.2.2-FF4B4B?logo=javascript&logoColor=white)](https://animejs.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![UAT Score](https://img.shields.io/badge/UAT%20Score-37%2F37%20Passed-brightgreen)](README.md#-testing--uat)
+
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#-system-architecture">Architecture</a> •
+  <a href="#-key-features">Features</a> •
+  <a href="#-system-modules">Modules</a> •
+  <a href="#-quickstart-guide">Quickstart</a> •
+  <a href="#-testing--uat">Testing</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
+
+</div>
 
 ---
 
-## 🌟 Key Highlights & Visual Features
+## 🌟 Overview
 
-### 🎥 Absolute Cinema 3D Engine
-* **Interactive 3D Tilt**: Mouse-reactive perspective cards with natural spring snapback physics.
-* **Ambient Floating Field**: Floating kinetic particles and zero-gravity floating badges.
-* **Specular Glare Tracking**: Radial lighting highlights that follow cursor velocity in real time.
-* **HUD Rolling Counters**: Smooth numerical easing for portal statistics and metric rollups.
-* **Cyber Mesh Perspective**: Deep retro-futuristic perspective grid background.
+**Livik Jobs** is an enterprise-grade, multi-tenant employment platform engineered with Django and elevated by an "Absolute Cinema" visual experience. It features custom **Anime.js 3D physics engines**, interactive **Bento Grid** command hubs, seamless **Dark/Light Mode synchronization**, and dedicated portal ecosystems for both Job Candidates and Enterprise Employers.
 
-### 🌓 Unified Dark Mode Ecosystem
-* **Zero-Flicker Bootstrap**: Instant DOM layout theme rendering before CSS execution.
-* **Cross-App Sync**: Synchronized persistence via `localStorage` and cookies spanning Candidate, Employer, and Dashboard spaces.
-* **Cinema Contrast Tokens**: Custom-crafted glassmorphism surfaces, neon cyan/amber accents, and crisp readability across dark and light states.
-
-### 🍱 Bento Grid Architecture
-* High-density, asymmetrical Bento layouts on both Candidate & Employer command hubs.
-* Live-updating activity feeds, skill badges, salary benchmarks, and application velocity cards.
+```text
+Candidates (Discovery & Applications) ──┐
+                                       ├──► Django Multi-App Core ──► SQLite / PostgreSQL
+Recruiters (Job Posting & Pipelines)  ──┘
+```
 
 ---
 
 ## 🏗️ System Architecture
 
-The application is structured into modular Django apps:
+```mermaid
+flowchart TD
+    subgraph Client["Frontend Layer (Bootstrap 5 + Anime.js 3D Engine)"]
+        CinemaUI[Cinema 3D Physics Engine]
+        BentoHub[Bento Grid Command Dashboards]
+        ThemeSync[Zero-Flicker Dark/Light Theme Sync]
+    end
+
+    subgraph Portals["Dual Multi-Tenant Portals"]
+        CandidateApp[Candidate Portal - site1 & dashb1]
+        EmployerApp[Employer Portal - site2 & dashb2]
+    end
+
+    subgraph Core["Django Application Core (job_site)"]
+        AuthModule[Central Auth & Sessions - account]
+        JobPipeline[Job Postings, Applications & Filters]
+        Storage[Staticfiles, Media & SQLite Database]
+    end
+
+    Client <--> Portals
+    Portals <--> Core
+```
+
+---
+
+## 🌟 Key Features
+
+### 🎥 1. Absolute Cinema 3D Engine
+* **Interactive 3D Tilt**: Mouse-reactive perspective cards with natural spring snapback physics.
+* **Ambient Floating Field**: Floating kinetic particles and zero-gravity badges.
+* **Specular Glare Tracking**: Radial lighting highlights that follow cursor velocity in real time.
+* **HUD Rolling Counters**: Smooth numerical easing for portal statistics and metric rollups.
+* **Cyber Mesh Perspective**: Deep retro-futuristic perspective grid background.
+
+### 🌓 2. Unified Dark Mode Ecosystem
+* **Zero-Flicker Bootstrap**: Instant DOM layout theme rendering before CSS execution.
+* **Cross-App Sync**: Synchronized persistence via `localStorage` and cookies spanning Candidate, Employer, and Dashboard spaces.
+* **Cinema Contrast Tokens**: Custom-crafted glassmorphism surfaces, neon cyan/amber accents, and crisp readability across dark and light states.
+
+### 🍱 3. Bento Grid Command Hubs
+* High-density, asymmetrical Bento layouts on both Candidate & Employer command hubs.
+* Live-updating activity feeds, skill badges, salary benchmarks, and application velocity cards.
+
+---
+
+## 🧩 System Modules
+
+The application is structured into modular Django applications:
 
 | App | Description | Key Routes |
 | :--- | :--- | :--- |
@@ -72,10 +127,11 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 5. Apply Migrations & Initialize
+### 5. Apply Migrations & System Checks
 ```bash
 cd job_site
 python manage.py migrate
+python manage.py check
 ```
 
 ### 6. Start Development Server
@@ -89,7 +145,8 @@ Open your browser and navigate to:
 
 ---
 
-## 🧪 Testing & User Acceptance Testing (UAT)
+## 🧪 Testing & UAT
+
 This codebase includes comprehensive User Acceptance Testing covering:
 - Authentication & role-based routing (Employer vs. Candidate)
 - Dark mode cookie & `localStorage` persistence
@@ -97,7 +154,7 @@ This codebase includes comprehensive User Acceptance Testing covering:
 - Job posting, search filtering, and application submission flows
 - Navigation route integrity across all 4 sub-applications
 
-**Current UAT Score:** `37 / 37 Passed (100%)`
+> **UAT Validation**: **37 / 37 Passed (100%)**
 
 ---
 
@@ -105,8 +162,15 @@ This codebase includes comprehensive User Acceptance Testing covering:
 
 ```text
 livik-jobs/
+├── .github/               # GitHub Actions CI workflow & issue templates
+│   ├── workflows/ci.yml
+│   └── ISSUE_TEMPLATE/
 ├── .gitignore
 ├── requirements.txt
+├── LICENSE
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md
 ├── README.md
 └── job_site/
     ├── manage.py
@@ -123,11 +187,24 @@ livik-jobs/
 
 ---
 
-## 👤 Author
-* **GitHub**: [@Patel-Trupt28](https://github.com/Patel-Trupt28)
+## 🤝 Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before submitting pull requests.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/CinemaEnhancement`)
+3. Commit your Changes (`git commit -m 'feat: add cinema particle effect'`)
+4. Push to the Branch (`git push origin feature/CinemaEnhancement`)
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - feel free to use and modify for personal or commercial projects.
 
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+
+---
+
+<div align="center">
+  <sub>Maintained by <a href="https://github.com/Patel-Trupt28">Patel-Trupt28</a>. If you love the Cinema UI, give it a ⭐ on GitHub!</sub>
+</div>
