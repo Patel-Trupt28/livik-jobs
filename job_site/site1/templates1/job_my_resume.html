@@ -176,7 +176,303 @@
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media (max-width:1199px){.grid{grid-template-columns:1fr}.paper{min-height:980px}.p-head h1{font-size:38px}.p-head h2{font-size:24px}}
 @media (max-width:767px){.shell{padding:12px;border-radius:13px}.head{flex-direction:column}.dl-btn{width:100%}.contacts{grid-template-columns:1fr}.p-body{grid-template-columns:1fr}.p-right,.avatar,.avatar-img{width:82px;height:82px}}
+
+/* ========================================================
+   CINEMA DARK MODE STYLING FOR RESUME BUILDER
+   ======================================================== */
+body.layout-dark .resume-page,
+body.dark-layout .resume-page,
+[data-theme="dark"] .resume-page {
+  background: transparent;
+}
+
+body.layout-dark .shell,
+body.dark-layout .shell,
+[data-theme="dark"] .shell {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #0f172a, #080d1a) !important;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+body.layout-dark .kicker,
+body.dark-layout .kicker,
+[data-theme="dark"] .kicker {
+  color: #38bdf8 !important;
+}
+
+body.layout-dark .head h1,
+body.dark-layout .head h1,
+[data-theme="dark"] .head h1 {
+  color: #f8fafc !important;
+}
+
+body.layout-dark .sub,
+body.dark-layout .sub,
+[data-theme="dark"] .sub {
+  color: #94a3b8 !important;
+}
+
+body.layout-dark .dl-btn,
+body.dark-layout .dl-btn,
+[data-theme="dark"] .dl-btn {
+  background: linear-gradient(135deg, #0284c7, #2563eb) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.4) !important;
+  transition: all 0.25s ease;
+}
+
+body.layout-dark .dl-btn:hover,
+body.dark-layout .dl-btn:hover,
+[data-theme="dark"] .dl-btn:hover {
+  background: linear-gradient(135deg, #0369a1, #1d4ed8) !important;
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.6) !important;
+  transform: translateY(-2px);
+}
+
+body.layout-dark .editor,
+body.dark-layout .editor,
+[data-theme="dark"] .editor {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 13px;
+  background: #0d1527 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.layout-dark .editor h2,
+body.dark-layout .editor h2,
+[data-theme="dark"] .editor h2 {
+  color: #f1f5f9 !important;
+}
+
+body.layout-dark .block,
+body.dark-layout .block,
+[data-theme="dark"] .block {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px;
+  background: #131c31 !important;
+}
+
+body.layout-dark .block h3,
+body.dark-layout .block h3,
+[data-theme="dark"] .block h3 {
+  color: #38bdf8 !important;
+}
+
+body.layout-dark .block label,
+body.dark-layout .block label,
+[data-theme="dark"] .block label {
+  color: #cbd5e1 !important;
+}
+
+body.layout-dark .field,
+body.dark-layout .field,
+[data-theme="dark"] .field {
+  border: 1px solid #24354d !important;
+  border-radius: 8px;
+  background: #090e1a !important;
+  color: #f8fafc !important;
+}
+
+body.layout-dark .field::placeholder,
+body.dark-layout .field::placeholder,
+[data-theme="dark"] .field::placeholder {
+  color: #475569 !important;
+}
+
+body.layout-dark .field:focus,
+body.dark-layout .field:focus,
+[data-theme="dark"] .field:focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22) !important;
+}
+
+body.layout-dark .preview-wrap,
+body.dark-layout .preview-wrap,
+[data-theme="dark"] .preview-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 13px;
+  background: #0d1527 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.layout-dark .preview-wrap h2,
+body.dark-layout .preview-wrap h2,
+[data-theme="dark"] .preview-wrap h2 {
+  color: #f1f5f9 !important;
+}
+
+/* ========================================================
+   DOCUMENT PAPER PREVIEW (PRINT / PDF FIDELITY)
+   Protected against global dark-layout bleaching!
+   ======================================================== */
+body.layout-dark .paper,
+body.dark-layout .paper,
+[data-theme="dark"] .paper {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  color: #1e293b !important;
+  color-scheme: light;
+}
+
+body.layout-dark .paper h1,
+body.dark-layout .paper h1,
+[data-theme="dark"] .paper h1,
+body.layout-dark #pv-name,
+body.dark-layout #pv-name,
+[data-theme="dark"] #pv-name {
+  color: #0f172a !important;
+}
+
+body.layout-dark .paper h2,
+body.dark-layout .paper h2,
+[data-theme="dark"] .paper h2,
+body.layout-dark #pv-role,
+body.dark-layout #pv-role,
+[data-theme="dark"] #pv-role {
+  color: #0284c7 !important;
+}
+
+body.layout-dark .paper .contacts p,
+body.dark-layout .paper .contacts p,
+[data-theme="dark"] .paper .contacts p {
+  color: #334155 !important;
+}
+
+body.layout-dark .paper .contacts i,
+body.dark-layout .paper .contacts i,
+[data-theme="dark"] .paper .contacts i {
+  color: #0284c7 !important;
+}
+
+body.layout-dark .paper .contacts span,
+body.dark-layout .paper .contacts span,
+[data-theme="dark"] .paper .contacts span {
+  color: #334155 !important;
+}
+
+body.layout-dark .paper .avatar,
+body.dark-layout .paper .avatar,
+[data-theme="dark"] .paper .avatar {
+  background: #e2e8f0 !important;
+  border: 2px solid #cbd5e1 !important;
+  color: #64748b !important;
+}
+
+body.layout-dark .paper .sec h3,
+body.dark-layout .paper .sec h3,
+[data-theme="dark"] .paper .sec h3 {
+  color: #0f172a !important;
+  border-bottom: 3px solid #64748b !important;
+}
+
+body.layout-dark .paper .sec h4,
+body.dark-layout .paper .sec h4,
+[data-theme="dark"] .paper .sec h4 {
+  color: #0f172a !important;
+}
+
+body.layout-dark .paper .txt,
+body.dark-layout .paper .txt,
+[data-theme="dark"] .paper .txt {
+  color: #334155 !important;
+}
+
+body.layout-dark .paper .meta,
+body.dark-layout .paper .meta,
+[data-theme="dark"] .paper .meta {
+  color: #64748b !important;
+}
+
+body.layout-dark .paper .link,
+body.dark-layout .paper .link,
+[data-theme="dark"] .paper .link {
+  color: #0284c7 !important;
+}
+
+body.layout-dark .paper .list li,
+body.dark-layout .paper .list li,
+[data-theme="dark"] .paper .list li {
+  color: #334155 !important;
+}
+
+body.layout-dark .paper .cert,
+body.dark-layout .paper .cert,
+[data-theme="dark"] .paper .cert {
+  color: #1e293b !important;
+  border-bottom: 1px dashed #cbd5e1 !important;
+}
+
+body.layout-dark .paper .ach,
+body.dark-layout .paper .ach,
+[data-theme="dark"] .paper .ach {
+  border-bottom: 1px dashed #cbd5e1 !important;
+}
+
+body.layout-dark .paper .ach i,
+body.dark-layout .paper .ach i,
+[data-theme="dark"] .paper .ach i {
+  color: #0284c7 !important;
+}
+
+body.layout-dark .paper .ach h4,
+body.dark-layout .paper .ach h4,
+[data-theme="dark"] .paper .ach h4 {
+  color: #0f172a !important;
+}
+
+body.layout-dark .paper .ach p,
+body.dark-layout .paper .ach p,
+[data-theme="dark"] .paper .ach p {
+  color: #475569 !important;
+}
+
+body.layout-dark .paper .lang,
+body.dark-layout .paper .lang,
+[data-theme="dark"] .paper .lang {
+  border-bottom: 1px dashed #cbd5e1 !important;
+}
+
+body.layout-dark .paper .lang h4,
+body.dark-layout .paper .lang h4,
+[data-theme="dark"] .paper .lang h4 {
+  color: #0f172a !important;
+}
+
+body.layout-dark .paper .lang p,
+body.dark-layout .paper .lang p,
+[data-theme="dark"] .paper .lang p {
+  color: #475569 !important;
+}
+
+body.layout-dark .paper .dot,
+body.dark-layout .paper .dot,
+[data-theme="dark"] .paper .dot {
+  background: #cbd5e1 !important;
+}
+
+body.layout-dark .paper .dot.on,
+body.dark-layout .paper .dot.on,
+[data-theme="dark"] .paper .dot.on {
+  background: #0284c7 !important;
+}
+
+body.layout-dark .paper .skills span,
+body.dark-layout .paper .skills span,
+[data-theme="dark"] .paper .skills span {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+body.layout-dark .status,
+body.dark-layout .status,
+[data-theme="dark"] .status {
+  color: #38bdf8 !important;
+}
 </style>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>

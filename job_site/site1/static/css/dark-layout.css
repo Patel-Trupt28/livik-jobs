@@ -549,3 +549,14 @@ body:not(.layout-dark) .logo-header.logo-white{
 body.layout-dark .logo-header.logo-dark{
 	display: none;
 }
+
+/* ========================================================
+   DOCUMENT PREVIEW EXEMPTION IN RESUME / CV BUILDERS
+   ======================================================== */
+body.layout-dark .paper,
+body.dark-layout .paper,
+body.layout-dark .cv-paper,
+body.dark-layout .cv-paper {
+	color-scheme: light;
+}
+

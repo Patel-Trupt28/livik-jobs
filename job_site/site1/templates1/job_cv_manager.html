@@ -212,7 +212,280 @@
 
 @media (max-width:1199px){.cv-grid{grid-template-columns:1fr}.cv-paper{grid-template-columns:1fr}.cv-left{border-right:0;border-bottom:1px solid #e3e8ef}}
 @media (max-width:767px){.cv-shell{padding:12px;border-radius:13px}.cv-head{flex-direction:column}.cv-btn{width:100%}}
+
+/* ========================================================
+   CINEMA DARK MODE STYLING FOR CV BUILDER
+   ======================================================== */
+body.layout-dark .cv-page,
+body.dark-layout .cv-page,
+[data-theme="dark"] .cv-page {
+  background: transparent;
+}
+
+body.layout-dark .cv-shell,
+body.dark-layout .cv-shell,
+[data-theme="dark"] .cv-shell {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #0f172a, #080d1a) !important;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+body.layout-dark .cv-kicker,
+body.dark-layout .cv-kicker,
+[data-theme="dark"] .cv-kicker {
+  color: #38bdf8 !important;
+}
+
+body.layout-dark .cv-head h1,
+body.dark-layout .cv-head h1,
+[data-theme="dark"] .cv-head h1 {
+  color: #f8fafc !important;
+}
+
+body.layout-dark .cv-sub,
+body.dark-layout .cv-sub,
+[data-theme="dark"] .cv-sub {
+  color: #94a3b8 !important;
+}
+
+body.layout-dark .cv-btn,
+body.dark-layout .cv-btn,
+[data-theme="dark"] .cv-btn {
+  background: linear-gradient(135deg, #0284c7, #2563eb) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.4) !important;
+  transition: all 0.25s ease;
+}
+
+body.layout-dark .cv-btn:hover,
+body.dark-layout .cv-btn:hover,
+[data-theme="dark"] .cv-btn:hover {
+  background: linear-gradient(135deg, #0369a1, #1d4ed8) !important;
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.6) !important;
+  transform: translateY(-2px);
+}
+
+body.layout-dark .cv-editor,
+body.dark-layout .cv-editor,
+[data-theme="dark"] .cv-editor {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 13px;
+  background: #0d1527 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.layout-dark .cv-editor h2,
+body.dark-layout .cv-editor h2,
+[data-theme="dark"] .cv-editor h2 {
+  color: #f1f5f9 !important;
+}
+
+body.layout-dark .cv-block,
+body.dark-layout .cv-block,
+[data-theme="dark"] .cv-block {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px;
+  background: #131c31 !important;
+}
+
+body.layout-dark .cv-block h3,
+body.dark-layout .cv-block h3,
+[data-theme="dark"] .cv-block h3 {
+  color: #38bdf8 !important;
+}
+
+body.layout-dark .cv-block label,
+body.dark-layout .cv-block label,
+[data-theme="dark"] .cv-block label {
+  color: #cbd5e1 !important;
+}
+
+body.layout-dark .cv-field,
+body.dark-layout .cv-field,
+[data-theme="dark"] .cv-field {
+  border: 1px solid #24354d !important;
+  border-radius: 8px;
+  background: #090e1a !important;
+  color: #f8fafc !important;
+}
+
+body.layout-dark .cv-field::placeholder,
+body.dark-layout .cv-field::placeholder,
+[data-theme="dark"] .cv-field::placeholder {
+  color: #475569 !important;
+}
+
+body.layout-dark .cv-field:focus,
+body.dark-layout .cv-field:focus,
+[data-theme="dark"] .cv-field:focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22) !important;
+}
+
+body.layout-dark .cv-preview,
+body.dark-layout .cv-preview,
+[data-theme="dark"] .cv-preview {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 13px;
+  background: #0d1527 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.layout-dark .cv-preview h2,
+body.dark-layout .cv-preview h2,
+[data-theme="dark"] .cv-preview h2 {
+  color: #f1f5f9 !important;
+}
+
+/* ========================================================
+   DOCUMENT CV PAPER PREVIEW (PRINT / PDF FIDELITY)
+   Protected against global dark-layout bleaching!
+   ======================================================== */
+body.layout-dark .cv-paper,
+body.dark-layout .cv-paper,
+[data-theme="dark"] .cv-paper {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  color: #1e293b !important;
+  color-scheme: light;
+}
+
+body.layout-dark .cv-paper .cv-left,
+body.dark-layout .cv-paper .cv-left,
+[data-theme="dark"] .cv-paper .cv-left {
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+body.layout-dark .cv-paper .cv-right,
+body.dark-layout .cv-paper .cv-right,
+[data-theme="dark"] .cv-paper .cv-right {
+  background: #ffffff !important;
+}
+
+body.layout-dark .cv-paper .cv-avatar,
+body.dark-layout .cv-paper .cv-avatar,
+[data-theme="dark"] .cv-paper .cv-avatar {
+  background: #e2e8f0 !important;
+  border: 3px solid #cbd5e1 !important;
+  color: #64748b !important;
+}
+
+body.layout-dark .cv-paper .cv-contact p,
+body.dark-layout .cv-paper .cv-contact p,
+[data-theme="dark"] .cv-paper .cv-contact p {
+  color: #334155 !important;
+}
+
+body.layout-dark .cv-paper .cv-contact i,
+body.dark-layout .cv-paper .cv-contact i,
+[data-theme="dark"] .cv-paper .cv-contact i {
+  color: #0284c7 !important;
+}
+
+body.layout-dark .cv-paper .cv-contact span,
+body.dark-layout .cv-paper .cv-contact span,
+[data-theme="dark"] .cv-paper .cv-contact span {
+  color: #334155 !important;
+}
+
+body.layout-dark .cv-paper .cv-side h3,
+body.dark-layout .cv-paper .cv-side h3,
+[data-theme="dark"] .cv-paper .cv-side h3 {
+  color: #0284c7 !important;
+  border-bottom: 2px solid #0284c7 !important;
+}
+
+body.layout-dark .cv-paper .cv-skill-pills span,
+body.dark-layout .cv-paper .cv-skill-pills span,
+[data-theme="dark"] .cv-paper .cv-skill-pills span {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+body.layout-dark .cv-paper .cv-list p,
+body.dark-layout .cv-paper .cv-list p,
+[data-theme="dark"] .cv-paper .cv-list p {
+  color: #334155 !important;
+}
+
+body.layout-dark .cv-paper .cv-lang,
+body.dark-layout .cv-paper .cv-lang,
+[data-theme="dark"] .cv-paper .cv-lang {
+  color: #334155 !important;
+}
+
+body.layout-dark .cv-paper .cv-meter,
+body.dark-layout .cv-paper .cv-meter,
+[data-theme="dark"] .cv-paper .cv-meter {
+  background: #e2e8f0 !important;
+}
+
+body.layout-dark .cv-paper .cv-meter span,
+body.dark-layout .cv-paper .cv-meter span,
+[data-theme="dark"] .cv-paper .cv-meter span {
+  background: #0284c7 !important;
+}
+
+body.layout-dark .cv-paper .cv-hero,
+body.dark-layout .cv-paper .cv-hero,
+[data-theme="dark"] .cv-paper .cv-hero {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+body.layout-dark .cv-paper .cv-hero h1,
+body.dark-layout .cv-paper .cv-hero h1,
+[data-theme="dark"] .cv-paper .cv-hero h1 {
+  color: #ffffff !important;
+}
+
+body.layout-dark .cv-paper .cv-hero p,
+body.dark-layout .cv-paper .cv-hero p,
+[data-theme="dark"] .cv-paper .cv-hero p {
+  color: #ffffff !important;
+}
+
+body.layout-dark .cv-paper .cv-hero-summary,
+body.dark-layout .cv-paper .cv-hero-summary,
+[data-theme="dark"] .cv-paper .cv-hero-summary {
+  color: #e0f2fe !important;
+}
+
+body.layout-dark .cv-paper .cv-section h3,
+body.dark-layout .cv-paper .cv-section h3,
+[data-theme="dark"] .cv-paper .cv-section h3 {
+  color: #0284c7 !important;
+  border-bottom: 2px solid #0284c7 !important;
+}
+
+body.layout-dark .cv-paper .cv-work h4,
+body.dark-layout .cv-paper .cv-work h4,
+[data-theme="dark"] .cv-paper .cv-work h4 {
+  color: #0f172a !important;
+}
+
+body.layout-dark .cv-paper .cv-work .meta,
+body.dark-layout .cv-paper .cv-work .meta,
+[data-theme="dark"] .cv-paper .cv-work .meta {
+  color: #64748b !important;
+}
+
+body.layout-dark .cv-paper .cv-work ul li,
+body.dark-layout .cv-paper .cv-work ul li,
+[data-theme="dark"] .cv-paper .cv-work ul li {
+  color: #334155 !important;
+}
+
+body.layout-dark .cv-status,
+body.dark-layout .cv-status,
+[data-theme="dark"] .cv-status {
+  color: #38bdf8 !important;
+}
 </style>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
