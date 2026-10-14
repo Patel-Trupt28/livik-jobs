@@ -9,11 +9,22 @@ from datetime import timedelta
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.contrib import messages
 
-from account.models import Employee, AppEmailConfig
-from account.models import Employer
+from account.models import Employee, Employer, EmployeeProfile, EmployerProfile, UserSettings, AppEmailConfig
 
 
 OTP_EXPIRY_MINUTES = 5
+
+
+def _is_smtp_configured():
+    app_cfg = AppEmailConfig.objects.first()
+    if app_cfg and app_cfg.is_active:
+        if app_cfg.username and app_cfg.app_password:
+            return True
+    host_user = getattr(django_settings, 'EMAIL_HOST_USER', '')
+    host_pw = getattr(django_settings, 'EMAIL_HOST_PASSWORD', '')
+    if host_user and host_pw:
+        return True
+    return False
 
 
 def _normalize_smtp_secret(value):
@@ -214,12 +225,24 @@ def _verify_otp(request, role):
 
 def employeeregistration(request):
     if request.method == 'POST':
-        fname = request.POST['dzName']
-        lname = request.POST['dzLname']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['dzPassword']
+        fname = request.POST.get('dzName', '').strip()
+        lname = request.POST.get('dzLname', '').strip()
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        password = request.POST.get('dzPassword', '')
         photo = request.FILES.get('user_photo')
+
+        if not username or not password:
+            messages.error(request, "Username and password are required.")
+            return redirect('/account/register/')
+
+        if User.objects.filter(username__iexact=username).exists():
+            messages.error(request, "Username is already taken. Please choose another.")
+            return redirect('/account/register/')
+
+        if email and User.objects.filter(email__iexact=email).exists():
+            messages.error(request, "An account with this email already exists. Please log in.")
+            return redirect('/account/register/')
 
         # create user
         myuser = User.objects.create_user(
@@ -232,7 +255,7 @@ def employeeregistration(request):
         myuser.save()
 
         # create employee
-        ee = Employee.objects.create(
+        Employee.objects.create(
             username=myuser,
             password=password,
             first_name=fname,
@@ -241,11 +264,20 @@ def employeeregistration(request):
             photo=photo
         )
 
-        messages.success(request, "Your account has been successfully created.")
-        return redirect('/account/login')   # use URL name
+        EmployeeProfile.objects.get_or_create(
+            user=myuser,
+            defaults={
+                'full_name': f"{fname} {lname}".strip() or username,
+                'email': email,
+            }
+        )
+        UserSettings.objects.get_or_create(user=myuser)
 
-    # 👇 THIS is the correct render
+        messages.success(request, "Your account has been successfully created. You can now log in.")
+        return redirect('/account/login/')
+
     return render(request, 'register.html')
+
 
 def employeelogin(request):
     next_url = request.GET.get('next') or request.POST.get('next') or ''
@@ -254,16 +286,17 @@ def employeelogin(request):
             user, next_url = _verify_otp(request, 'employee')
             if not user:
                 return render(request, 'login.html', {'next': next_url, 'show_otp': True})
-            if Employee.objects.filter(username=user).exists():
+            is_emp = Employee.objects.filter(username=user).exists()
+            if is_emp or user.is_staff or user.is_superuser:
                 login(request, user)
                 if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
                     return redirect(next_url)
                 return redirect('/')
-            messages.error(request, "You are not an employee")
+            messages.error(request, "You are not registered as an employee")
             return redirect('/account/login/')
 
-        identifier = request.POST['username'].strip()
-        password = request.POST['password']
+        identifier = (request.POST.get('username') or '').strip()
+        password = request.POST.get('password') or ''
 
         if '@' in identifier:
             user_lookup = User.objects.filter(email__iexact=identifier).first()
@@ -271,17 +304,37 @@ def employeelogin(request):
             user_lookup = User.objects.filter(username__iexact=identifier).first()
 
         if not user_lookup:
-            messages.error(request, "Account not found")
+            messages.error(request, "Account not found. Please verify your credentials or register.")
             return redirect('/account/login/')
 
         user = authenticate(username=user_lookup.username, password=password)
 
         if user is not None:
-            # check if user is employee
-            if Employee.objects.filter(username=user).exists():
-                return _start_otp_flow(request, user, next_url, 'employee')
+            is_emp = Employee.objects.filter(username=user).exists()
+            if is_emp or user.is_staff or user.is_superuser:
+                if not is_emp:
+                    Employee.objects.get_or_create(
+                        username=user,
+                        defaults={
+                            'password': '',
+                            'first_name': user.first_name,
+                            'last_name': user.last_name,
+                            'is_employee': True,
+                        }
+                    )
+
+                # Check if Two-Factor Authentication is requested and SMTP is configured
+                user_settings = getattr(user, 'user_settings', None)
+                requires_2fa = user_settings.two_factor_enabled if user_settings else False
+                if requires_2fa and _is_smtp_configured():
+                    return _start_otp_flow(request, user, next_url, 'employee')
+
+                login(request, user)
+                if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
+                    return redirect(next_url)
+                return redirect('/')
             else:
-                messages.error(request, "You are not an employee")
+                messages.error(request, "You are not registered as an employee")
         else:
             messages.error(request, "Invalid username or password")
 
@@ -289,14 +342,27 @@ def employeelogin(request):
 
     return render(request, 'login.html', {'next': next_url})
 
+
 def employerregistration(request):
     if request.method == 'POST':
-        fname = request.POST['dzName1']
-        lname = request.POST['dzLname1']
-        username = request.POST['username1']
-        email = request.POST['email1']
-        password = request.POST['dzPassword1']
+        fname = request.POST.get('dzName1', '').strip()
+        lname = request.POST.get('dzLname1', '').strip()
+        username = request.POST.get('username1', '').strip()
+        email = request.POST.get('email1', '').strip()
+        password = request.POST.get('dzPassword1', '')
         photo = request.FILES.get('employer_photo')
+
+        if not username or not password:
+            messages.error(request, "Username and password are required.")
+            return redirect('/account/emp_register/')
+
+        if User.objects.filter(username__iexact=username).exists():
+            messages.error(request, "Username is already taken. Please choose another.")
+            return redirect('/account/emp_register/')
+
+        if email and User.objects.filter(email__iexact=email).exists():
+            messages.error(request, "An account with this email already exists. Please log in.")
+            return redirect('/account/emp_register/')
 
         # create user
         myuser = User.objects.create_user(
@@ -308,8 +374,8 @@ def employerregistration(request):
         myuser.last_name = lname
         myuser.save()
 
-        # create employee
-        ee = Employer.objects.create(
+        # create employer
+        Employer.objects.create(
             username=myuser,
             password=password,
             first_name=fname,
@@ -318,11 +384,20 @@ def employerregistration(request):
             photo=photo
         )
 
-        messages.success(request, "Your account has been successfully created.")
-        return redirect('/account/emp_login')   # use URL name
+        EmployerProfile.objects.get_or_create(
+            user=myuser,
+            defaults={
+                'full_name': f"{fname} {lname}".strip() or username,
+                'email': email,
+            }
+        )
+        UserSettings.objects.get_or_create(user=myuser)
 
-    # 👇 THIS is the correct render
+        messages.success(request, "Your employer account has been successfully created. You can now log in.")
+        return redirect('/account/emp_login/')
+
     return render(request, 'emp_register.html')
+
 
 def employerlogin(request):
     next_url = request.GET.get('next') or request.POST.get('next') or ''
@@ -331,16 +406,17 @@ def employerlogin(request):
             user, next_url = _verify_otp(request, 'employer')
             if not user:
                 return render(request, 'emp_login.html', {'next': next_url, 'show_otp': True})
-            if Employer.objects.filter(username=user).exists():
+            is_empr = Employer.objects.filter(username=user).exists()
+            if is_empr or user.is_staff or user.is_superuser:
                 login(request, user)
                 if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
                     return redirect(next_url)
                 return redirect('/employer/emp')
-            messages.error(request, "You are not an employer")
+            messages.error(request, "You are not registered as an employer")
             return redirect('/account/emp_login/')
 
-        identifier = request.POST['username1'].strip()
-        password = request.POST['password1']
+        identifier = (request.POST.get('username1') or '').strip()
+        password = request.POST.get('password1') or ''
 
         if '@' in identifier:
             user_lookup = User.objects.filter(email__iexact=identifier).first()
@@ -348,23 +424,44 @@ def employerlogin(request):
             user_lookup = User.objects.filter(username__iexact=identifier).first()
 
         if not user_lookup:
-            messages.error(request, "Account not found")
+            messages.error(request, "Account not found. Please verify your credentials or register.")
             return redirect('/account/emp_login/')
 
         user = authenticate(username=user_lookup.username, password=password)
 
         if user is not None:
-            # check if user is employee
-            if Employer.objects.filter(username=user).exists():
-                return _start_otp_flow(request, user, next_url, 'employer')
+            is_empr = Employer.objects.filter(username=user).exists()
+            if is_empr or user.is_staff or user.is_superuser:
+                if not is_empr:
+                    Employer.objects.get_or_create(
+                        username=user,
+                        defaults={
+                            'password': '',
+                            'first_name': user.first_name,
+                            'last_name': user.last_name,
+                            'is_employer': True,
+                        }
+                    )
+
+                # Check if Two-Factor Authentication is requested and SMTP is configured
+                user_settings = getattr(user, 'user_settings', None)
+                requires_2fa = user_settings.two_factor_enabled if user_settings else False
+                if requires_2fa and _is_smtp_configured():
+                    return _start_otp_flow(request, user, next_url, 'employer')
+
+                login(request, user)
+                if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
+                    return redirect(next_url)
+                return redirect('/employer/emp')
             else:
-                messages.error(request, "You are not an employer")
+                messages.error(request, "You are not registered as an employer")
         else:
             messages.error(request, "Invalid username or password")
 
         return redirect('/account/emp_login/')
 
     return render(request, 'emp_login.html', {'next': next_url})
+
 
 def employer_logout(request):
     logout(request)

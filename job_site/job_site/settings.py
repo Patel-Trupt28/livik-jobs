@@ -114,13 +114,20 @@ else:
         import tempfile
         tmp_dir = Path(tempfile.gettempdir())
         _tmp_db = tmp_dir / 'db.sqlite3'
-        _src_db = BASE_DIR / 'db.sqlite3'
-        if _src_db.exists() and not _tmp_db.exists():
-            try:
-                shutil.copy2(_src_db, _tmp_db)
-            except Exception:
-                pass
-        db_path = str(_tmp_db) if _tmp_db.exists() else str(_src_db)
+        _candidates = [
+            BASE_DIR / 'db.sqlite3',
+            BASE_DIR.parent / 'job_site' / 'db.sqlite3',
+            BASE_DIR.parent / 'db.sqlite3',
+            Path(__file__).resolve().parent.parent / 'db.sqlite3',
+        ]
+        _src_db = next((p for p in _candidates if p.exists() and p.stat().st_size > 0), None)
+        if _src_db:
+            if not _tmp_db.exists() or _tmp_db.stat().st_size == 0:
+                try:
+                    shutil.copy2(_src_db, _tmp_db)
+                except Exception:
+                    pass
+        db_path = str(_tmp_db) if _tmp_db.exists() else str(_src_db or (BASE_DIR / 'db.sqlite3'))
     else:
         db_path = str(BASE_DIR / 'db.sqlite3')
 
