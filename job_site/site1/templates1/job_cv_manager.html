@@ -509,6 +509,13 @@ body.dark-layout .cv-status,
     var available=previewStage.clientWidth-12;
     var s=Math.min(1,available/base);
     previewScale.style.transform="scale("+s+")";
+    var paperEl = document.querySelector(".cv-paper");
+    if(paperEl){
+      var actualH = paperEl.offsetHeight * s;
+      if(actualH > 0){
+        previewStage.style.height = (actualH + 24) + "px";
+      }
+    }
   }
   function embedLogo(){
     if(!logo){return;}

@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="row">
 					<div class="col-md-12 m-b30">
-						<div class="card max-w500 radius-sm m-auto">
+						<div class="card max-w500 radius-sm m-auto p-3 p-sm-4 shadow-sm w-100">
 							<div class="tab-content">
 								<form id="login" class="tab-pane active" method="POST" enctype="multipart/form-data">
 									{% csrf_token %}
@@ -53,8 +53,8 @@
 										<input id="employer-password-input" name="dzPassword1" required="" class="form-control" placeholder="Type Password" type="password" autocomplete="new-password">
 										<div id="employer-password-strength" class="small m-t5 text-muted">Strength: <span id="employer-password-strength-value">Low</span></div>
 									</div>
-									<div class="text-left">
-										<button class="site-button button-lg outline outline-2">CREATE</button>
+									<div class="text-start">
+										<button class="site-button button-lg outline outline-2 w-100">CREATE</button>
 									</div>
 								</form>
 							</div>

@@ -49,6 +49,7 @@
 	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'css/skin/skin-1.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/dark-layout.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/cinema-ui.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive-fix.css' %}">
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com/">
 	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -493,24 +494,25 @@
 
 <!-- CINEMA FLOATING COMMAND DOCK -->
 <div class="cinema-floating-dock" id="cinemaQuickDock">
-	<a href="/" class="cinema-dock-btn"><i class="fa fa-home"></i> Home</a>
-	<a href="/browse_job_list/" class="cinema-dock-btn"><i class="fa fa-briefcase"></i> Jobs</a>
-	<a href="/companies/" class="cinema-dock-btn"><i class="fa fa-building"></i> Companies</a>
+	<a href="/" class="cinema-dock-btn" title="Home"><i class="fa fa-home"></i> <span class="dock-text">Home</span></a>
+	<a href="/browse_job_list/" class="cinema-dock-btn" title="Browse Jobs"><i class="fa fa-briefcase"></i> <span class="dock-text">Jobs</span></a>
+	<a href="/companies/" class="cinema-dock-btn hide-on-mobile" title="Companies"><i class="fa fa-building"></i> <span class="dock-text">Companies</span></a>
 	<div class="cinema-dock-divider"></div>
-	<a href="/employer/" class="cinema-dock-btn primary"><i class="fa fa-user-tie"></i> For Employers</a>
+	<a href="/employer/" class="cinema-dock-btn primary hide-on-mobile" title="For Employers"><i class="fa fa-user-tie"></i> <span class="dock-text">For Employers</span></a>
 	{% if user.is_authenticated %}
-	<a href="/dashboard1/index/" class="cinema-dock-btn"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+	<a href="/dashboard1/index/" class="cinema-dock-btn" title="Dashboard"><i class="fa fa-tachometer-alt"></i> <span class="dock-text">Dashboard</span></a>
 	{% else %}
-	<a href="/account/login/" class="cinema-dock-btn"><i class="fa fa-sign-in-alt"></i> Login</a>
+	<a href="/account/login/" class="cinema-dock-btn" title="Login"><i class="fa fa-sign-in-alt"></i> <span class="dock-text">Login</span></a>
 	{% endif %}
-	<button type="button" class="cinema-dock-btn" id="dockThemeBtn" title="Toggle Dark Mode"><i class="fa fa-moon" id="dockThemeIcon"></i></button>
-	<button type="button" class="cinema-dock-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="Return to Top"><i class="fa fa-arrow-up"></i></button>
+	<button type="button" class="cinema-dock-btn" id="dockThemeBtn" title="Toggle Dark Mode" aria-label="Toggle Theme"><i class="fa fa-moon" id="dockThemeIcon"></i></button>
+	<button type="button" class="cinema-dock-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="Return to Top" aria-label="Scroll to top"><i class="fa fa-arrow-up"></i></button>
 </div>
 
 <!-- CINEMA ANIMEJS & 3D ENGINE -->
 <script src="{% static 'js/anime.min.js' %}"></script>
 <script src="{% static 'js/cinema-darkmode.js' %}"></script>
 <script src="{% static 'js/cinema-effects.js' %}"></script>
+<script src="{% static 'js/responsive-nav.js' %}"></script>
 </body>
 
 </html>

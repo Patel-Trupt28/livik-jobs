@@ -1,0 +1,988 @@
+/* ==========================================================================
+   LIVIK JOBS - UNIFIED RESPONSIVE MASTER STYLESHEET
+   Mobile-First, Ultra-Fluid, Cross-Device Compatibility (320px to 1920px+)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. GLOBAL RESET & BOX-SIZING GUARDS (Eliminate all horizontal overflow)
+   -------------------------------------------------------------------------- */
+html, body {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Ensure all images, SVGs, and media scale responsively */
+img, svg, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* iOS Safari form zoom prevention (< 16px triggers zoom) */
+@media screen and (max-width: 767px) {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Accessible minimum touch target (44x44px) */
+.site-button,
+.btn,
+.navbar-toggler,
+.cinema-dock-btn,
+.layout-btn,
+.dropdown-item,
+.page-link,
+.nav-link {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   2. PUBLIC HEADER & NAVIGATION SYSTEM (site1 & site2)
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: relative;
+  width: 100%;
+  z-index: 999;
+}
+
+.site-header .main-bar {
+  width: 100%;
+}
+
+.site-header .main-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.site-header .logo-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  float: none;
+}
+
+.site-header .logo-header img {
+  max-height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Extra Nav (Search, Theme switch, Login dropdown) */
+.site-header .extra-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  float: none;
+  order: 2;
+}
+
+.site-header .extra-nav .extra-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Theme switch button */
+.layout-btn {
+  width: 54px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  border-radius: 999px !important;
+  position: relative;
+  display: inline-block !important;
+}
+
+/* Public Header Mobile Responsive (≤ 991px) */
+@media (max-width: 991.98px) {
+  .site-header .main-bar .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .site-header .logo-header {
+    height: 52px;
+  }
+
+  .site-header .logo-header img {
+    max-height: 38px;
+  }
+
+  /* Hamburger toggle button */
+  .navbar-toggler {
+    width: 44px;
+    height: 44px;
+    margin: 0 !important;
+    padding: 10px !important;
+    border: none !important;
+    background: transparent !important;
+    order: 3;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 10001;
+  }
+
+  .navbar-toggler span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background-color: #1e293b;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body.layout-dark .navbar-toggler span,
+  body.dark-layout .navbar-toggler span {
+    background-color: #f8fafc;
+  }
+
+  .navbar-toggler.open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .navbar-toggler.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar-toggler.open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  /* Off-canvas mobile navigation drawer */
+  .header-nav.navbar-collapse {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: min(85vw, 320px) !important;
+    height: 100vh !important;
+    background: #ffffff !important;
+    z-index: 10000 !important;
+    padding: 24px 18px 80px 18px !important;
+    transform: translateX(-105%) !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.35) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: block !important;
+    visibility: hidden;
+  }
+
+  .header-nav.navbar-collapse.show {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+  }
+
+  body.layout-dark .header-nav.navbar-collapse,
+  body.dark-layout .header-nav.navbar-collapse {
+    background: #0f172a !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .header-nav .nav.navbar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    width: 100% !important;
+    padding-top: 16px !important;
+  }
+
+  .header-nav .nav.navbar-nav > li {
+    width: 100% !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  body.layout-dark .header-nav .nav.navbar-nav > li,
+  body.dark-layout .header-nav .nav.navbar-nav > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .header-nav .nav.navbar-nav > li > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 12px 10px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    border-radius: 8px !important;
+  }
+
+  body.layout-dark .header-nav .nav.navbar-nav > li > a,
+  body.dark-layout .header-nav .nav.navbar-nav > li > a {
+    color: #e2e8f0 !important;
+  }
+
+  /* Sub-menus on mobile */
+  .header-nav .sub-menu {
+    position: static !important;
+    float: none !important;
+    width: 100% !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+    margin: 4px 0 8px 0 !important;
+    display: none;
+  }
+
+  .header-nav li.open > .sub-menu {
+    display: block !important;
+  }
+
+  body.layout-dark .header-nav .sub-menu,
+  body.dark-layout .header-nav .sub-menu {
+    background: rgba(255, 255, 255, 0.04) !important;
+  }
+
+  .header-nav .sub-menu > li > a {
+    padding: 8px 12px !important;
+    font-size: 13.5px !important;
+    color: #64748b !important;
+    display: block !important;
+  }
+
+  body.layout-dark .header-nav .sub-menu > li > a,
+  body.dark-layout .header-nav .sub-menu > li > a {
+    color: #94a3b8 !important;
+  }
+
+  /* Mobile Backdrop */
+  .mobile-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .mobile-nav-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Small mobile devices (≤ 575px) */
+@media (max-width: 575.98px) {
+  .site-header .extra-nav .site-button {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    min-height: 34px !important;
+  }
+
+  .site-header .logo-header img {
+    max-height: 32px !important;
+    max-width: 110px !important;
+  }
+
+  .site-header .extra-nav {
+    gap: 6px;
+  }
+}
+
+/* Ultra-compact screens (≤ 375px) */
+@media (max-width: 375.98px) {
+  .site-header .logo-header img {
+    max-width: 95px !important;
+  }
+  .site-header .extra-nav .site-button span.btn-text,
+  .site-header .extra-nav .site-button .fa-chevron-down {
+    display: none;
+  }
+  .site-header .extra-nav .site-button {
+    padding: 6px 8px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. CINEMA FLOATING COMMAND DOCK (Responsive Pill)
+   -------------------------------------------------------------------------- */
+.cinema-floating-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+
+/* Hide scrollbar on dock */
+.cinema-floating-dock::-webkit-scrollbar {
+  display: none;
+}
+.cinema-floating-dock {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.cinema-dock-btn {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  color: #e2e8f0;
+  white-space: nowrap;
+  flex-shrink: 0;
+  gap: 6px;
+  min-height: 36px;
+}
+
+/* Tablet dock (< 992px) */
+@media (max-width: 991.98px) {
+  .cinema-floating-dock {
+    bottom: 18px;
+    padding: 5px 10px;
+    gap: 4px;
+  }
+  .cinema-dock-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile dock (< 768px) */
+@media (max-width: 767.98px) {
+  .cinema-floating-dock {
+    bottom: max(12px, env(safe-area-inset-bottom));
+    padding: 4px 8px;
+    gap: 3px;
+  }
+
+  .cinema-dock-divider {
+    display: none;
+  }
+
+  /* Compact button styling */
+  .cinema-dock-btn {
+    padding: 6px 9px;
+    font-size: 12px;
+    min-height: 34px;
+  }
+
+  /* On narrow mobile (< 480px), show high-priority buttons cleanly */
+  @media (max-width: 480px) {
+    .cinema-dock-btn.hide-on-mobile {
+      display: none !important;
+    }
+    .cinema-dock-btn span.dock-text {
+      display: none;
+    }
+    .cinema-dock-btn {
+      padding: 7px 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. HERO SECTION & SEARCH HUD RESPONSIVE (index.html & browse_job_list)
+   -------------------------------------------------------------------------- */
+.cinema-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 60px 0;
+}
+
+.cinema-hero-title {
+  font-size: clamp(28px, 5.5vw, 56px) !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.cinema-hero-subtitle {
+  font-size: clamp(14px, 2.2vw, 17px) !important;
+  line-height: 1.6;
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+
+.cinema-search-hud {
+  padding: 20px;
+  border-radius: 18px;
+  max-width: 960px;
+  width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .cinema-hero {
+    padding: 50px 0 40px 0;
+  }
+
+  .cinema-search-hud {
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+
+  .cinema-search-hud .row > div {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+
+  .cinema-search-hud .row > div:last-child {
+    margin-bottom: 0;
+  }
+
+  .cinema-search-hud .site-button {
+    height: 48px !important;
+  }
+
+  .cinema-input-box {
+    height: 48px;
+  }
+
+  /* Ribbon HUD Metrics */
+  .cinema-hud-counter {
+    padding: 14px 10px !important;
+  }
+
+  .cinema-hud-number {
+    font-size: 20px !important;
+  }
+
+  .cinema-hud-label {
+    font-size: 11.5px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. JOB LISTINGS & FILTER CARDS (browse_job_list.html)
+   -------------------------------------------------------------------------- */
+.browse-job-find .find-job-bx {
+  padding: 20px;
+  border-radius: 16px;
+}
+
+@media (max-width: 991.98px) {
+  .browse-job-find .find-job-bx {
+    padding: 16px 14px;
+  }
+
+  .browse-job-find .find-job-bx .row > div {
+    margin-bottom: 12px;
+  }
+
+  .browse-job-find .find-job-bx .row > div:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Responsive sidebar filter toggle on tablet/mobile */
+  .sidebar-filter-toggle-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar-filter-toggle-btn {
+    display: none !important;
+  }
+}
+
+/* Job Cards */
+.post-job-bx .post-bx {
+  padding: 18px;
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 575.98px) {
+  .post-job-bx .post-bx {
+    padding: 14px 12px;
+  }
+
+  .post-job-bx .post-bx .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .post-job-bx .post-bx .job-post-company {
+    margin-bottom: 6px;
+  }
+
+  .post-job-bx .post-bx .salary-bx {
+    text-align: left !important;
+    margin-top: 10px;
+  }
+
+  .post-job-bx .post-bx .salary-bx .site-button {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. DASHBOARD RESPONSIVE SYSTEM (dashb1 & dashb2)
+   -------------------------------------------------------------------------- */
+.header .main-header {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Dashboard Header Mobile (< 1200px) */
+@media (max-width: 1199.98px) {
+  .header.sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  body.layout-dark .header.sticky-bar,
+  body.dark-layout .header.sticky-bar {
+    background: #111827 !important;
+    border-bottom: 1px solid #1f2937 !important;
+  }
+
+  /* Desktop sidebar hidden */
+  .main .nav {
+    display: none !important;
+    width: 0 !important;
+  }
+
+  .main {
+    padding-left: 0 !important;
+  }
+
+  .box-content {
+    margin-left: 0 !important;
+    padding: 24px 20px !important;
+  }
+
+  /* Burger icon button */
+  .burger-icon {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    position: relative;
+    top: auto;
+    right: auto;
+    cursor: pointer;
+    z-index: 10001;
+    border-radius: 8px;
+    background: transparent;
+  }
+
+  .burger-icon > span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #1e293b;
+    position: static;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  body.layout-dark .burger-icon > span,
+  body.dark-layout .burger-icon > span {
+    background-color: #e2e8f0 !important;
+  }
+
+  .burger-icon.burger-close > span.burger-icon-top {
+    transform: translateY(7px) rotate(45deg);
+    display: block !important;
+    opacity: 1 !important;
+  }
+  .burger-icon.burger-close > span.burger-icon-mid {
+    opacity: 0;
+  }
+  .burger-icon.burger-close > span.burger-icon-bottom {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Header right controls */
+  .header .main-header .header-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .header .main-header .header-left {
+    min-width: auto !important;
+  }
+}
+
+/* Dashboard Header Small Mobile (< 576px) */
+@media (max-width: 575.98px) {
+  .box-content {
+    padding: 16px 12px !important;
+  }
+
+  .header .main-header {
+    min-height: 58px;
+    padding: 6px 12px;
+  }
+
+  .header .header-logo img {
+    height: 26px !important;
+    max-width: 105px !important;
+  }
+
+  /* Hide username string on mobile, keep avatar */
+  .header .member-login .info-member strong {
+    display: none;
+  }
+
+  /* Compact Post Job button */
+  #post-job-btn {
+    padding: 6px 10px !important;
+    min-height: 32px !important;
+    font-size: 12px !important;
+  }
+
+  /* Welcome HUD on Dashboard */
+  .cinema-dash-hud {
+    padding: 16px 14px !important;
+  }
+
+  .cinema-dash-hud > div {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .cinema-dash-hud > div > div:last-child {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .cinema-dash-hud > div > div:last-child .btn {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* Mobile Off-canvas Dashboard Drawer */
+.mobile-header-active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(85vw, 300px);
+  height: 100vh;
+  z-index: 100000;
+  background: #ffffff;
+  transform: translateX(-105%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px 60px 16px;
+}
+
+.mobile-header-active.sidebar-visible {
+  transform: translateX(0);
+}
+
+body.layout-dark .mobile-header-active,
+body.dark-layout .mobile-header-active {
+  background: #0f172a !important;
+  border-right: 1px solid #1f2937 !important;
+}
+
+/* Dashboard backdrop */
+.body-overlay-1 {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+body.mobile-menu-active .body-overlay-1 {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --------------------------------------------------------------------------
+   7. DASHBOARD STAT METRIC CARDS & GRIDS
+   -------------------------------------------------------------------------- */
+.dashboard-metrics {
+  margin-left: -8px !important;
+  margin-right: -8px !important;
+}
+
+.dashboard-metrics > [class*="col-"] {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  margin-bottom: 16px;
+}
+
+.cinema-dash-metric-card {
+  padding: 16px 14px !important;
+  min-height: 96px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  border-radius: 14px !important;
+}
+
+.cinema-dash-metric-card .card-image {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(45, 91, 255, 0.08);
+}
+
+.cinema-dash-metric-card .card-image img {
+  width: 26px;
+  height: 26px;
+}
+
+.cinema-dash-metric-card .card-info .stat-value {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.cinema-dash-metric-card .color-text-paragraph-2 {
+  font-size: 12.5px;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. CHARTS & RECRUITER ALPHABET FILTER RESPONSIVENESS
+   -------------------------------------------------------------------------- */
+#chartdiv {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: clamp(220px, 35vh, 320px) !important;
+}
+
+/* Recruiters Alphabet Bar */
+.box-list-character {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 10px 14px !important;
+  white-space: nowrap !important;
+}
+
+.box-list-character ul {
+  display: inline-flex !important;
+  gap: 4px !important;
+  flex-wrap: nowrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.box-list-character ul li a {
+  padding: 6px 10px !important;
+  font-size: 13.5px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 32px !important;
+  height: 32px !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. TABLES & WIDE DATA MANAGERS (emp_job_applications.html)
+   -------------------------------------------------------------------------- */
+.table-responsive {
+  width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+}
+
+.table-responsive table {
+  min-width: 680px;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   10. FORMS, AUTH & PROFILE RESPONSIVENESS (login, register, profiles)
+   -------------------------------------------------------------------------- */
+.login-card,
+.register-card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+@media (max-width: 575.98px) {
+  .login-card,
+  .register-card,
+  .p-a40 {
+    padding: 22px 16px !important;
+  }
+
+  .login-card h4,
+  .register-card h4 {
+    font-size: 20px !important;
+  }
+
+  /* Profile Avatar Row */
+  .box-profile-image {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .box-profile-image .form-control {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .postjob-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .postjob-actions .btn {
+    width: 100% !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. RESUME & CV BUILDER MOBILE SCALING
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .grid,
+  .cv-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .shell,
+  .cv-shell {
+    padding: 16px 12px !important;
+  }
+
+  .preview-wrap,
+  .cv-preview {
+    overflow-x: auto !important;
+    padding: 12px 8px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .paper {
+    padding: 16px 12px 40px !important;
+    min-height: auto !important;
+  }
+
+  .p-head h1 {
+    font-size: clamp(24px, 7vw, 34px) !important;
+  }
+
+  .p-head h2 {
+    font-size: clamp(16px, 4.5vw, 22px) !important;
+  }
+
+  .contacts {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  .p-body {
+    grid-template-columns: 1fr !important;
+  }
+
+  .skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. COMPANIES & ALPHABET FILTERS RESPONSIVE
+   -------------------------------------------------------------------------- */
+.site-filters ul.filters {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 0 !important;
+}
+
+.site-filters ul.filters li.btn {
+  padding: 0 !important;
+  margin: 2px !important;
+  min-height: 32px !important;
+}
+
+.site-filters ul.filters li.btn a {
+  padding: 6px 10px !important;
+  min-width: 32px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   13. FOOTER & SAFE AREAS
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding-bottom: max(60px, calc(40px + env(safe-area-inset-bottom)));
+}
+
+.footer {
+  padding-bottom: max(30px, calc(16px + env(safe-area-inset-bottom)));
+}

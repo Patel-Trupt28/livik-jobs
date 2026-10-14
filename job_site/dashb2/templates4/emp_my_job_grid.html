@@ -81,9 +81,9 @@
 
                     <div class="row">
                       {% for job in jobs %}
-                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="card-grid-2 cinema-3d-card" data-cinema-tilt-3d hover-up job-card">
-                          <div class="card-grid-2 cinema-3d-card" data-cinema-tilt-3d-image-left"><span class="flash"></span>
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="card-grid-2 cinema-3d-card hover-up job-card" data-cinema-tilt-3d>
+                          <div class="card-grid-2-image-left"><span class="flash"></span>
                             <div class="image-box">
                               {% if job.file_upload %}
                                 <img src="{{ job.file_upload.url }}" alt="{{ job.company_name }}">

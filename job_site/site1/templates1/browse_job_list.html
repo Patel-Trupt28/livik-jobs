@@ -204,9 +204,13 @@
 			<div class="section-full browse-job p-b50">
 				<div class="container">
 					<div class="row">
-						<div class="col-xl-3 col-lg-4 col-md-5 m-b30">
+						<div class="col-xl-3 col-lg-4 col-md-12 m-b30">
+							<button class="site-button btn-block sidebar-filter-toggle-btn d-lg-none mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarFilterCollapse" aria-expanded="false" aria-controls="sidebarFilterCollapse">
+								<i class="fa fa-sliders me-2"></i> Toggle Search Filters
+							</button>
+							<div class="collapse d-lg-block" id="sidebarFilterCollapse">
 							<aside id="accordion1" class="sticky-top sidebar-filter">
-								<h6 class="title"><i class="fa fa-sliders m-r5"></i> Refined By <a href="javascript:void(0);" class="font-12 float-end">Reset All</a></h6>
+								<h6 class="title"><i class="fa fa-sliders m-r5"></i> Refined By <a href="/browse_job_list/" class="font-12 float-end">Reset All</a></h6>
 								<div class="panel">
 									<div class="acod-head">
 										<h6 class="acod-title">
@@ -340,22 +344,19 @@
 									</div>
 								</div>
 							</aside>
+							</div>
 						</div>
-						<div class="col-xl-9 col-lg-8 col-md-7">
-							<div class="job-bx-title clearfix">
-								<h5 class="font-weight-700 float-start text-uppercase">{{ jobs|length }} Jobs Found</h5>
-								<div class="float-end">
+						<div class="col-xl-9 col-lg-8 col-md-12">
+							<div class="job-bx-title d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+								<h5 class="font-weight-700 mb-0 text-uppercase">{{ jobs|length }} Jobs Found</h5>
+								<div class="d-flex align-items-center gap-2">
 									<span class="select-title">Sort by freshness</span>
-									<select>
+									<select class="form-select form-select-sm" style="width:auto;display:inline-block;">
 										<option>Last 2 Months</option>
 										<option>Last Months</option>
 										<option>Last Weeks</option>
 										<option>Last 3 Days</option>
 									</select>
-									<div class="float-end p-tb5 p-r10">
-										<a href="browse-job-filter-list.html" class="p-lr5"><i class="fa fa-th-list"></i></a>
-										<a href="browse-job-filter-grid.html" class="p-lr5"><i class="fa fa-th"></i></a>
-									</div>
 								</div>
 							</div>
 							<ul class="post-job-bx">

@@ -50,6 +50,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/dark-layout.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/cinema-ui.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive-fix.css' %}">
 
 
 	<!-- Google Fonts -->
@@ -436,24 +437,25 @@
 
 <!-- CINEMA FLOATING COMMAND DOCK (EMPLOYER) -->
 <div class="cinema-floating-dock" id="cinemaQuickDockEmp">
-	<a href="/employer/" class="cinema-dock-btn"><i class="fa fa-home"></i> Employer Home</a>
-	<a href="/dashboard2/emp_post_job/" class="cinema-dock-btn primary"><i class="fa fa-plus-circle"></i> Post Job</a>
-	<a href="/employer/emp_browse_job_list/" class="cinema-dock-btn"><i class="fa fa-users"></i> Browse Candidates</a>
+	<a href="/employer/" class="cinema-dock-btn" title="Employer Home"><i class="fa fa-home"></i> <span class="dock-text">Home</span></a>
+	<a href="/dashboard2/emp_post_job/" class="cinema-dock-btn primary" title="Post Job"><i class="fa fa-plus-circle"></i> <span class="dock-text">Post Job</span></a>
+	<a href="/employer/emp_browse_job_list/" class="cinema-dock-btn hide-on-mobile" title="Browse Candidates"><i class="fa fa-users"></i> <span class="dock-text">Candidates</span></a>
 	<div class="cinema-dock-divider"></div>
-	<a href="/" class="cinema-dock-btn"><i class="fa fa-briefcase"></i> Candidate Portal</a>
+	<a href="/" class="cinema-dock-btn hide-on-mobile" title="Candidate Portal"><i class="fa fa-briefcase"></i> <span class="dock-text">Candidate Portal</span></a>
 	{% if user.is_authenticated %}
-	<a href="/dashboard2/emp_index/" class="cinema-dock-btn"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+	<a href="/dashboard2/emp_index/" class="cinema-dock-btn" title="Dashboard"><i class="fa fa-tachometer-alt"></i> <span class="dock-text">Dashboard</span></a>
 	{% else %}
-	<a href="/account/emp_login/" class="cinema-dock-btn"><i class="fa fa-sign-in-alt"></i> Login</a>
+	<a href="/account/emp_login/" class="cinema-dock-btn" title="Login"><i class="fa fa-sign-in-alt"></i> <span class="dock-text">Login</span></a>
 	{% endif %}
-	<button type="button" class="cinema-dock-btn" id="dockThemeBtn" title="Toggle Dark Mode"><i class="fa fa-moon" id="dockThemeIcon"></i></button>
-	<button type="button" class="cinema-dock-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="Return to Top"><i class="fa fa-arrow-up"></i></button>
+	<button type="button" class="cinema-dock-btn" id="dockThemeBtn" title="Toggle Dark Mode" aria-label="Toggle Theme"><i class="fa fa-moon" id="dockThemeIcon"></i></button>
+	<button type="button" class="cinema-dock-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" title="Return to Top" aria-label="Scroll to top"><i class="fa fa-arrow-up"></i></button>
 </div>
 
 <!-- CINEMA ANIMEJS & 3D ENGINE -->
 <script src="{% static 'js/anime.min.js' %}"></script>
 <script src="{% static 'js/cinema-darkmode.js' %}"></script>
 <script src="{% static 'js/cinema-effects.js' %}"></script>
+<script src="{% static 'js/responsive-nav.js' %}"></script>
 </body>
 
 <!-- Mirrored from job-board-html.vercel.app/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Jan 2026 09:07:23 GMT -->
