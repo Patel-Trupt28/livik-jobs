@@ -9,7 +9,7 @@
           <div class="box-breadcrumb">
             <div class="breadcrumbs">
               <ul>
-                <li> <a class='icon-home' href='/dashboard1/index/'>Admin</a></li>
+                <li> <a class='icon-home' href='/dashboard1/index/'>Dashboard</a></li>
                 <li><span>Recruiters</span></li>
               </ul>
             </div>
@@ -24,57 +24,58 @@
                     <div class="row mb-30">
                       <div class="col-12">
                         <div class="box-list-character">
-                          <ul>
-                            <li><a class="active" href="#">A</a></li>
-                            <li><a href="#">B</a></li>
-                            <li><a href="#">C</a></li>
-                            <li><a href="#">D</a></li>
-                            <li><a href="#">E</a></li>
-                            <li><a href="#">F</a></li>
-                            <li><a href="#">G</a></li>
-                            <li><a href="#">H</a></li>
-                            <li><a href="#">I</a></li>
-                            <li><a href="#">J</a></li>
-                            <li><a href="#">K</a></li>
-                            <li><a href="#">L</a></li>
-                            <li><a href="#">M</a></li>
-                            <li><a href="#">N</a></li>
-                            <li><a href="#">O</a></li>
-                            <li><a href="#">P</a></li>
-                            <li><a href="#">Q</a></li>
-                            <li><a href="#">R</a></li>
-                            <li><a href="#">S</a></li>
-                            <li><a href="#">T</a></li>
-                            <li><a href="#">U</a></li>
-                            <li><a href="#">V</a></li>
-                            <li><a href="#">W</a></li>
-                            <li><a href="#">X</a></li>
-                            <li><a href="#">Y</a></li>
-                            <li><a href="#">Z</a></li>
+                          <ul id="alphabet-filter">
+                            <li><a class="active filter-letter" href="javascript:void(0);" data-char="ALL" style="min-width:38px;">ALL</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="A">A</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="B">B</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="C">C</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="D">D</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="E">E</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="F">F</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="G">G</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="H">H</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="I">I</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="J">J</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="K">K</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="L">L</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="M">M</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="N">N</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="O">O</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="P">P</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="Q">Q</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="R">R</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="S">S</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="T">T</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="U">U</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="V">V</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="W">W</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="X">X</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="Y">Y</a></li>
+                            <li><a class="filter-letter" href="javascript:void(0);" data-char="Z">Z</a></li>
                           </ul>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="companies-container">
                       {% if companies %}
                         {% for company in companies %}
-                          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+                          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 company-card-wrapper" data-name="{{ company.name }}">
                             <div class="card-grid-1 hover-up wow animate__animated animate__fadeIn">
                               <div class="image-box">
                                 <a href="#">
                                   {% if company.logo %}
-                                    <img src="{{ company.logo.url }}" alt="jobBox">
+                                    <img src="{{ company.logo.url }}" alt="{{ company.name }}">
                                   {% else %}
-                                    <img src="{% static 'assets/imgs/brands/brand-1.png' %}" alt="jobBox">
+                                    <img src="{% static 'assets/imgs/brands/brand-1.png' %}" alt="{{ company.name }}">
                                   {% endif %}
                                 </a>
                               </div>
                               <div class="info-text mt-10">
                                 <h5 class="font-bold"><a href="#">{{ company.name }}</a></h5>
                                 {% if company.location %}
-                                  <span class="card-location">{{ company.location }}</span>
+                                  <span class="card-location"><i class="fas fa-map-marker-alt me-1 text-muted"></i>{{ company.location }}</span>
                                 {% endif %}
-                                <div class="mt-30">
+                                <div class="mt-25">
                                   <a class="btn btn-grey-big" href="#"><span>{{ company.open_jobs }}</span><span> Jobs Open</span></a>
                                 </div>
                               </div>
@@ -86,17 +87,16 @@
                           <div class="alert alert-info">No companies found yet.</div>
                         </div>
                       {% endif %}
+                      <div class="col-12" id="no-recruiters-match" style="display:none;">
+                        <div class="alert alert-info text-center py-4">No recruiters found matching the selected letter.</div>
+                      </div>
                     </div>
                     <div class="paginations">
                       <ul class="pager">
                         <li><a class="pager-prev" href="#"></a></li>
-                        <li><a class="pager-number" href="#">1</a></li>
+                        <li><a class="pager-number active" href="#">1</a></li>
                         <li><a class="pager-number" href="#">2</a></li>
                         <li><a class="pager-number" href="#">3</a></li>
-                        <li><a class="pager-number" href="#">4</a></li>
-                        <li><a class="pager-number" href="#">5</a></li>
-                        <li><a class="pager-number active" href="#">6</a></li>
-                        <li><a class="pager-number" href="#">7</a></li>
                         <li><a class="pager-next" href="#"></a></li>
                       </ul>
                     </div>
@@ -176,4 +176,42 @@
           </div>
         </div>
       </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const filterButtons = document.querySelectorAll('#alphabet-filter .filter-letter');
+          const companyItems = document.querySelectorAll('.company-card-wrapper');
+          const emptyNotice = document.getElementById('no-recruiters-match');
+
+          filterButtons.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              filterButtons.forEach(function(b) { b.classList.remove('active'); });
+              this.classList.add('active');
+
+              const selectedChar = (this.getAttribute('data-char') || '').trim().toUpperCase();
+              let matchCount = 0;
+
+              companyItems.forEach(function(item) {
+                const name = (item.getAttribute('data-name') || '').trim().toUpperCase();
+                if (selectedChar === 'ALL' || name.startsWith(selectedChar)) {
+                  item.style.display = '';
+                  matchCount++;
+                } else {
+                  item.style.display = 'none';
+                }
+              });
+
+              if (emptyNotice) {
+                if (matchCount === 0 && companyItems.length > 0) {
+                  emptyNotice.style.display = 'block';
+                  emptyNotice.innerHTML = `<div class="alert alert-info text-center py-4">No recruiters found starting with "<strong>${selectedChar}</strong>". Click <strong>ALL</strong> to see all recruiters.</div>`;
+                } else {
+                  emptyNotice.style.display = 'none';
+                }
+              }
+            });
+          });
+        });
+      </script>
 {% endblock %}

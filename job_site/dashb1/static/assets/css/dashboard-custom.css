@@ -91,3 +91,230 @@ body.layout-dark .layout-btn .mode-label:after {
 body.layout-dark .btn.icon-edit {
   filter: brightness(1.2);
 }
+
+/* ==========================================================================
+   Cinema Dark Mode Overhaul - Recruiters, Alphabet Filter, Dropdowns & Cards
+   ========================================================================== */
+
+/* 1. Alphabet Filter Bar (.box-list-character) */
+body.layout-dark .box-list-character {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+}
+
+body.layout-dark .box-list-character ul li a {
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  border-radius: 8px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body.layout-dark .box-list-character ul li a:hover {
+  background: #334155 !important;
+  color: #38bdf8 !important;
+  transform: translateY(-1px) !important;
+}
+
+body.layout-dark .box-list-character ul li a.active {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5) !important;
+}
+
+/* 2. Recruiter Cards (.card-grid-1) */
+body.layout-dark .card-grid-1 {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+  padding: 28px 20px !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+body.layout-dark .card-grid-1:hover {
+  transform: translateY(-6px) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 18px rgba(59, 130, 246, 0.25) !important;
+}
+
+body.layout-dark .card-grid-1 .image-box {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 72px !important;
+  height: 72px !important;
+  margin: 0 auto 12px auto !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.layout-dark .card-grid-1 .image-box img {
+  max-width: 48px !important;
+  max-height: 48px !important;
+  object-fit: contain !important;
+}
+
+body.layout-dark .card-grid-1 .info-text h5 a {
+  color: #f1f5f9 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  transition: color 0.2s ease !important;
+}
+
+body.layout-dark .card-grid-1 .info-text h5 a:hover {
+  color: #60a5fa !important;
+}
+
+body.layout-dark .card-grid-1 .card-location {
+  color: #94a3b8 !important;
+  font-size: 13.5px !important;
+  display: inline-block !important;
+  margin-top: 6px !important;
+}
+
+body.layout-dark .card-grid-1 .btn-grey-big {
+  background: rgba(59, 130, 246, 0.12) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(59, 130, 246, 0.28) !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+body.layout-dark .card-grid-1 .btn-grey-big:hover {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 3. Notification Dropdown */
+body.layout-dark .dropdown-menu {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
+  padding: 8px 0 !important;
+  overflow: hidden !important;
+}
+
+body.layout-dark .dropdown-item {
+  color: #cbd5e1 !important;
+  padding: 10px 18px !important;
+  font-size: 14px !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+body.layout-dark .dropdown-item:hover {
+  background: #334155 !important;
+  color: #ffffff !important;
+}
+
+body.layout-dark .dropdown-item.active {
+  background: rgba(37, 99, 235, 0.2) !important;
+  color: #60a5fa !important;
+  font-weight: 600 !important;
+  border-left: 3px solid #3b82f6 !important;
+}
+
+/* 4. Pagination */
+body.layout-dark .paginations .pager li a {
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+}
+
+body.layout-dark .paginations .pager li a:hover {
+  color: #f8fafc !important;
+}
+
+body.layout-dark .paginations .pager li a.active,
+body.layout-dark .paginations .pager li a.pager-number.active {
+  color: #ffffff !important;
+}
+
+body.layout-dark .paginations .pager li a.pager-number.active::before {
+  background: #2563eb !important;
+  opacity: 1 !important;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5) !important;
+}
+
+body.layout-dark .paginations .pager li a.pager-number:hover::before {
+  background: #334155 !important;
+  opacity: 0.8 !important;
+}
+
+body.layout-dark .paginations .pager li .pager-prev,
+body.layout-dark .paginations .pager li .pager-next {
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  border-radius: 50% !important;
+  filter: brightness(1.2) !important;
+  transition: all 0.2s ease !important;
+}
+
+body.layout-dark .paginations .pager li .pager-prev:hover,
+body.layout-dark .paginations .pager li .pager-next:hover {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* 5. Breadcrumbs & Titles */
+body.layout-dark .breadcrumbs ul li a {
+  color: #60a5fa !important;
+}
+
+body.layout-dark .breadcrumbs ul li span {
+  color: #94a3b8 !important;
+}
+
+/* 6. Partner Brands Carousel */
+body.layout-dark .swiper-slide img {
+  filter: brightness(0.85) invert(0.8);
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+body.layout-dark .swiper-slide img:hover {
+  filter: brightness(1) invert(0.95);
+  opacity: 1;
+}
+
+/* 7. Modal Apply Form */
+body.layout-dark .modal-content.apply-job-form {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #e2e8f0 !important;
+  border-radius: 16px !important;
+}
+
+body.layout-dark .modal-content.apply-job-form .form-control {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.layout-dark .modal-content.apply-job-form .form-control:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+}
+
+body.layout-dark .modal-content.apply-job-form .form-label {
+  color: #cbd5e1 !important;
+}
