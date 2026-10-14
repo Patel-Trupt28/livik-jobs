@@ -47,7 +47,15 @@ ehthumbs.db
 # Logs
 *.log
 
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# User-uploaded application resumes (protect personal privacy)
+job_site/media/applications/resumes/*
+!job_site/media/applications/resumes/.gitkeep
+
 # Collected static files
 staticfiles/
 job_site/staticfiles/
-

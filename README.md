@@ -187,6 +187,30 @@ livik-jobs/
 
 ---
 
+## ☁️ Deployment Guide
+
+### Deploying to Vercel (Recommended)
+
+This repository is optimized for zero-config deployment on [Vercel](https://vercel.com):
+
+1. **Import Project**: In Vercel, click **Add New...** > **Project**, select your `livik-jobs` repository.
+2. **Framework Preset**: Select **Other** (leave Root Directory as `./` default).
+3. **Build & Output Settings**:
+   - Vercel automatically detects `vercel.json` and uses `api/index.py` serverless WSGI runtime.
+4. **Environment Variables** (Optional):
+   - `DEBUG`: `False` (for production)
+   - `SECRET_KEY`: A secure random string for Django
+   - `DATABASE_URL`: (Optional) PostgreSQL connection string (from Neon, Supabase, Railway, etc.)
+5. Click **Deploy**!
+   - Static files are compressed and served by **WhiteNoise** with caching.
+   - If no external database is configured, an ephemeral SQLite database is initialized in writable `/tmp` space.
+
+### Deploying to Netlify
+
+Netlify is also supported out-of-the-box via `netlify.toml` and `netlify/functions/app.py`.
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before submitting pull requests.
@@ -196,6 +220,7 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [C
 3. Commit your Changes (`git commit -m 'feat: add cinema particle effect'`)
 4. Push to the Branch (`git push origin feature/CinemaEnhancement`)
 5. Open a Pull Request
+
 
 ---
 

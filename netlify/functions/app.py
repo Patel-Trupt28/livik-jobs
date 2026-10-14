@@ -23,3 +23,4 @@ def handler(event, context):
     Converts AWS Lambda API Gateway / Netlify proxy events to WSGI and runs Django.
     """
     return serverless_wsgi.handle_request(application, event, context)
+
