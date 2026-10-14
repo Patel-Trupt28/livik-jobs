@@ -3,7 +3,14 @@
   "builds": [
     {
       "src": "api/index.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "job_site/**",
+          "db.sqlite3",
+          "job_site/db.sqlite3"
+        ]
+      }
     }
   ],
   "routes": [

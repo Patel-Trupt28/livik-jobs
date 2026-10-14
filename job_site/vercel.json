@@ -3,7 +3,13 @@
   "builds": [
     {
       "src": "job_site/wsgi.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "**",
+          "db.sqlite3"
+        ]
+      }
     }
   ],
   "routes": [

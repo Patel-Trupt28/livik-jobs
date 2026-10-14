@@ -66,6 +66,17 @@ def seed():
     UserSettings.objects.get_or_create(user=trupt_user)
     print("  [+] Candidate account created/updated: trupt (or pateltrupt30@gmail.com) / Password@123")
 
+    # 2b. Candidate: patel-trupt28
+    alias_user, _ = User.objects.get_or_create(username='patel-trupt28', defaults={'email': 'pateltrupt28@gmail.com'})
+    alias_user.first_name = 'Trupt'
+    alias_user.last_name = 'Patel'
+    alias_user.set_password('Password@123')
+    alias_user.save()
+    Employee.objects.get_or_create(username=alias_user, defaults={'first_name': 'Trupt', 'last_name': 'Patel', 'is_employee': True})
+    EmployeeProfile.objects.get_or_create(user=alias_user, defaults={'full_name': 'Trupt Patel', 'email': 'pateltrupt30@gmail.com'})
+    UserSettings.objects.get_or_create(user=alias_user)
+    print("  [+] Candidate account created/updated: patel-trupt28 / Password@123")
+
     # 3. Generic Candidate: Candidate
     cand_user, created = User.objects.get_or_create(username='candidate', defaults={'email': 'candidate@livikjobs.com'})
     cand_user.first_name = 'Alex'

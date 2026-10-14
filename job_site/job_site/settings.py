@@ -122,7 +122,12 @@ else:
         ]
         _src_db = next((p for p in _candidates if p.exists() and p.stat().st_size > 0), None)
         if _src_db:
+            should_copy = False
             if not _tmp_db.exists() or _tmp_db.stat().st_size == 0:
+                should_copy = True
+            elif _src_db.stat().st_size != _tmp_db.stat().st_size or _src_db.stat().st_mtime > _tmp_db.stat().st_mtime:
+                should_copy = True
+            if should_copy:
                 try:
                     shutil.copy2(_src_db, _tmp_db)
                 except Exception:

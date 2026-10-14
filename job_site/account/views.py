@@ -302,6 +302,14 @@ def employeelogin(request):
             user_lookup = User.objects.filter(email__iexact=identifier).first()
         else:
             user_lookup = User.objects.filter(username__iexact=identifier).first()
+            if not user_lookup:
+                user_lookup = User.objects.filter(email__iexact=identifier).first()
+            if not user_lookup:
+                cleaned_id = identifier.replace('-', '').replace('_', '').lower()
+                for u in User.objects.all():
+                    if u.username.replace('-', '').replace('_', '').lower() == cleaned_id:
+                        user_lookup = u
+                        break
 
         if not user_lookup:
             messages.error(request, "Account not found. Please verify your credentials or register.")
@@ -422,6 +430,14 @@ def employerlogin(request):
             user_lookup = User.objects.filter(email__iexact=identifier).first()
         else:
             user_lookup = User.objects.filter(username__iexact=identifier).first()
+            if not user_lookup:
+                user_lookup = User.objects.filter(email__iexact=identifier).first()
+            if not user_lookup:
+                cleaned_id = identifier.replace('-', '').replace('_', '').lower()
+                for u in User.objects.all():
+                    if u.username.replace('-', '').replace('_', '').lower() == cleaned_id:
+                        user_lookup = u
+                        break
 
         if not user_lookup:
             messages.error(request, "Account not found. Please verify your credentials or register.")
